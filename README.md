@@ -4,8 +4,6 @@
 
 Fiber is an `Express.js` styled HTTP framework implementation running on `FastHTTP`, the fastest HTTP engine for Go. The package make use of similar framework convention as they are in express.
 
-People switching from Node to Go often end up in a bad learning curve to start building their webapps, this project is meant to ease things up for fast development, but with zero memory allocation and performance in mind.
-
 📚 [Documentation](https://gofiber.github.io/fiber)
 
 ## Requirements
