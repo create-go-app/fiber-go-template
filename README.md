@@ -1,12 +1,12 @@
 <h1 align="center">Fiber backend template<br/>for <a href="https://github.com/create-go-app">Create Go App CLI</a></h1>
 
-<img align="right" width="256px" src="https://gofiber.github.io/fiber/static/logo.jpg" alt="Fiber logo" />
+<img align="right" width="256px" src="https://github.com/gofiber/docs/blob/master/static/logo_short_vertical.svg" alt="Fiber logo" />
 
-Fiber is an `Express.js` styled HTTP framework implementation running on `FastHTTP`, the fastest HTTP engine for Go. The package make use of similar framework convention as they are in express.
+Fiber is an `Express` inspired web framework build on top of `Fasthttp`, the fastest HTTP engine for Go. Designed to ease things up for fast development with zero memory allocation and performance in mind.
 
 People switching from Node.js to Go often end up in a bad learning curve to start building their webapps, this project is meant to ease things up for fast development, but with zero memory allocation and performance in mind.
 
-📚 [Documentation](https://gofiber.github.io/fiber)
+📚 [Documentation](https://fiber.wiki/)
 
 ## Requirements
 
