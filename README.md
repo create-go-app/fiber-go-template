@@ -1,6 +1,6 @@
 <h1 align="center">Fiber backend template<br/>for <a href="https://github.com/create-go-app">Create Go App CLI</a></h1>
 
-<img align="right" width="256px" src="https://github.com/gofiber/docs/blob/master/static/logo_short_vertical.svg" alt="Fiber logo" />
+<img align="right" width="256px" src="https://github.com/gofiber/docs/blob/master/static/fiber_v2_logo.svg" alt="Fiber logo" />
 
 Fiber is an `Express` inspired web framework build on top of `Fasthttp`, the fastest HTTP engine for Go. Designed to ease things up for fast development with zero memory allocation and performance in mind.
 
@@ -10,7 +10,7 @@ People switching from Node.js to Go often end up in a bad learning curve to star
 
 ## Requirements
 
-- Create Go App CLI `v0.5+` ([create-go-app/cli](https://github.com/create-go-app/cli))
+- Create Go App CLI `v0.6+` ([create-go-app/cli](https://github.com/create-go-app/cli))
 - Go `v1.11+` with Go Modules ([golang/download](https://golang.org/dl/))
 
 ### Optional
@@ -19,7 +19,8 @@ People switching from Node.js to Go often end up in a bad learning curve to star
 
 ## Used packages
 
-- [go-yaml/yaml](https://github.com/go-yaml/yaml) `v3.0.0`
+- [gofiber/fiber](https://github.com/gofiber/fiber) `v1.7.1`
+- [go-yaml/yaml](https://github.com/go-yaml/yaml) `v2.2.8`
 - [zap](https://go.uber.org/zap) `v1.13.0`
 
 ## Template structure
@@ -42,6 +43,8 @@ foo@bar:~/net_http-go-template$ tree .
 │       └── main.go
 ├── configs
 │   └── apiserver.yml
+├── static
+│   └── index.html
 └── internal
     └── apiserver
         ├── apiserver.go
@@ -50,7 +53,7 @@ foo@bar:~/net_http-go-template$ tree .
         ├── logger.go
         └── routes.go
 
-5 directories, 16 files
+6 directories, 17 files
 ```
 
 ### Configs
@@ -62,10 +65,6 @@ All server/database/logging/static configs included in one YAML file `./configs/
 server:
     host: 127.0.0.1
     port: 8080
-    timeout:
-        read: 15
-        write: 10
-        idle: 5
 
 # Database config
 database:
@@ -80,13 +79,13 @@ logging:
 
 # Static files config
 static:
-    path: /static
+    prefix: /public
+    path: ./static
 
 ```
 
 ### TODO (ASAP list)
 
-- Add more API endpoints
 - Add tests
 - Add jmoiron/sqlx (Postgres)
 - ...

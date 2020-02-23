@@ -1,8 +1,6 @@
 package apiserver
 
 import (
-	"time"
-
 	"github.com/gofiber/fiber"
 	"go.uber.org/zap"
 )
@@ -13,8 +11,8 @@ type APIServer struct {
 	logger *zap.Logger
 }
 
-// New method for init new server instance
-func New(config *Config) *APIServer {
+// NewServer method for init new server instance
+func NewServer(config *Config) *APIServer {
 	return &APIServer{
 		config: config,
 		logger: Logger(config),
@@ -26,17 +24,17 @@ func (s *APIServer) Start() error {
 	// Init new app
 	app := fiber.New()
 
-	// App config
+	// App host config
 	host := s.config.Server.Host + ":" + s.config.Server.Port
-	app.Engine.ReadTimeout = time.Duration(s.config.Server.Timeout.Read) * time.Second
-	app.Engine.WriteTimeout = time.Duration(s.config.Server.Timeout.Write) * time.Second
-	app.Engine.IdleTimeout = time.Duration(s.config.Server.Timeout.Idle) * time.Second
 
-	// Show Fiber logo on console for debug mode
-	if s.config.Logging.Level != "debug" {
-		app.Banner = false
+	// Static files
+	if s.config.Static.Prefix != "" {
+		app.Static(s.config.Static.Prefix, s.config.Static.Path)
+	} else {
+		app.Static(s.config.Static.Path)
 	}
 
+	// Middlewares
 	app.Use(func(c *fiber.Ctx) {
 		// Log each request
 		s.logger.Info(
@@ -53,7 +51,14 @@ func (s *APIServer) Start() error {
 	app.Get("/", IndexHandler)
 
 	// Start server
-	app.Listen(host)
+	if err := app.Listen(host); err != nil {
+		s.logger.Info(
+			"error",
+			zap.Error(err),
+		)
+
+		return err
+	}
 
 	return nil
 }

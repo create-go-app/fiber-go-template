@@ -2,10 +2,6 @@
 server:
     host: 127.0.0.1
     port: 8080
-    timeout:
-        read: 15
-        write: 10
-        idle: 5
 
 # Database config
 database:
@@ -20,4 +16,5 @@ logging:
 
 # Static files config
 static:
-    path: /static
+    prefix: /public
+    path: ./static

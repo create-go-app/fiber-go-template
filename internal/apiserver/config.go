@@ -1,23 +1,19 @@
 package apiserver
 
 import (
-	"log"
+	"flag"
+	"fmt"
 	"os"
 	"path/filepath"
 
-	"gopkg.in/yaml.v3"
+	"gopkg.in/yaml.v2"
 )
 
 // Config struct for app config
 type Config struct {
 	Server struct {
-		Host    string `yaml:"host"`
-		Port    string `yaml:"port"`
-		Timeout struct {
-			Write int `yaml:"write"`
-			Read  int `yaml:"read"`
-			Idle  int `yaml:"idle"`
-		} `yaml:"timeout"`
+		Host string `yaml:"host"`
+		Port string `yaml:"port"`
 	} `yaml:"server"`
 	Database struct {
 		Host     string `yaml:"host"`
@@ -29,30 +25,69 @@ type Config struct {
 		Level string `yaml:"level"`
 	} `yaml:"logging"`
 	Static struct {
-		Path string `yaml:"path"`
+		Prefix string `yaml:"prefix"`
+		Path   string `yaml:"path"`
 	} `yaml:"static"`
 }
 
-// NewConfig returns a new Config struct
-func NewConfig(configPath string) *Config {
-	// Define config structure
-	c := &Config{}
+// NewConfig returns a new decoded Config struct
+func NewConfig(configPath string) (*Config, error) {
+	// Create config structure
+	config := &Config{}
 
 	// Open config file
-	f, err := os.Open(filepath.Clean(configPath))
+	file, err := os.Open(filepath.Clean(configPath))
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
-	defer f.Close()
+	defer file.Close()
 
 	// Init new YAML decode
-	d := yaml.NewDecoder(f)
+	d := yaml.NewDecoder(file)
 
 	// Start YAML decoding from file
-	if err := d.Decode(&c); err != nil {
-		log.Fatal(err)
+	if err := d.Decode(&config); err != nil {
+		return nil, err
 	}
 
-	// Default return
-	return c
+	return config, nil
+}
+
+// ValidateConfigPath just makes sure, that the path provided is a file,
+// that can be read
+func ValidateConfigPath(path string) error {
+	// Check path
+	s, err := os.Stat(filepath.Clean(path))
+	if err != nil {
+		return err
+	}
+
+	// Check for directory
+	if s.IsDir() {
+		return fmt.Errorf("'%s' is a directory, not a normal file", path)
+	}
+
+	return nil
+}
+
+// ParseFlags will create and parse the CLI flags
+// and return the path to be used elsewhere
+func ParseFlags() (string, error) {
+	// String that contains the configured configuration path
+	var configPath string
+
+	// Set up a CLI flag called "-config" to allow users
+	// to supply the configuration file
+	flag.StringVar(&configPath, "config", "configs/apiserver.yml", "path to config file")
+
+	// Actually parse the flags
+	flag.Parse()
+
+	// Validate the path first
+	if err := ValidateConfigPath(configPath); err != nil {
+		return "", err
+	}
+
+	// Return the configuration path
+	return configPath, nil
 }

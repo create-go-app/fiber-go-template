@@ -6,22 +6,34 @@ NOCOLOR=\033[0m
 NAME=apiserver
 BUILD=./build
 
+.PHONY: all
+
+all: clean build run
+
 .PHONY: clean
 
 clean:
 	@rm -rf $(BUILD)
 	@echo "$(GREEN)[OK]$(NOCOLOR) App backend was cleaned!"
 
+.PHONY: test
+
 test:
 	@go test ./...
 	@echo "$(GREEN)[OK]$(NOCOLOR) App backend was tested!"
+
+.PHONY: check
 
 check:
 	@gosec ./...
 	@echo "$(GREEN)[OK]$(NOCOLOR) App backend was checked by gosec!"
 
+.PHONY: run
+
 run:
 	@go run ./cmd/$(NAME)/...
+
+.PHONY: build
 
 build: clean check
 	@CGO_ENABLED=0 GOARCH=amd64

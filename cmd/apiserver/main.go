@@ -1,33 +1,29 @@
 package main
 
 import (
-	"flag"
 	"log"
 
 	"github.com/create-go-app/fiber-go-template/internal/apiserver"
 )
 
-var (
-	// Path to config file
-	configPath string
-)
-
-func init() {
-	// Looking for flags
-	flag.StringVar(&configPath, "config-path", "configs/apiserver.yml", "path to config file")
-}
-
 func main() {
-	// Parse flags
-	flag.Parse()
+	// Generate our config based on the config supplied
+	// by the user in the flags
+	configPath, err := apiserver.ParseFlags()
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	// Init app config
-	config := apiserver.NewConfig(configPath)
+	// Create new config
+	config, err := apiserver.NewConfig(configPath)
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	// Define new server
-	server := apiserver.New(config)
+	// Create new server
+	server := apiserver.NewServer(config)
 
-	// Start new server
+	// Start server
 	if err := server.Start(); err != nil {
 		log.Fatal(err)
 	}
