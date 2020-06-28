@@ -19,7 +19,7 @@ cgapp -p ./my-app -b fiber
 task -s
 ```
 
-> ☝️ Please note: we're using [`Taskfile`](https://github.com/go-task/task) as task manager by default.
+> ☝️ Please note: we're using [`Taskfile`](https://taskfile.dev) as task manager by default.
 
 ## ☕️ Description
 
