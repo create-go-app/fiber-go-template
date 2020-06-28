@@ -11,5 +11,4 @@ RUN CGO_ENABLED=0 GOARCH=amd64 go build -ldflags="-w -s" -o apiserver ./cmd/apis
 FROM scratch
 
 COPY --from=builder ["/backend/apiserver", "/backend/configs/apiserver.yml", "/backend/"]
-ENV CONFIG_PATH=/backend/apiserver.yml
 ENTRYPOINT ["/backend/apiserver"]
