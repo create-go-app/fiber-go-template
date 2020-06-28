@@ -7,10 +7,10 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[{Makefile,Dockerfile,go.mod,go.sum,*.go}]
+[{go.mod,go.sum,*.go}]
 indent_style = tab
 indent_size = 4
 
-[{*.yml,*.yaml}]
-indent_style = space
-indent_size = 4
+[{Makefile,Dockerfile,*.yml,*.yaml}]
+indent_style = tab
+indent_size = 2

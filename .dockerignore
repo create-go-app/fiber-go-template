@@ -2,15 +2,15 @@
 .dockerignore
 .editorconfig
 .gitignore
-.prettierignore
 Dockerfile
 Makefile
 LICENSE
+Taskfile.yml
 *.md
 
 # Folders
 .git/
 .github/
+.task/
 app/
-**/*_test.go
 **/*_test.go
