@@ -1,9 +1,9 @@
 <h1 align="center">
-    <img align="center" width="132px" src=".github/images/fiber_logo.svg" alt="Fiber logo" /><br/>
     Fiber backend template<br/>
     for <a href="https://github.com/create-go-app">Create Go App CLI</a>
 </h1>
 
+> <img align="right" height="128px" src=".github/images/fiber_logo.svg" alt="Fiber logo" />
 > Fiber is an `Express` inspired web framework build on top of `Fasthttp`, the fastest HTTP engine for Go. Designed to ease things up for fast development with zero memory allocation and performance in mind.
 >
 > People switching from Node.js to Go often end up in a bad learning curve to start building their webapps, this project is meant to ease things up for fast development, but with zero memory allocation and performance in mind.
@@ -12,11 +12,11 @@
 
 ## Requirements
 
-- Go `v1.11+` with Go Modules ([golang/download](https://golang.org/dl/))
+- Go `v1.11+`
 
 ### Optional
 
-- Docker `v19.x` ([docker/onboarding](https://hub.docker.com/?overlay=onboarding))
+- Docker `v19.x`
 
 ## Used packages
 
@@ -27,7 +27,6 @@
 ## Template structure
 
 ```console
-foo@bar:~/net_http-go-template$ tree .
 .
 ├── .dockerignore
 ├── .editorconfig
@@ -86,7 +85,7 @@ static:
 - [x] Add tests
 - [ ] Add jmoiron/sqlx (Postgres)
 
-> You're feel free to send ideas to [issue](https://github.com/create-go-app/net_http-go-template/issues/new/choose) 😉
+> Hey! 😉 You're feel free to send ideas to [issue](https://github.com/create-go-app/net_http-go-template/issues/new/choose)!
 
 ## License
 
