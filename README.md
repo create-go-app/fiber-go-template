@@ -1,9 +1,27 @@
 <h1 align="center">
+    <img align="center" height="96px" src=".github/images/fiber_logo.svg" alt="Fiber logo" /><br/>
     Fiber backend template<br/>
-    for <a href="https://github.com/create-go-app">Create Go App CLI</a>
+    for <a href="https://github.com/create-go-app">Create Go App</a>
 </h1>
 
-<img align="right" height="96px" src=".github/images/fiber_logo.svg" alt="Fiber logo" />
+## ⚡️ Quick start guide
+
+1. Create a new app with this template by [Create Go App CLI](https://github.com/create-go-app/cli):
+
+```console
+cgapp -p ./my-app -b fiber
+```
+
+2. Go to the `./my-app` folder
+3. Run app by command:
+
+```console
+task -s
+```
+
+> ☝️ Please note: we're using [`Taskfile`](https://github.com/go-task/task) as task manager by default. If you want to use `Makefile`, feel free to create it.
+
+## ☕️ Description
 
 Fiber is an `Express` inspired web framework build on top of `Fasthttp`, the fastest HTTP engine for Go. Designed to ease things up for fast development with zero memory allocation and performance in mind.
 
@@ -11,21 +29,18 @@ People switching from Node.js to Go often end up in a bad learning curve to star
 
 📚 [Documentation](https://docs.gofiber.io/)
 
-## Requirements
+## 📌 Requirements
 
 - Go `v1.11+`
-
-### Optional
-
 - Docker `v19.x`
 
-## Used packages
+## ✅ Used packages
 
 - [gofiber/fiber](https://github.com/gofiber/fiber) `v1.12.1`
 - [go-yaml/yaml](https://github.com/go-yaml/yaml) `v2.3.0`
 - [stretchr/testify](https://github.com/stretchr/testify) `v1.6.1`
 
-## Template structure
+## 🗄 Template structure
 
 ```console
 .
@@ -58,11 +73,11 @@ People switching from Node.js to Go often end up in a bad learning curve to star
 6 directories, 17 files
 ```
 
-### Configs
-
-All server/database/logging/static configs included in one YAML file `./configs/apiserver.yml`:
+## ⚙️ Configuration
 
 ```yaml
+# ./configs/apiserver.yml
+
 # Server config
 server:
   host: 127.0.0.1
@@ -81,13 +96,6 @@ static:
   path: ./static
 ```
 
-### TODO
-
-- [x] Add tests
-- [ ] Add jmoiron/sqlx (Postgres)
-
-> Hey! 😉 You're feel free to send ideas to [issue](https://github.com/create-go-app/net_http-go-template/issues/new/choose)!
-
-## License
+## ⚠️ License
 
 MIT &copy; [Vic Shóstak](https://github.com/koddr) & [True web artisans](https://1wa.co/).
