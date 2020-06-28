@@ -21,7 +21,7 @@ cgapp -p ./my-app -b fiber
 task -s
 ```
 
-> ☝️ Please note: we're using [`Taskfile`](https://taskfile.dev), instead of `Makefile`, as task manager for `dev` stage by default. If you have never heard of it, we recommend you to read the documentation and try `Taskfile` in your projects!
+> ☝️ Please note: we're using [`Taskfile`](https://github.com/go-task/task) as task manager for `dev` stage by default. If you have never heard of it, we recommend you to read the [docs](https://taskfile.dev/#/usage?id=getting-started) and try it in your projects instead of `Makefile`!
 
 ## ☕️ Description
 
