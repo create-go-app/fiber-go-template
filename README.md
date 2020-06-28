@@ -21,7 +21,7 @@ cgapp -p ./my-app -b fiber
 task -s
 ```
 
-> ☝️ Please note: we're using [`Taskfile`](https://taskfile.dev) as task manager by default.
+> ☝️ Please note: we're using [`Taskfile`](https://taskfile.dev), instead of `Makefile`, as task manager for `dev` stage by default. If you have never heard of it, we recommend you to read the documentation and try `Taskfile` in your projects!
 
 ## ☕️ Description
 
