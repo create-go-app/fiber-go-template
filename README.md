@@ -3,7 +3,7 @@
     for <a href="https://github.com/create-go-app">Create Go App CLI</a>
 </h1>
 
-<img align="right" height="128px" src=".github/images/fiber_logo.svg" alt="Fiber logo" />
+<img align="right" height="96px" src=".github/images/fiber_logo.svg" alt="Fiber logo" />
 
 Fiber is an `Express` inspired web framework build on top of `Fasthttp`, the fastest HTTP engine for Go. Designed to ease things up for fast development with zero memory allocation and performance in mind.
 
