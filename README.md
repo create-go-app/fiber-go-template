@@ -3,12 +3,13 @@
     for <a href="https://github.com/create-go-app">Create Go App CLI</a>
 </h1>
 
-> <img align="right" height="128px" src=".github/images/fiber_logo.svg" alt="Fiber logo" />
-> Fiber is an `Express` inspired web framework build on top of `Fasthttp`, the fastest HTTP engine for Go. Designed to ease things up for fast development with zero memory allocation and performance in mind.
->
-> People switching from Node.js to Go often end up in a bad learning curve to start building their webapps, this project is meant to ease things up for fast development, but with zero memory allocation and performance in mind.
->
-> 📚 [Documentation](https://docs.gofiber.io/)
+<img align="right" height="128px" src=".github/images/fiber_logo.svg" alt="Fiber logo" />
+
+Fiber is an `Express` inspired web framework build on top of `Fasthttp`, the fastest HTTP engine for Go. Designed to ease things up for fast development with zero memory allocation and performance in mind.
+
+People switching from Node.js to Go often end up in a bad learning curve to start building their webapps, this project is meant to ease things up for fast development, but with zero memory allocation and performance in mind.
+
+📚 [Documentation](https://docs.gofiber.io/)
 
 ## Requirements
 
