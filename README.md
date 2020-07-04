@@ -1,12 +1,10 @@
-<h1 align="center">
-    <img align="center" height="96px" src=".github/images/fiber_logo.svg" alt="Fiber logo" /><br/>
-    Fiber backend template<br/>
-    for <a href="https://github.com/create-go-app">Create Go App</a>
-</h1>
+# Project template with Fiber for Create Go App CLI
 
-<p align="center"><img src="https://img.shields.io/badge/Go-1.11+-00ADD8?style=for-the-badge&logo=go" alt="go version" />&nbsp;<a href="https://gocover.io/github.com/create-go-app/fiber-go-template/pkg/apiserver" target="_blank"><img src="https://img.shields.io/badge/Go_Cover-88%25-success?style=for-the-badge&logo=none" alt="go cover" /></a>&nbsp;<a href="https://goreportcard.com/report/github.com/create-go-app/fiber-go-template" target="_blank"><img src="https://img.shields.io/badge/Go_report-A+-success?style=for-the-badge&logo=none" alt="go report" /></a>&nbsp;<img src="https://img.shields.io/badge/license-mit-red?style=for-the-badge&logo=none" alt="lisense" /></p>
+<img src="https://img.shields.io/badge/Go-1.11+-00ADD8?style=for-the-badge&logo=go" alt="go version" />&nbsp;<a href="https://gocover.io/github.com/create-go-app/fiber-go-template/pkg/apiserver" target="_blank"><img src="https://img.shields.io/badge/Go_Cover-89%25-success?style=for-the-badge&logo=none" alt="go cover" /></a>&nbsp;<a href="https://goreportcard.com/report/github.com/create-go-app/fiber-go-template" target="_blank"><img src="https://img.shields.io/badge/Go_report-A+-success?style=for-the-badge&logo=none" alt="go report" /></a>
 
-## ⚡️ Quick start guide
+[Fiber](https://gofiber.io/) is an Express.js inspired web framework build on top of Fasthttp, the fastest HTTP engine for Go. Designed to ease things up for **fast** development with **zero memory allocation** and **performance** in mind.
+
+## ⚡️ Quick start
 
 1. Create a new app with this template by [Create Go App CLI](https://github.com/create-go-app/cli):
 
@@ -21,19 +19,15 @@ cgapp -p ./my-app -b fiber
 task -s
 ```
 
-> ☝️ Please note: we're using [`Taskfile`](https://github.com/go-task/task) as task manager for `dev` stage by default. If you have never heard of it, we recommend you to read the [docs](https://taskfile.dev/#/usage?id=getting-started) and try it in your projects instead of `Makefile`!
+> ☝️ We're using `Taskfile` as task manager for running project on a local machine by default. If you've never heard of `Taskfile`, we recommend to read the [Docs](https://taskfile.dev/#/usage?id=getting-started) and use it, instead of `Makefile`.
 
 ## ☕️ Description
 
-Fiber is an `Express` inspired web framework build on top of `Fasthttp`, the fastest HTTP engine for Go. Designed to ease things up for fast development with zero memory allocation and performance in mind.
-
-People switching from Node.js to Go often end up in a bad learning curve to start building their webapps, this project is meant to ease things up for fast development, but with zero memory allocation and performance in mind.
-
-📚 [Documentation](https://docs.gofiber.io/)
+[Fiber](https://gofiber.io/) is an `Express.js` inspired web framework build on top of `Fasthttp`, the fastest HTTP engine for Go. Designed to ease things up for **fast development** with **zero memory allocation** and **performance** in mind.
 
 ## ✅ Used packages
 
-- [gofiber/fiber](https://github.com/gofiber/fiber) `v1.12.1`
+- [gofiber/fiber](https://github.com/gofiber/fiber) `v1.12.4`
 - [go-yaml/yaml](https://github.com/go-yaml/yaml) `v2.3.0`
 - [stretchr/testify](https://github.com/stretchr/testify) `v1.6.1`
 
@@ -45,8 +39,6 @@ People switching from Node.js to Go often end up in a bad learning curve to star
 ├── .editorconfig
 ├── .gitignore
 ├── Dockerfile
-├── LICENSE
-├── README.md
 ├── Taskfile.yml
 ├── go.mod
 ├── go.sum
@@ -67,7 +59,7 @@ People switching from Node.js to Go often end up in a bad learning curve to star
         ├── new_server_test.go
         └── routes.go
 
-6 directories, 17 files
+6 directories, 15 files
 ```
 
 ## ⚙️ Configuration
@@ -89,7 +81,7 @@ database:
 
 # Static files config
 static:
-  prefix: /public
+  prefix: /
   path: ./static
 ```
 

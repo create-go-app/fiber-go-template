@@ -16,7 +16,7 @@ tasks:
   test:
     desc: Test project
     cmds:
-      - CONFIG_PATH=configs/apiserver.yml go test -cover ./...
+      - go test -cover ./...
 
   security:
     desc: Run gosec for project
@@ -36,4 +36,4 @@ tasks:
       - task: security
       - task: test
       - task: build
-      - CONFIG_PATH=configs/apiserver.yml ./build/{{.APP}}
+      - ./build/{{.APP}}

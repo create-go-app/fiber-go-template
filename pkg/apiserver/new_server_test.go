@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"testing"
 
+	"github.com/gofiber/fiber"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -23,13 +24,25 @@ func TestAPIRoutes(t *testing.T) {
 		expectedCode  int
 	}{
 		{
-			description:   "API routes",
-			route:         "/api/posts",
+			description:   "Successfully getting Hello World route",
+			route:         "/hello-test",
 			expectedError: false,
 			expectedCode:  200,
 		},
 		{
-			description:   "Static route (with prefix)",
+			description:   "Successfully getting API group routes",
+			route:         "/api/docs",
+			expectedError: false,
+			expectedCode:  200,
+		},
+		{
+			description:   "Fail getting API group routes",
+			route:         "/api/docs-test",
+			expectedError: false,
+			expectedCode:  404,
+		},
+		{
+			description:   "Successfully getting static route (with prefix)",
 			route:         "/public/index.html",
 			expectedError: false,
 			expectedCode:  200,
@@ -47,7 +60,7 @@ func TestAPIRoutes(t *testing.T) {
 		expectedCode  int
 	}{
 		{
-			description:   "Static route (without prefix)",
+			description:   "Success getting static route (without prefix)",
 			route:         "/index.html",
 			expectedError: false,
 			expectedCode:  200,
@@ -60,8 +73,13 @@ func TestAPIRoutes(t *testing.T) {
 	}).Start()
 
 	app2 := NewServer(&Config{
-		Static: static{Prefix: "", Path: "../../static"},
+		Static: static{Prefix: "/", Path: "../../static"},
 	}).Start()
+
+	// Needed routes
+	app1.Get("/hello-test", func(c *fiber.Ctx) {
+		c.Status(200).SendFile("../../static/index.html")
+	})
 
 	// Iterate through test single test cases
 	for _, test := range tests1 {

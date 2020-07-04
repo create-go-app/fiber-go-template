@@ -3,9 +3,93 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index</title>
+    <title>👋 Hello, Fiber! A new project created by Create Go App CLI.</title>
+
+    <!-- Styles -->
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: sans-serif;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        background-color: #fefefe;
+        color: #333333;
+      }
+      code {
+        font-family: monospace;
+        padding: 0 0.25em;
+        word-break: break-word;
+        background-color: hsla(53.9, 100%, 61.6%, 0.5);
+        border-radius: 0.1rem;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+      }
+      .wrapper {
+        max-width: 720px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: auto min-content;
+        column-gap: 1.2rem;
+        align-items: center;
+      }
+      .title {
+        font-size: 3rem;
+      }
+      .list > .item > a {
+        color: hsla(231, 48%, 48%, 1);
+      }
+      .list > .item > a:hover {
+        color: hsla(231, 99%, 66%, 1);
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello, World!</h1>
+    <div class="wrapper">
+      <main>
+        <h1 class="title">👋 Hello, Fiber!</h1>
+        <p>
+          You have created a new production-ready project by running only one
+          <code>cgapp create</code> command.
+        </p>
+        <p>
+          Now, focus on writing code! The Create Go App CLI will take care of
+          the rest.
+        </p>
+        <ul class="list"></ul>
+      </main>
+      <img
+        src="https://create-go.app/assets/images/cgapp_logo.png"
+        alt="Create Go App logo"
+      />
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      // Fetch data from /api/docs
+      fetch("/api/docs")
+        .then((response) => response.json()) // read response as JSON
+        .catch((error) => console.log(error)) // catch errors
+        .then((docs) => createList(".list", docs.results));
+
+      // Function to create <ul> list
+      let createList = (listClass, listData) => {
+        // Define <ul> element
+        let ul = document.querySelector(listClass);
+
+        // Loop for create <li>s in <ul> element
+        [...listData].forEach((item) => {
+          let li = document.createElement("li"); // create <li> element
+          let a = document.createElement("a"); // create <a> element
+          li.classList.add("item"); // add class to <li> element
+          a.href = item.url; // add URL to <a> element
+          a.target = "_blank"; // add target to <a> element
+          a.innerText = item.name; // add text to <a> element
+          li.appendChild(a); // append <a> to <li> element
+          ul.appendChild(li); // append <li> to <ul> element
+        });
+      };
+    </script>
   </body>
 </html>

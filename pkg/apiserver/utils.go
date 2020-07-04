@@ -2,7 +2,8 @@ package apiserver
 
 import "os"
 
-// GetEnv ...
+// GetEnv function for getting environment variables values,
+// or return fallback
 func GetEnv(key, fallback string) string {
 	// Check, if the environment variable exists
 	if value, ok := os.LookupEnv(key); ok {

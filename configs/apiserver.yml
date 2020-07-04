@@ -12,5 +12,5 @@ database:
 
 # Static files config
 static:
-  prefix: /public
+  prefix: /
   path: ./static

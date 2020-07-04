@@ -18,7 +18,7 @@ func TestNewConfig(t *testing.T) {
 			&Config{
 				Server:   server{"127.0.0.1", "8080"},
 				Database: database{"127.0.0.1", "5432", "", ""},
-				Static:   static{"/public", "./static"},
+				Static:   static{"/", "./static"},
 			},
 			false,
 		},

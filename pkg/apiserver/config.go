@@ -8,7 +8,7 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-// Config struct for app config
+// Config struct for project config
 type Config struct {
 	Server   server   `yaml:"server"`
 	Database database `yaml:"database"`

@@ -42,7 +42,7 @@ func main() {
 
 	// Start server
 	apiserver.ErrChecker(
-		server.Listen(config.Server.Port),
+		server.Listen(config.Server.Host + ":" + config.Server.Port),
 	)
 
 	<-done

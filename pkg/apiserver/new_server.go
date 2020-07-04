@@ -1,8 +1,7 @@
 package apiserver
 
 import (
-	"os"
-
+	"github.com/gofiber/cors"
 	"github.com/gofiber/fiber"
 	"github.com/gofiber/fiber/middleware"
 )
@@ -26,20 +25,13 @@ func (s *APIServer) Start() *fiber.App {
 
 	// Register middlewares
 	app.Use(
-		// Add logger
-		middleware.LoggerWithConfig(middleware.LoggerConfig{
-			Next:       nil,
-			Format:     "${time} [${status}] ${method} ${path} (${latency})\n",
-			TimeFormat: "Mon, 2 Jan 2006 15:04:05 MST",
-			Output:     os.Stdout,
-		}),
+		cors.New(), // Add CORS to each route
+		middleware.Logger("${time} [${status}] ${method} ${path} (${latency})\n"), // Simple logger
 	)
 
-	// Static files
-	if s.config.Static.Prefix != "" {
+	// Add static files, if prefix and path was defined in config
+	if s.config.Static.Prefix != "" && s.config.Static.Path != "" {
 		app.Static(s.config.Static.Prefix, s.config.Static.Path)
-	} else {
-		app.Static("/", s.config.Static.Path)
 	}
 
 	// Register API routes
