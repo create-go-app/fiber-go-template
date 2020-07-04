@@ -6,14 +6,14 @@
 
 ## ⚡️ Quick start
 
-1. Create a new app with this template by [Create Go App CLI](https://github.com/create-go-app/cli):
+1. Create a new project with this template:
 
 ```bash
 cgapp -p ./my-app -b fiber
 ```
 
-2. Go to the `./my-app` folder
-3. Run app by command:
+2. Go to the `./my-app` folder.
+3. Run project by this command:
 
 ```bash
 task -s
