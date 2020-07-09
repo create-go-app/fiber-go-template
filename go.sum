@@ -7,6 +7,8 @@ github.com/gofiber/cors v0.2.1/go.mod h1:DFPONAxVvfFEOMoBH4eqcHp6k0aDYY0FhQsSShA
 github.com/gofiber/fiber v1.12.1/go.mod h1:33AHuW8Sgre3E5tOFJJmBe24MXGNg8GnmcNiXEOFgTU=
 github.com/gofiber/fiber v1.12.4 h1:ZF4O4S/fcWzCTM0K9Qo/5RYqsEM1QMut21QVslhU/KE=
 github.com/gofiber/fiber v1.12.4/go.mod h1:e+Ur2pP2rb5xKtiHATgfQpSwBR0z9q8Mar9+XfYxpOY=
+github.com/gofiber/fiber v1.12.5 h1:xEeONOLf3nzWkartpTw9TzCpF+QXZjVPVpJWpx5bCP0=
+github.com/gofiber/fiber v1.12.5/go.mod h1:e+Ur2pP2rb5xKtiHATgfQpSwBR0z9q8Mar9+XfYxpOY=
 github.com/gofiber/utils v0.0.8/go.mod h1:0dwJg4h6ME5RdxgukBF46XCYUBLI6nX5PvD6P4DDFBU=
 github.com/gofiber/utils v0.0.9 h1:Bu4grjEB4zof1TtpmPCG6MeX5nGv8SaQfzaUgjkf3H8=
 github.com/gofiber/utils v0.0.9/go.mod h1:9J5aHFUIjq0XfknT4+hdSMG6/jzfaAgCu4HEbWDeBlo=
