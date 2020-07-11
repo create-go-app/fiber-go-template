@@ -1,14 +1,25 @@
 FROM golang:alpine AS builder
 
-LABEL maintainer="Vic Shóstak <truewebartisans@gmail.com>"
+# Move to working directory /build
+WORKDIR /build
 
-WORKDIR /backend
+# Copy and download dependency using go mod
 COPY go.mod go.sum ./
 RUN go mod download
+
+# Copy the code into the container
 COPY . .
-RUN CGO_ENABLED=0 GOARCH=amd64 go build -ldflags="-w -s" -o apiserver ./cmd/apiserver/...
 
-FROM scratch
+# Set necessary environmet variables needed for our image and build the API server
+RUN GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o apiserver ./cmd/apiserver/...
 
-COPY --from=builder ["/backend/apiserver", "/backend/configs/apiserver.yml", "/backend/"]
-ENTRYPOINT ["/backend/apiserver"]
+FROM scratch AS runner
+
+# Copy binary from build to main folder
+COPY --from=builder ["/build/apiserver", "/build/configs/apiserver.yml", "/dist/"]
+
+# Export necessary port
+EXPOSE 5000
+
+# Command to run when starting the container
+CMD ["/dist/apiserver"]
