@@ -9,14 +9,14 @@ import (
 )
 
 func main() {
-	// Parse config path from environment variable
+	// Parse config path from environment variable.
 	configPath := apiserver.GetEnv("CONFIG_PATH", "configs/apiserver.yml")
 
-	// Create new config
+	// Create new config.
 	config, err := apiserver.NewConfig(configPath)
 	apiserver.ErrChecker(err)
 
-	// Create new server
+	// Create new server.
 	server := apiserver.NewServer(config).Start()
 
 	// Create channel for idle connections.
