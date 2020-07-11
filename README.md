@@ -9,7 +9,7 @@
 1. Create a new project with this template:
 
 ```bash
-cgapp -p ./my-app -b fiber
+cgapp create
 ```
 
 2. Go to the `./my-app` folder.
@@ -21,13 +21,9 @@ task -s
 
 > ☝️ We're using `Taskfile` as task manager for running project on a local machine by default. If you've never heard of `Taskfile`, we recommend to read the [Docs](https://taskfile.dev/#/usage?id=getting-started) and use it, instead of `Makefile`.
 
-## ☕️ Description
-
-[Fiber](https://gofiber.io/) is an `Express.js` inspired web framework build on top of `Fasthttp`, the fastest HTTP engine for Go. Designed to ease things up for **fast development** with **zero memory allocation** and **performance** in mind.
-
 ## ✅ Used packages
 
-- [gofiber/fiber](https://github.com/gofiber/fiber) `v1.12.4`
+- [gofiber/fiber](https://github.com/gofiber/fiber) `v1.12.6`
 - [go-yaml/yaml](https://github.com/go-yaml/yaml) `v2.3.0`
 - [stretchr/testify](https://github.com/stretchr/testify) `v1.6.1`
 
@@ -42,9 +38,7 @@ task -s
 ├── Taskfile.yml
 ├── go.mod
 ├── go.sum
-├── cmd
-│   └── apiserver
-│       └── main.go
+├── main.go
 ├── configs
 │   └── apiserver.yml
 ├── static
@@ -57,9 +51,11 @@ task -s
         ├── error_checker_test.go
         ├── new_server.go
         ├── new_server_test.go
-        └── routes.go
+        ├── routes.go
+        ├── utils.go
+        └── utils_test.go
 
-6 directories, 15 files
+4 directories, 17 files
 ```
 
 ## ⚙️ Configuration
@@ -70,7 +66,7 @@ task -s
 # Server config
 server:
   host: 127.0.0.1
-  port: 8080
+  port: 5000
 
 # Database config
 database:
