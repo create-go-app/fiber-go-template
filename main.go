@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"os"
 	"os/signal"
 
 	"github.com/create-go-app/fiber-go-template/pkg/apiserver"
-	"github.com/gofiber/fiber"
 )
 
 func main() {
@@ -17,33 +16,30 @@ func main() {
 	config, err := apiserver.NewConfig(configPath)
 	apiserver.ErrChecker(err)
 
-	// Create channels
-	quit := make(chan os.Signal, 1)
-	done := make(chan bool, 1)
-
-	// Catch OS signals
-	signal.Notify(quit, os.Interrupt)
-
 	// Create new server
 	server := apiserver.NewServer(config).Start()
 
-	// Create gracefull shutdown goroutine
-	go func(server *fiber.App, quit <-chan os.Signal, done chan<- bool) {
-		<-quit
+	// Create channel for idle connections.
+	idleConnsClosed := make(chan struct{})
 
-		fmt.Println("API server is shutting down...")
+	go func() {
+		sigint := make(chan os.Signal, 1)
+		signal.Notify(sigint, os.Interrupt) // catch OS signals
+		<-sigint
+
+		// We received an interrupt signal, shut down.
 		if err := server.Shutdown(); err != nil {
-			fmt.Println("API server shutdown failed!")
-			return
+			// Error from closing listeners, or context timeout:
+			log.Printf("API server Shutdown: %v", err)
 		}
 
-		close(done)
-	}(server, quit, done)
+		close(idleConnsClosed)
+	}()
 
-	// Start server
+	// Start API server.
 	apiserver.ErrChecker(
 		server.Listen(config.Server.Host + ":" + config.Server.Port),
 	)
 
-	<-done
+	<-idleConnsClosed
 }

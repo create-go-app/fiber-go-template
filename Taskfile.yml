@@ -27,7 +27,7 @@ tasks:
     desc: Build the API server
     cmds:
       - mkdir ./build
-      - CGO_ENABLED=0 GOARCH=amd64 go build -ldflags="-w -s" -o ./build/{{.APP}} ./cmd/apiserver/...
+      - CGO_ENABLED=0 GOARCH=amd64 go build -ldflags="-w -s" -o ./build/{{.APP}} .
 
   run:
     desc: Build and run the API server
