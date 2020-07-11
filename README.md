@@ -6,14 +6,13 @@
 
 ## ⚡️ Quick start
 
-1. Create a new project with this template:
+1. Create a new project:
 
 ```bash
 cgapp create
 ```
 
-2. Go to the `./my-app` folder.
-3. Run project by this command:
+2. Run project by this command:
 
 ```bash
 task -s
