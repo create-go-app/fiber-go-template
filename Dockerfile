@@ -1,4 +1,4 @@
-FROM golang:alpine AS builder
+FROM golang:1.14-alpine AS builder
 
 # Move to working directory /build
 WORKDIR /build
@@ -11,9 +11,10 @@ RUN go mod download
 COPY . .
 
 # Set necessary environmet variables needed for our image and build the API server
-RUN GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o apiserver ./cmd/apiserver/...
+ENV GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64
+RUN go build -ldflags="-w -s" -o apiserver ./cmd/apiserver/...
 
-FROM scratch AS runner
+FROM scratch
 
 # Copy binary from build to main folder
 COPY --from=builder ["/build/apiserver", "/build/configs/apiserver.yml", "/dist/"]
@@ -22,4 +23,4 @@ COPY --from=builder ["/build/apiserver", "/build/configs/apiserver.yml", "/dist/
 EXPOSE 5000
 
 # Command to run when starting the container
-CMD ["/dist/apiserver"]
+ENTRYPOINT ["/dist/apiserver"]
