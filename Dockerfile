@@ -16,13 +16,12 @@ RUN go build -ldflags="-w -s" -o apiserver .
 
 FROM scratch
 
-# Copy binary and various files from /build to root folder of scratch container.
+# Copy binary and config files from /build to root folder of scratch container.
 COPY --from=builder ["/build/apiserver", "/build/configs/apiserver.yml", "/"]
-COPY --from=builder ["/build/static/hello-world", "/static/hello-world"]
 
 # Export necessary port
 EXPOSE 5000
 
 # Command to run when starting the container
 ENV CONFIG_PATH=/apiserver.yml
-CMD ["/apiserver"]
+ENTRYPOINT ["/apiserver"]
