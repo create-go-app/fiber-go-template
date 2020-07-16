@@ -1,6 +1,6 @@
 # Server config
 server:
-  host: 127.0.0.1
+  host: 0.0.0.0 # if you want to run this API server from a Docker container, set it to 0.0.0.0
   port: 5000
 
 # Database config
