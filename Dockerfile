@@ -19,9 +19,9 @@ FROM scratch
 # Copy binary and config files from /build to root folder of scratch container.
 COPY --from=builder ["/build/apiserver", "/build/configs/apiserver.yml", "/"]
 
-# Export necessary port
+# Export necessary port.
 EXPOSE 5000
 
-# Command to run when starting the container
+# Command to run when starting the container.
 ENV CONFIG_PATH=/apiserver.yml
 ENTRYPOINT ["/apiserver"]
