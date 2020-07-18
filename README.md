@@ -22,7 +22,7 @@ task -s
 
 ## ✅ Used packages
 
-- [gofiber/fiber](https://github.com/gofiber/fiber) `v1.12.6`
+- [gofiber/fiber](https://github.com/gofiber/fiber) `v1.13.0`
 - [go-yaml/yaml](https://github.com/go-yaml/yaml) `v2.3.0`
 - [stretchr/testify](https://github.com/stretchr/testify) `v1.6.1`
 
@@ -64,7 +64,7 @@ task -s
 
 # Server config
 server:
-  host: 127.0.0.1
+  host: 0.0.0.0
   port: 5000
 
 # Database config

@@ -78,7 +78,7 @@ func TestAPIRoutes(t *testing.T) {
 
 	// Needed routes
 	app1.Get("/hello-test", func(c *fiber.Ctx) {
-		c.Status(200).SendFile("../../static/index.html")
+		c.Status(200)
 	})
 
 	// Iterate through test single test cases
