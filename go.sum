@@ -5,8 +5,8 @@ github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSs
 github.com/gofiber/cors v0.2.1 h1:aEPW5Orz0Nph71TFobSBDHtnkmqRbU1s7T67O9u4CYc=
 github.com/gofiber/cors v0.2.1/go.mod h1:DFPONAxVvfFEOMoBH4eqcHp6k0aDYY0FhQsSShAZou8=
 github.com/gofiber/fiber v1.12.1/go.mod h1:33AHuW8Sgre3E5tOFJJmBe24MXGNg8GnmcNiXEOFgTU=
-github.com/gofiber/fiber v1.13.0 h1:3rTCeuaFi8Q7Y5/ctH+LdyyzTWsvr/9SmyS3sl7qYo0=
-github.com/gofiber/fiber v1.13.0/go.mod h1:KxRvVkqzfZOO6A7mBu+j7ncX2AcT6Sm6F7oeGR3Kgmw=
+github.com/gofiber/fiber v1.13.1 h1:YAhi3O2rN1KyoqX2+OzUqALAkiqJuMXqR3HJbqzYuek=
+github.com/gofiber/fiber v1.13.1/go.mod h1:KxRvVkqzfZOO6A7mBu+j7ncX2AcT6Sm6F7oeGR3Kgmw=
 github.com/gofiber/utils v0.0.8/go.mod h1:0dwJg4h6ME5RdxgukBF46XCYUBLI6nX5PvD6P4DDFBU=
 github.com/gofiber/utils v0.0.9 h1:Bu4grjEB4zof1TtpmPCG6MeX5nGv8SaQfzaUgjkf3H8=
 github.com/gofiber/utils v0.0.9/go.mod h1:9J5aHFUIjq0XfknT4+hdSMG6/jzfaAgCu4HEbWDeBlo=
