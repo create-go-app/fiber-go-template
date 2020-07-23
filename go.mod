@@ -3,7 +3,7 @@ module github.com/create-go-app/fiber-go-template
 go 1.11
 
 require (
-	github.com/gofiber/cors v0.2.1
+	github.com/gofiber/cors v0.2.2
 	github.com/gofiber/fiber v1.13.3
 	github.com/klauspost/compress v1.10.10 // indirect
 	github.com/stretchr/testify v1.6.1
