@@ -4,6 +4,8 @@ github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/gofiber/cors v0.2.1 h1:aEPW5Orz0Nph71TFobSBDHtnkmqRbU1s7T67O9u4CYc=
 github.com/gofiber/cors v0.2.1/go.mod h1:DFPONAxVvfFEOMoBH4eqcHp6k0aDYY0FhQsSShAZou8=
+github.com/gofiber/cors v0.2.2 h1:NQgLeNq8SWCKsdGotodyFCqLdSnxGLISsp9OU01k/cs=
+github.com/gofiber/cors v0.2.2/go.mod h1:lAXoymRHZKASLfydSAtsRGVrukWi3KefFnfxmCEAH5o=
 github.com/gofiber/fiber v1.12.1/go.mod h1:33AHuW8Sgre3E5tOFJJmBe24MXGNg8GnmcNiXEOFgTU=
 github.com/gofiber/fiber v1.13.3 h1:14kBTW1+n5mNIJZqibsbIdb+yQdC5argcbe9vE7Nz+o=
 github.com/gofiber/fiber v1.13.3/go.mod h1:KxRvVkqzfZOO6A7mBu+j7ncX2AcT6Sm6F7oeGR3Kgmw=
