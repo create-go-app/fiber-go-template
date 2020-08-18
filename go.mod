@@ -7,6 +7,6 @@ require (
 	github.com/gofiber/fiber v1.14.2
 	github.com/klauspost/compress v1.10.11 // indirect
 	github.com/stretchr/testify v1.6.1
-	golang.org/x/sys v0.0.0-20200814200057-3d37ad5750ed // indirect
+	golang.org/x/sys v0.0.0-20200817155316-9781c653f443 // indirect
 	gopkg.in/yaml.v2 v2.3.0
 )

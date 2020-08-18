@@ -47,7 +47,14 @@ func NewConfig(configPath string) (*Config, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer file.Close()
+
+	// Solved gosec issue G307 (CWE-703)
+	// See: https://github.com/securego/gosec/issues/512#issuecomment-675286833
+	defer func() {
+		if err := file.Close(); err != nil {
+			return
+		}
+	}()
 
 	// Init new YAML decode
 	d := yaml.NewDecoder(file)
