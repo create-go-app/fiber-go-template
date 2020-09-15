@@ -22,7 +22,7 @@ task -s
 
 ## ✅ Used packages
 
-- [gofiber/fiber](https://github.com/gofiber/fiber) `v1.14.2`
+- [gofiber/fiber](https://github.com/gofiber/fiber) `v1.14.6`
 - [go-yaml/yaml](https://github.com/go-yaml/yaml) `v2.3.0`
 - [stretchr/testify](https://github.com/stretchr/testify) `v1.6.1`
 
