@@ -8,5 +8,5 @@ require (
 	github.com/klauspost/compress v1.11.0 // indirect
 	github.com/stretchr/testify v1.6.1
 	golang.org/x/sys v0.0.0-20200915084602-288bc346aa39 // indirect
-	gopkg.in/yaml.v2 v2.3.0
+	gopkg.in/yaml.v2 v2.4.0
 )
