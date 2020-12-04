@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -77,8 +77,9 @@ func TestAPIRoutes(t *testing.T) {
 	}).Start()
 
 	// Needed routes
-	app1.Get("/hello-test", func(c *fiber.Ctx) {
+	app1.Get("/hello-test", func(c *fiber.Ctx) error {
 		c.Status(200)
+		return nil
 	})
 
 	// Iterate through test single test cases
