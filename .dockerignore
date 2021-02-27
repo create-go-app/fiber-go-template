@@ -5,11 +5,9 @@
 Dockerfile
 Makefile
 LICENSE
-*.md
+**/*.md
+**/*_test.go
 
 # Folders
 .git/
 .github/
-.task/
-app/
-**/*_test.go

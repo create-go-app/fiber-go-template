@@ -1,45 +1,29 @@
 package main
 
 import (
-	"log"
-	"os"
-	"os/signal"
+	"github.com/create-go-app/fiber-go-template/pkg/configs"
+	"github.com/create-go-app/fiber-go-template/pkg/middleware"
+	"github.com/create-go-app/fiber-go-template/pkg/routes"
+	"github.com/create-go-app/fiber-go-template/pkg/utils"
+	"github.com/gofiber/fiber/v2"
 
-	"github.com/create-go-app/fiber-go-template/pkg/apiserver"
+	_ "github.com/joho/godotenv/autoload"
 )
 
 func main() {
-	// Parse config path from environment variable.
-	configPath := apiserver.GetEnv("CONFIG_PATH", "configs/apiserver.yml")
+	// Define Fiber config.
+	config := configs.FiberConfig()
 
-	// Create new config.
-	config, err := apiserver.NewConfig(configPath)
-	apiserver.ErrChecker(err)
+	// Define a new Fiber app with config.
+	app := fiber.New(config)
 
-	// Create new server.
-	server := apiserver.NewServer(config).Start()
+	// Middlewares.
+	middleware.FiberMiddleware(app) // Register Fiber's middleware for app.
 
-	// Create channel for idle connections.
-	idleConnsClosed := make(chan struct{})
+	// Routes.
+	routes.PublicRoutes(app)  // Register public routes for app.
+	routes.NotFoundRoute(app) // Register route for 404 Error.
 
-	go func() {
-		sigint := make(chan os.Signal, 1)
-		signal.Notify(sigint, os.Interrupt) // catch OS signals
-		<-sigint
-
-		// We received an interrupt signal, shut down.
-		if err := server.Shutdown(); err != nil {
-			// Error from closing listeners, or context timeout:
-			log.Printf("API server Shutdown: %v", err)
-		}
-
-		close(idleConnsClosed)
-	}()
-
-	// Start API server.
-	apiserver.ErrChecker(
-		server.Listen(config.Server.Host + ":" + config.Server.Port),
-	)
-
-	<-idleConnsClosed
+	// Start server (with graceful shutdown).
+	utils.StartServerWithGracefulShutdown(app)
 }

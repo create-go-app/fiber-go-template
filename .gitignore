@@ -1,19 +1,9 @@
 # macOS
 **/.DS_Store
 
-# Binaries for programs and plugins
-**/*.exe
-**/*.exe~
-**/*.dll
-**/*.so
-**/*.dylib
-
-# Test binary, built with `go test -c`
-**/*.test
-
-# Dev Build
-**/app/
+# Dev build
 **/build/
 
-# Taskfile
-.task/
+# Environment variables
+.env
+.env.docker

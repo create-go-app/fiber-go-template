@@ -12,16 +12,16 @@ COPY . .
 
 # Set necessary environmet variables needed for our image and build the API server.
 ENV GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64
-RUN go build -ldflags="-w -s" -o apiserver .
+RUN go build -ldflags="-s -w" -o apiserver .
 
 FROM scratch
 
 # Copy binary and config files from /build to root folder of scratch container.
-COPY --from=builder ["/build/apiserver", "/build/configs/apiserver.yml", "/"]
+COPY --from=builder ["/build/apiserver", "/build/.env", "/"]
 
 # Export necessary port.
 EXPOSE 5000
 
 # Command to run when starting the container.
-ENV CONFIG_PATH=/apiserver.yml
+ENV CONFIG_PATH=/.env
 ENTRYPOINT ["/apiserver"]
