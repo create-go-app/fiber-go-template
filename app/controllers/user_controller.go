@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	"github.com/create-go-app/fiber-go-template/app/models"
 	"github.com/create-go-app/fiber-go-template/platform/database"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 )
@@ -74,5 +76,61 @@ func GetUser(c *fiber.Ctx) error {
 		"error": false,
 		"msg":   nil,
 		"user":  user,
+	})
+}
+
+// DeleteUser func deletes user by given ID.
+func DeleteUser(c *fiber.Ctx) error {
+	// Catch data from JWT.
+	token := c.Locals("user").(*jwt.Token)
+	claims := token.Claims.(jwt.MapClaims)
+
+	// Set admin status.
+	isAdmin := claims["is_admin"].(bool)
+
+	// Check, if current user request from admin.
+	if isAdmin {
+		// Create database connection.
+		db, err := database.OpenDBConnection()
+		if err != nil {
+			// Return status 500 and database connection error.
+			return c.Status(500).JSON(fiber.Map{
+				"error": true,
+				"msg":   err.Error(),
+			})
+		}
+
+		// Create new User struct
+		user := &models.User{}
+
+		// Check, if received JSON data is valid.
+		if err := c.BodyParser(user); err != nil {
+			// Return status 500 and JSON parse error.
+			return c.Status(500).JSON(fiber.Map{
+				"error": true,
+				"msg":   err.Error(),
+			})
+		}
+
+		// Delete user by given ID.
+		if err := db.DeleteUser(user.ID); err != nil {
+			// Return status 500 and delete user process error.
+			return c.Status(500).JSON(fiber.Map{
+				"error": true,
+				"msg":   err.Error(),
+			})
+		}
+	} else {
+		// Return status 500 and permission denied error.
+		return c.Status(500).JSON(fiber.Map{
+			"error": true,
+			"msg":   "permission denied",
+		})
+
+	}
+
+	return c.JSON(fiber.Map{
+		"error": false,
+		"msg":   nil,
 	})
 }

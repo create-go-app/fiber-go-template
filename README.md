@@ -36,6 +36,7 @@ make run
 | ------------------------------------------------------- | --------- | -------- |
 | [gofiber/fiber](https://github.com/gofiber/fiber)       | `v2.5.0`  | core     |
 | [stretchr/testify](https://github.com/stretchr/testify) | `v1.7.0`  | tests    |
+| [dgrijalva/jwt-go](https://github.com/dgrijalva/jwt-go) | `v3.2.0`  | auth     |
 | [joho/godotenv](https://github.com/joho/godotenv)       | `v1.3.0`  | config   |
 | [jmoiron/sqlx](https://github.com/jmoiron/sqlx)         | `v1.3.1`  | database |
 | [jackc/pgx](https://github.com/jackc/pgx)               | `v4.10.1` | database |
