@@ -47,7 +47,7 @@ make run
 
 ## ⚙️ Configuration
 
-```conf
+```ini
 # .env
 
 # Server settings:
