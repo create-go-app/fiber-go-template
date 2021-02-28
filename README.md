@@ -32,12 +32,14 @@ make run
 
 ## 📦 Used packages
 
-- [gofiber/fiber](https://github.com/gofiber/fiber) `v2.5.0`
-- [stretchr/testify](https://github.com/stretchr/testify) `v1.7.0`
-- [joho/godotenv](https://github.com/joho/godotenv) `v1.3.0`
-- [jmoiron/sqlx](https://github.com/jmoiron/sqlx) `v1.3.1`
-- [google/uuid](https://github.com/google/uuid) `v1.2.0`
-- [jackc/pgx](https://github.com/jackc/pgx) `v4.10.1`
+| Name | Version | Type |
+| - | - | - |
+| [gofiber/fiber](https://github.com/gofiber/fiber) | `v2.5.0` | core |
+| [stretchr/testify](https://github.com/stretchr/testify) | `v1.7.0` | tests |
+| [joho/godotenv](https://github.com/joho/godotenv) | `v1.3.0` | config |
+| [jmoiron/sqlx](https://github.com/jmoiron/sqlx) | `v1.3.1` | database |
+| [jackc/pgx](https://github.com/jackc/pgx) | `v4.10.1` | database |
+| [google/uuid](https://github.com/google/uuid) | `v1.2.0` | utils |
 
 ## 🗄 Template structure
 
