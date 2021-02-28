@@ -19,7 +19,7 @@ type Queries struct {
 
 // OpenDBConnection func for opening database connection.
 func OpenDBConnection() (*Queries, error) {
-	//
+	// Switch types of database connection.
 	switch os.Getenv("DATABASE_TYPE") {
 	case "sqlite":
 		// SQL lite connection logic here.

@@ -6,7 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// FiberConfig ...
+// FiberConfig func for configuration Fiber app.
 func FiberConfig() fiber.Config {
 	return fiber.Config{
 		ReadTimeout: 60 * time.Second,

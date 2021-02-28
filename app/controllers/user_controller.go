@@ -10,17 +10,17 @@ func GetUsers(c *fiber.Ctx) error {
 	// Create DB connection.
 	db, err := database.OpenDBConnection()
 	if err != nil {
-		// DB connection error
+		// Return database connection error.
 		return c.Status(500).JSON(fiber.Map{
 			"error": true,
 			"msg":   err.Error(),
 		})
 	}
 
-	// Select all users
+	// Get all users.
 	users, err := db.GetUsers()
 	if err != nil {
-		// Users not found
+		// Return, if Users not found.
 		return c.Status(404).JSON(fiber.Map{
 			"error": true,
 			"msg":   "users not found",
