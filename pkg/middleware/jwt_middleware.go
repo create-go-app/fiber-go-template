@@ -9,6 +9,7 @@ import (
 )
 
 // JWTAuthProtected func for specify routes group with JWT authentication.
+// See: https://github.com/gofiber/jwt
 func JWTAuthProtected() fiber.Handler {
 	// Create config for JWT authentication middleware.
 	config := jwtAuthMiddleware.Config{
