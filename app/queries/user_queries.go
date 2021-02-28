@@ -11,19 +11,6 @@ type UserQueries struct {
 	*sqlx.DB
 }
 
-// GetUser func for getting one user by given ID.
-func (q *UserQueries) GetUser(id uuid.UUID) (models.User, error) {
-	// Define user variable.
-	var user models.User
-
-	// Send query to database.
-	if err := q.Get(&user, `SELECT * FROM users WHERE id = $1`, id); err != nil {
-		return models.User{}, err
-	}
-
-	return user, nil
-}
-
 // GetUsers func for getting all users.
 func (q *UserQueries) GetUsers() ([]models.User, error) {
 	// Define users variable.
@@ -35,6 +22,19 @@ func (q *UserQueries) GetUsers() ([]models.User, error) {
 	}
 
 	return users, nil
+}
+
+// GetUser func for getting one user by given ID.
+func (q *UserQueries) GetUser(id uuid.UUID) (models.User, error) {
+	// Define user variable.
+	var user models.User
+
+	// Send query to database.
+	if err := q.Get(&user, `SELECT * FROM users WHERE id = $1`, id); err != nil {
+		return models.User{}, err
+	}
+
+	return user, nil
 }
 
 // CreateUser func for creating user by given User object.
