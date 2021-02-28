@@ -51,5 +51,5 @@ func OpenDBConnection() (*Queries, error) {
 		}, nil
 	}
 
-	return nil, fmt.Errorf("error connection to any database")
+	return nil, fmt.Errorf("error, when connecting to any database")
 }
