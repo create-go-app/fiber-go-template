@@ -6,7 +6,7 @@
 
 ## ⚡️ Quick start
 
-1. Create a new project:
+1. Create a new project with Fiber:
 
 ```bash
 cgapp create
@@ -56,7 +56,7 @@ make run
 **Folder with project-specific functionality**. This directory contains all the project-specific code tailored only for your business use case, like _configs_, _middleware_, _routes_ or _utils_.
 
 - `./pkg/configs` folder for configuration functions
-- `./pkg/middleware` folder for add middleware (Fiber and yours)
+- `./pkg/middleware` folder for add middleware (Fiber built-in and yours)
 - `./pkg/routes` folder for describe routes of your project
 - `./pkg/utils` folder with utility functions (server starter, error checker, etc)
 
