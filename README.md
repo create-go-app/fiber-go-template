@@ -32,20 +32,40 @@ make run
 
 ## 📦 Used packages
 
-| Name | Version | Type |
-| - | - | - |
-| [gofiber/fiber](https://github.com/gofiber/fiber) | `v2.5.0` | core |
-| [stretchr/testify](https://github.com/stretchr/testify) | `v1.7.0` | tests |
-| [joho/godotenv](https://github.com/joho/godotenv) | `v1.3.0` | config |
-| [jmoiron/sqlx](https://github.com/jmoiron/sqlx) | `v1.3.1` | database |
-| [jackc/pgx](https://github.com/jackc/pgx) | `v4.10.1` | database |
-| [google/uuid](https://github.com/google/uuid) | `v1.2.0` | utils |
+| Name                                                    | Version   | Type     |
+| ------------------------------------------------------- | --------- | -------- |
+| [gofiber/fiber](https://github.com/gofiber/fiber)       | `v2.5.0`  | core     |
+| [stretchr/testify](https://github.com/stretchr/testify) | `v1.7.0`  | tests    |
+| [joho/godotenv](https://github.com/joho/godotenv)       | `v1.3.0`  | config   |
+| [jmoiron/sqlx](https://github.com/jmoiron/sqlx)         | `v1.3.1`  | database |
+| [jackc/pgx](https://github.com/jackc/pgx)               | `v4.10.1` | database |
+| [google/uuid](https://github.com/google/uuid)           | `v1.2.0`  | utils    |
 
 ## 🗄 Template structure
 
-- `./app` folder with business logic (controllers, models, queries)
-- `./pkg` folder with project specific functionality (configs, middleware, routes, utils)
-- `./platform` folder with platform specific functionality (database, migrations)
+### ./app
+
+**Folder with business logic only**. This directory doesn't care about _what database driver you're using_ or _which caching solution your choose_ or any third-party things.
+
+- `./app/controllers` folder for functional controllers (used in routes)
+- `./app/models` folder for describe business models of your project
+- `./app/queries` folder for describe queries for models of your project
+
+### ./pkg
+
+**Folder with project specific functionality**. This directory contains all the project-specific code tailored only for your business use case, like _configs_, _middleware_, _routes_ or _utils_.
+
+- `./pkg/configs` folder for configuration functions
+- `./pkg/middleware` folder for add middleware (Fiber and yours)
+- `./pkg/routes` folder for describe routes of your project
+- `./pkg/utils` folder with utility functions (server starter, error checker, etc)
+
+### ./platform
+
+**Folder with platform specific functionality**. This directory contains all the platform-level logic that will build up the actual project, like setting up the database, cache server instance or store for migrations.
+
+- `./platform/database` folder with database configuration (by default, PostgreSQL)
+- `./platform/migrations` folder with migration files (used with [golang-migrate/migrate](https://github.com/golang-migrate/migrate) tool)
 
 ## ⚙️ Configuration
 

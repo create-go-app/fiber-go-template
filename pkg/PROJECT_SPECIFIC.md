@@ -1,5 +1,8 @@
-# /pkg
+# ./pkg
 
-This folder contains all the application-specific code tailored only for your business use case—things like configuration, logging, and DB migrations.
+**Folder with project specific functionality**. This directory contains all the project-specific code tailored only for your business use case, like _configs_, _middleware_, _routes_ or _utils_.
 
-This directory talks to the `/app` for instructions, and then it takes the services offered by `/platform` and finally delivers the product.
+- `./pkg/configs` folder for configuration functions
+- `./pkg/middleware` folder for add middleware (Fiber and yours)
+- `./pkg/routes` folder for describe routes of your project
+- `./pkg/utils` folder with utility functions (server starter, error checker, etc)
