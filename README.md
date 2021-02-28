@@ -16,7 +16,7 @@ cgapp create
 # > Fiber
 ```
 
-2. Apply database migration (by default, for PostgreSQL):
+2. Run database and apply migrations (by default, for PostgreSQL):
 
 ```bash
 make migration-up user=<db_user> host=<db_host> table=<db_table>
@@ -64,7 +64,7 @@ make run
 
 **Folder with platform-level logic**. This directory contains all the platform-level logic that will build up the actual project, like _setting up the database_ or _cache server instance_ and _storing migrations_.
 
-- `./platform/database` folder with database configuration (by default, PostgreSQL)
+- `./platform/database` folder with database setup functions (by default, PostgreSQL)
 - `./platform/migrations` folder with migration files (used with [golang-migrate/migrate](https://github.com/golang-migrate/migrate) tool)
 
 ## ⚙️ Configuration
