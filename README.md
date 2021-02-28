@@ -22,7 +22,7 @@ cgapp create
 make migration-up user=<db_user> host=<db_host> table=<db_table>
 ```
 
-3. Rename `/.env.example` to `/.env` and fill it with your environment values.
+3. Rename `.env.example` to `.env` and fill it with your environment values.
 
 4. Run project by this command:
 
