@@ -27,28 +27,19 @@ type UserAttrs struct {
 	About     string `json:"about"`
 }
 
-// UserStore interface for storing user methods.
-type UserStore interface {
-	FindUserByID(id uuid.UUID) (User, error)
-	GetUsers() ([]User, error)
-	CreateUser(u *User) error
-	UpdateUser(u *User) error
-	DeleteUser(id uuid.UUID) error
-}
-
 // Value make the UserAttrs struct implement the driver.Valuer interface.
 // This method simply returns the JSON-encoded representation of the struct.
-func (a UserAttrs) Value() (driver.Value, error) {
-	return json.Marshal(a)
+func (u UserAttrs) Value() (driver.Value, error) {
+	return json.Marshal(u)
 }
 
 // Scan make the UserAttrs struct implement the sql.Scanner interface.
 // This method simply decodes a JSON-encoded value into the struct fields.
-func (a *UserAttrs) Scan(value interface{}) error {
+func (u *UserAttrs) Scan(value interface{}) error {
 	b, ok := value.([]byte)
 	if !ok {
 		return errors.New("type assertion to []byte failed")
 	}
 
-	return json.Unmarshal(b, &a)
+	return json.Unmarshal(b, &u)
 }

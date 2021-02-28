@@ -21,7 +21,7 @@ func StartServerWithGracefulShutdown(a *fiber.App) {
 		// Received an interrupt signal, shutdown.
 		if err := a.Shutdown(); err != nil {
 			// Error from closing listeners, or context timeout:
-			log.Printf("Oops... Server is not shutdown! Reason: %v", err)
+			log.Printf("Oops... Server is not shutting down! Reason: %v", err)
 		}
 
 		close(idleConnsClosed)
@@ -32,7 +32,7 @@ func StartServerWithGracefulShutdown(a *fiber.App) {
 
 	// Run server.
 	if err := a.Listen(serverAddress); err != nil {
-		log.Fatal(err)
+		log.Printf("Oops... Server is not running! Reason: %v", err)
 	}
 
 	<-idleConnsClosed

@@ -10,10 +10,9 @@ CREATE TABLE users (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW (),
     updated_at TIMESTAMP NULL,
     email VARCHAR (254) NOT NULL UNIQUE,
-    username VARCHAR (13) NOT NULL UNIQUE,
     user_status INT NOT NULL,
     user_attrs JSONB NOT NULL
 );
 
 -- Add indexes
-CREATE INDEX active_users ON users (username) WHERE user_status = 1;
+CREATE INDEX active_users ON users (email) WHERE user_status = 1;
