@@ -53,7 +53,7 @@ make run
 
 ### ./pkg
 
-**Folder with project specific functionality**. This directory contains all the project-specific code tailored only for your business use case, like _configs_, _middleware_, _routes_ or _utils_.
+**Folder with project-specific functionality**. This directory contains all the project-specific code tailored only for your business use case, like _configs_, _middleware_, _routes_ or _utils_.
 
 - `./pkg/configs` folder for configuration functions
 - `./pkg/middleware` folder for add middleware (Fiber and yours)
@@ -62,7 +62,7 @@ make run
 
 ### ./platform
 
-**Folder with platform specific functionality**. This directory contains all the platform-level logic that will build up the actual project, like setting up the database, cache server instance or store for migrations.
+**Folder with platform-level logic**. This directory contains all the platform-level logic that will build up the actual project, like setting up the database, cache server instance or store for migrations.
 
 - `./platform/database` folder with database configuration (by default, PostgreSQL)
 - `./platform/migrations` folder with migration files (used with [golang-migrate/migrate](https://github.com/golang-migrate/migrate) tool)
