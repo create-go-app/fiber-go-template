@@ -42,7 +42,7 @@ func OpenDBConnection() (*Queries, error) {
 
 		// Try to ping DB.
 		if err := db.Ping(); err != nil {
-			_ = db.Close()
+			_ = db.Close() // close database connection
 			return nil, fmt.Errorf("error while send ping to PostgreSQL database, %w", err)
 		}
 

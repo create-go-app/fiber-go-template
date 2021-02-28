@@ -2,6 +2,8 @@
 
 BUILD_DIR = $(PWD)/build
 APP_NAME = apiserver
+MIGRATIONS_FOLDER = $(PWD)/platform/migrations
+DATABASE_URL = postgres://$(user)@$(host)/$(table)?sslmode=disable
 
 clean:
 	rm -rf ./build
@@ -17,3 +19,12 @@ build: clean test
 
 run: build
 	$(BUILD_DIR)/$(APP_NAME)
+
+migrate-up:
+	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" up
+
+migrate-down:
+	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" down
+
+migrate-force:
+	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" force $(version)

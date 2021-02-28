@@ -10,71 +10,72 @@
 
 ```bash
 cgapp create
+
+# Choose a backend framework:
+#   net/http
+# > Fiber
 ```
 
-2. Run project by this command:
+2. Apply database migration (by default, for PostgreSQL):
+
+```bash
+make migration-up user=<db_user> host=<db_host> table=<db_table>
+```
+
+3. Rename `/.env.example` to `/.env` and fill it with your environment values.
+
+4. Run project by this command:
 
 ```bash
 make run
 ```
 
-## ✅ Used packages
+## 📦 Used packages
 
 - [gofiber/fiber](https://github.com/gofiber/fiber) `v2.5.0`
-- [joho/godotenv](https://github.com/) `v1.3.0`
 - [stretchr/testify](https://github.com/stretchr/testify) `v1.7.0`
+- [joho/godotenv](https://github.com/joho/godotenv) `v1.3.0`
+- [jmoiron/sqlx](https://github.com/jmoiron/sqlx) `v1.3.1`
+- [google/uuid](https://github.com/google/uuid) `v1.2.0`
+- [jackc/pgx](https://github.com/jackc/pgx) `v4.10.1`
 
 ## 🗄 Template structure
 
-```bash
-.
-├── .dockerignore
-├── .editorconfig
-├── .gitignore
-├── .env.example
-├── Dockerfile
-├── Makefile
-├── go.mod
-├── go.sum
-├── main.go
-├── static
-│   └── index.html
-└── pkg
-    └── apiserver
-        ├── config.go
-        ├── config_test.go
-        ├── error_checker.go
-        ├── error_checker_test.go
-        ├── new_server.go
-        ├── new_server_test.go
-        ├── routes.go
-        ├── utils.go
-        └── utils_test.go
-
-3 directories, 17 files
-```
+- `./app` folder with business logic (controllers, models, queries)
+- `./pkg` folder with project specific functionality (configs, middleware, routes, utils)
+- `./platform` folder with platform specific functionality (database, migrations)
 
 ## ⚙️ Configuration
 
-```yaml
-# ./configs/apiserver.yml
+```conf
+# .env
 
-# Server config
-server:
-  host: 0.0.0.0
-  port: 5000
+# Server settings:
+SERVER_HOST="0.0.0.0"
+SERVER_PORT=5000
+SERVER_EMAIL="no-reply@example.com"
+SERVER_EMAIL_PASSWORD="secret"
 
-# Database config
-database:
-  host: 127.0.0.1
-  port: 5432
-  username: postgres
-  password: 1234
+# JWT settings:
+JWT_SECRET_TOKEN="secret"
 
-# Static files config
-static:
-  prefix: /
-  path: ./static
+# Database type:
+DATABASE_TYPE="postgres"
+
+# PostgreSQL settings:
+POSTGRES_SERVER_URL="host=localhost dbname=postgres sslmode=disable"
+POSTGRES_MAX_CONNECTIONS=100
+POSTGRES_MAX_IDLE_CONNECTIONS=10
+POSTGRES_MAX_LIFETIME_CONNECTIONS=2
+
+# SSL settings:
+LETS_ENCRYPT_EMAIL="mail@gmail.com"
+DOMAIN_WITHOUT_WWW="example.com"
+DOMAIN_WITH_WWW="www.example.com"
+
+# SMTP severs settings:
+SMTP_SERVER="smtp.example.com"
+SMTP_PORT=25
 ```
 
 ## ⚠️ License
