@@ -9,11 +9,11 @@ import (
 // PrivateRoutes func for describe group of private routes.
 func PrivateRoutes(a *fiber.App) {
 	// Create routes group.
-	route := a.Group("/api/private", middleware.JWTAuthProtected())
+	route := a.Group("/api/private", middleware.JWTProtected())
 
-	// Routes for PATCH method.
+	// Routes for PATCH method:
 	route.Patch("/user", controllers.UpdateUser) // update one user by ID
 
-	// Routes for DELETE method.
+	// Routes for DELETE method:
 	route.Delete("/user", controllers.DeleteUser) // delete one user by ID
 }

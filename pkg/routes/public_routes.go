@@ -10,7 +10,7 @@ func PublicRoutes(a *fiber.App) {
 	// Create routes group.
 	route := a.Group("/api/public")
 
-	// Routes for GET method.
+	// Routes for GET method:
 	route.Get("/user/:id", controllers.GetUser) // get one user by ID
 	route.Get("/users", controllers.GetUsers)   // get list of all users
 }
