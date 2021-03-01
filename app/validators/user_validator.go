@@ -29,7 +29,7 @@ func UserValidator() *validator.Validate {
 	})
 
 	// Validator for user ID (UUID).
-	v.RegisterValidation("id", func(fl validator.FieldLevel) bool {
+	_ = v.RegisterValidation("id", func(fl validator.FieldLevel) bool {
 		// Define field as string.
 		field := fl.Field().String()
 
@@ -42,7 +42,7 @@ func UserValidator() *validator.Validate {
 	})
 
 	// Validator for user email.
-	v.RegisterValidation("email", func(fl validator.FieldLevel) bool {
+	_ = v.RegisterValidation("email", func(fl validator.FieldLevel) bool {
 		// Define field as string.
 		field := fl.Field().String()
 
