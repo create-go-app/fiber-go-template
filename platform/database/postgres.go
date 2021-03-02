@@ -14,12 +14,12 @@ import (
 // PostgreSQLConnection func for connection to PostgreSQL database.
 func PostgreSQLConnection() (*sqlx.DB, error) {
 	// Define database connection settings.
-	maxConn, _ := strconv.Atoi(os.Getenv("POSTGRES_MAX_CONNECTIONS"))
-	maxIdleConn, _ := strconv.Atoi(os.Getenv("POSTGRES_MAX_IDLE_CONNECTIONS"))
-	maxLifetimeConn, _ := strconv.Atoi(os.Getenv("POSTGRES_MAX_LIFETIME_CONNECTIONS"))
+	maxConn, _ := strconv.Atoi(os.Getenv("DB_MAX_CONNECTIONS"))
+	maxIdleConn, _ := strconv.Atoi(os.Getenv("DB_MAX_IDLE_CONNECTIONS"))
+	maxLifetimeConn, _ := strconv.Atoi(os.Getenv("DB_MAX_LIFETIME_CONNECTIONS"))
 
 	// Define database connection for PostgreSQL.
-	db, err := sqlx.Connect("pgx", os.Getenv("POSTGRES_SERVER_URL"))
+	db, err := sqlx.Connect("pgx", os.Getenv("DB_SERVER_URL"))
 	if err != nil {
 		return nil, fmt.Errorf("error, not connected to PostgreSQL database, %w", err)
 	}

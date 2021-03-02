@@ -19,7 +19,8 @@ cgapp create
 2. Run database and apply migrations (by default, for PostgreSQL):
 
 ```bash
-make migration-up user=<db_user> host=<db_host> table=<db_table>
+make docker-postgres
+make migration-up user=<db_user> pass=<db_pass> host=<db_host> table=<db_table>
 ```
 
 3. Rename `.env.example` to `.env` and fill it with your environment values.
@@ -86,18 +87,13 @@ SERVER_EMAIL_PASSWORD="secret"
 JWT_SECRET_TOKEN="secret"
 
 # Database type:
-DATABASE_TYPE="postgres"
+DB_TYPE="postgres"
 
-# PostgreSQL settings:
-POSTGRES_SERVER_URL="host=localhost dbname=postgres sslmode=disable"
-POSTGRES_MAX_CONNECTIONS=100
-POSTGRES_MAX_IDLE_CONNECTIONS=10
-POSTGRES_MAX_LIFETIME_CONNECTIONS=2
-
-# SSL settings:
-LETS_ENCRYPT_EMAIL="mail@gmail.com"
-DOMAIN_WITHOUT_WWW="example.com"
-DOMAIN_WITH_WWW="www.example.com"
+# Database settings:
+DB_SERVER_URL="host=localhost port=5432 user=postgres password=password dbname=postgres sslmode=disable"
+DB_MAX_CONNECTIONS=100
+DB_MAX_IDLE_CONNECTIONS=10
+DB_MAX_LIFETIME_CONNECTIONS=2
 
 # SMTP severs settings:
 SMTP_SERVER="smtp.example.com"
