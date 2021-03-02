@@ -9,7 +9,7 @@ CREATE TABLE users (
     id UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW (),
     updated_at TIMESTAMP NULL,
-    email VARCHAR (254) NOT NULL UNIQUE,
+    email VARCHAR (255) NOT NULL UNIQUE,
     user_status INT NOT NULL,
     user_attrs JSONB NOT NULL
 );
