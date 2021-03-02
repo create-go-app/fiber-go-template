@@ -1,12 +1,15 @@
 package utils
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
 	"os"
+	"time"
 
 	"github.com/dgrijalva/jwt-go"
 )
 
-// GenerateNewJWTAccessToken func for generate a new JWT access token
+// GenerateNewJWTAccessToken func for generate a new JWT access (private) token
 // with user ID and permissions.
 func GenerateNewJWTAccessToken(permission, id string) (string, error) {
 	// Catch secret JWT value from .env file.
@@ -34,4 +37,22 @@ func GenerateNewJWTAccessToken(permission, id string) (string, error) {
 	}
 
 	return t, nil
+}
+
+// GenerateNewJWTRefreshToken func for generate a new JWT refresh (public) token.
+func GenerateNewJWTRefreshToken() (string, error) {
+	// Create a new SHA256 hash.
+	sha256 := sha256.New()
+
+	// Create a new now date and time string.
+	now := time.Now().String()
+
+	// See: https://pkg.go.dev/io#Writer.Write
+	_, err := sha256.Write([]byte(now))
+	if err != nil {
+		// Return error, it refresh token generation failed.
+		return "", err
+	}
+
+	return hex.EncodeToString(sha256.Sum(nil)), nil
 }
