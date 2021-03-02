@@ -16,7 +16,7 @@ cgapp create
 # > Fiber
 ```
 
-2. Run database (by default, for PostgreSQL):
+2. Run Docker container with database (by default, for PostgreSQL):
 
 ```bash
 make docker-postgres
