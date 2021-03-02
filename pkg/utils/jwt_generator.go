@@ -44,11 +44,11 @@ func GenerateNewJWTRefreshToken() (string, error) {
 	// Create a new SHA256 hash.
 	sha256 := sha256.New()
 
-	// Create a new now date and time string.
-	now := time.Now().String()
+	// Create a new now date and time string with salt.
+	salt := os.Getenv("JWT_REFRESH_SALT") + time.Now().String()
 
 	// See: https://pkg.go.dev/io#Writer.Write
-	_, err := sha256.Write([]byte(now))
+	_, err := sha256.Write([]byte(salt))
 	if err != nil {
 		// Return error, it refresh token generation failed.
 		return "", err
