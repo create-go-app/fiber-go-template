@@ -16,16 +16,21 @@ cgapp create
 # > Fiber
 ```
 
-2. Run database and apply migrations (by default, for PostgreSQL):
+2. Run database (by default, for PostgreSQL):
 
 ```bash
 make docker-postgres
+```
+
+3. Apply migrations:
+
+```bash
 make migration-up user=<db_user> pass=<db_pass> host=<db_host> table=<db_table>
 ```
 
-3. Rename `.env.example` to `.env` and fill it with your environment values.
+4. Rename `.env.example` to `.env` and fill it with your environment values.
 
-4. Run project by this command:
+5. Run project by this command:
 
 ```bash
 make run
