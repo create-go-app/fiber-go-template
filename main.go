@@ -16,11 +16,13 @@ import (
 // @description This is a sample swagger for Fiber
 // @termsOfService http://swagger.io/terms/
 // @contact.name API Support
-// @contact.email truewebartisans@gmail.com
+// @contact.email your@mail.com
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
-// @host localhost:5000
 // @BasePath /
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 func main() {
 	// Define Fiber config.
 	config := configs.FiberConfig()

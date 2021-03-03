@@ -6,7 +6,7 @@
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
             "name": "API Support",
-            "email": "truewebartisans@gmail.com"
+            "email": "your@mail.com"
         },
         "license": {
             "name": "Apache 2.0",
@@ -14,12 +14,106 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:5000",
     "basePath": "/",
     "paths": {
+        "/api/private/user": {
+            "post": {
+                "description": "Create a new user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private"
+                ],
+                "parameters": [
+                    {
+                        "description": "E-mail",
+                        "name": "email",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete user by given ID.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private"
+                ],
+                "parameters": [
+                    {
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private"
+                ],
+                "parameters": [
+                    {
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            }
+        },
         "/api/public/user/{id}": {
             "get": {
-                "description": "Gets one user by given ID.",
+                "description": "Get user by given ID.",
                 "consumes": [
                     "application/json"
                 ],
@@ -50,7 +144,7 @@
         },
         "/api/public/users": {
             "get": {
-                "description": "Gets all exists users.",
+                "description": "Get all exists users.",
                 "consumes": [
                     "application/json"
                 ],
@@ -64,7 +158,10 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.User"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.User"
+                            }
                         }
                     }
                 }
@@ -115,6 +212,13 @@
                     "type": "string"
                 }
             }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
         }
     }
 }

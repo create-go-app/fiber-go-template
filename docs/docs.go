@@ -21,7 +21,7 @@ var doc = `{
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
             "name": "API Support",
-            "email": "truewebartisans@gmail.com"
+            "email": "your@mail.com"
         },
         "license": {
             "name": "Apache 2.0",
@@ -32,9 +32,104 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/api/private/user": {
+            "post": {
+                "description": "Create a new user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private"
+                ],
+                "parameters": [
+                    {
+                        "description": "E-mail",
+                        "name": "email",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete user by given ID.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private"
+                ],
+                "parameters": [
+                    {
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private"
+                ],
+                "parameters": [
+                    {
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            }
+        },
         "/api/public/user/{id}": {
             "get": {
-                "description": "Gets one user by given ID.",
+                "description": "Get user by given ID.",
                 "consumes": [
                     "application/json"
                 ],
@@ -65,7 +160,7 @@ var doc = `{
         },
         "/api/public/users": {
             "get": {
-                "description": "Gets all exists users.",
+                "description": "Get all exists users.",
                 "consumes": [
                     "application/json"
                 ],
@@ -79,7 +174,10 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.User"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.User"
+                            }
                         }
                     }
                 }
@@ -131,6 +229,13 @@ var doc = `{
                 }
             }
         }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
     }
 }`
 
@@ -146,7 +251,7 @@ type swaggerInfo struct {
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = swaggerInfo{
 	Version:     "1.0",
-	Host:        "localhost:5000",
+	Host:        "",
 	BasePath:    "/",
 	Schemes:     []string{},
 	Title:       "Fiber Example API",

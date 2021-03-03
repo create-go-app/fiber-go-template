@@ -11,6 +11,9 @@ func PrivateRoutes(a *fiber.App) {
 	// Create routes group.
 	route := a.Group("/api/private", middleware.JWTProtected())
 
+	// Routes for POST method:
+	route.Post("/user", controllers.CreateUser) // create a new user
+
 	// Routes for PATCH method:
 	route.Patch("/user", controllers.UpdateUser) // update one user by ID
 

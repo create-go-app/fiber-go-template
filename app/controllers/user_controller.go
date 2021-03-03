@@ -13,11 +13,11 @@ import (
 )
 
 // GetUsers func gets all exists users.
-// @Description Gets all exists users.
+// @Description Get all exists users.
 // @Tags Public
 // @Accept json
 // @Produce json
-// @Success 200 {object} models.User
+// @Success 200 {array} models.User
 // @Router /api/public/users [get]
 func GetUsers(c *fiber.Ctx) error {
 	// Create database connection.
@@ -51,7 +51,7 @@ func GetUsers(c *fiber.Ctx) error {
 }
 
 // GetUser func gets one user by given ID or 404 error.
-// @Description Gets one user by given ID.
+// @Description Get user by given ID.
 // @Tags Public
 // @Accept json
 // @Produce json
@@ -97,6 +97,13 @@ func GetUser(c *fiber.Ctx) error {
 }
 
 // CreateUser func for creates a new user.
+// @Description Create a new user.
+// @Tags Private
+// @Accept json
+// @Produce json
+// @Param email body string true "E-mail"
+// @Success 200 {object} models.User
+// @Router /api/private/user [post]
 func CreateUser(c *fiber.Ctx) error {
 	// Create a new user struct.
 	user := &models.User{}
@@ -156,6 +163,13 @@ func CreateUser(c *fiber.Ctx) error {
 }
 
 // UpdateUser func for updates user by given ID.
+// @Description Update user.
+// @Tags Private
+// @Accept json
+// @Produce json
+// @Param id body string true "User ID"
+// @Success 200 {object} models.User
+// @Router /api/private/user [patch]
 func UpdateUser(c *fiber.Ctx) error {
 	// Get data from JWT.
 	token := c.Locals("user").(*jwt.Token)
@@ -246,7 +260,14 @@ func UpdateUser(c *fiber.Ctx) error {
 	})
 }
 
-// DeleteUser func deletes user by given ID.
+// DeleteUser func for deletes user by given ID.
+// @Description Delete user by given ID.
+// @Tags Private
+// @Accept json
+// @Produce json
+// @Param id body string true "User ID"
+// @Success 200 {string} string "ok"
+// @Router /api/private/user [delete]
 func DeleteUser(c *fiber.Ctx) error {
 	// Catch data from JWT.
 	token := c.Locals("user").(*jwt.Token)
