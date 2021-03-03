@@ -36,17 +36,21 @@ make migration-up user=<db_user> pass=<db_pass> host=<db_host> table=<db_table>
 make run
 ```
 
+6. Go to API Docs page (Swagger): [localhost:5000/swagger/index.html](http://localhost:5000/swagger/index.html).
+
 ## 📦 Used packages
 
 | Name                                                                  | Version   | Type       |
 | --------------------------------------------------------------------- | --------- | ---------- |
 | [gofiber/fiber](https://github.com/gofiber/fiber)                     | `v2.5.0`  | core       |
 | [gofiber/jwt](https://github.com/gofiber/jwt)                         | `v2.1.0`  | middleware |
+| [arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)         | `v2.3.0`  | middleware |
 | [stretchr/testify](https://github.com/stretchr/testify)               | `v1.7.0`  | tests      |
 | [dgrijalva/jwt-go](https://github.com/dgrijalva/jwt-go)               | `v3.2.0`  | auth       |
 | [joho/godotenv](https://github.com/joho/godotenv)                     | `v1.3.0`  | config     |
 | [jmoiron/sqlx](https://github.com/jmoiron/sqlx)                       | `v1.3.1`  | database   |
 | [jackc/pgx](https://github.com/jackc/pgx)                             | `v4.10.1` | database   |
+| [swaggo/swag](https://github.com/swaggo/swag)                         | `v1.7.0`  | utils      |
 | [google/uuid](https://github.com/google/uuid)                         | `v1.2.0`  | utils      |
 | [go-playground/validator](https://github.com/go-playground/validator) | `v10.4.1` | utils      |
 
@@ -60,6 +64,10 @@ make run
 - `./app/models` folder for describe business models and methods of your project
 - `./app/queries` folder for describe queries for models of your project
 - `./app/validators` folder for describe validators for models fields
+
+### ./docs
+
+**Folder with API Documentation**. This directory contains configuration files for auto-generated API Docs by Swagger.
 
 ### ./pkg
 

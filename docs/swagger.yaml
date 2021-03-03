@@ -1,0 +1,79 @@
+basePath: /
+definitions:
+  models.User:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      updated_at:
+        type: string
+      user_attrs:
+        $ref: '#/definitions/models.UserAttrs'
+      user_status:
+        type: integer
+    required:
+    - email
+    - id
+    type: object
+  models.UserAttrs:
+    properties:
+      about:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      picture:
+        type: string
+    type: object
+host: localhost:5000
+info:
+  contact:
+    email: truewebartisans@gmail.com
+    name: API Support
+  description: This is a sample swagger for Fiber
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Fiber Example API
+  version: "1.0"
+paths:
+  /api/public/user/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Gets one user by given ID.
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      tags:
+      - Public
+  /api/public/users:
+    get:
+      consumes:
+      - application/json
+      description: Gets all exists users.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      tags:
+      - Public
+swagger: "2.0"

@@ -12,7 +12,13 @@ import (
 	"github.com/google/uuid"
 )
 
-// GetUsers func gets all exists users or 404 error.
+// GetUsers func gets all exists users.
+// @Description Gets all exists users.
+// @Tags Public
+// @Accept json
+// @Produce json
+// @Success 200 {object} models.User
+// @Router /api/public/users [get]
 func GetUsers(c *fiber.Ctx) error {
 	// Create database connection.
 	db, err := database.OpenDBConnection()
@@ -45,6 +51,13 @@ func GetUsers(c *fiber.Ctx) error {
 }
 
 // GetUser func gets one user by given ID or 404 error.
+// @Description Gets one user by given ID.
+// @Tags Public
+// @Accept json
+// @Produce json
+// @Param id path string true "User ID"
+// @Success 200 {object} models.User
+// @Router /api/public/user/{id} [get]
 func GetUser(c *fiber.Ctx) error {
 	// Catch user ID from URL.
 	id, err := uuid.Parse(c.Params("id"))

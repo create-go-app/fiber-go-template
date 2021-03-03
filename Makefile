@@ -17,34 +17,34 @@ test: security
 build: clean test
 	CGO_ENABLED=0 go build -ldflags="-w -s" -o $(BUILD_DIR)/$(APP_NAME) main.go
 
-run: build
+run: swag.init build
 	$(BUILD_DIR)/$(APP_NAME)
 
-migrate-up:
+migrate.up:
 	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" up
 
-migrate-down:
+migrate.down:
 	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" down
 
-migrate-force:
+migrate.force:
 	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" force $(version)
 
-docker-build:
+docker.build:
 	docker build -t fiber-go-template .
 
-docker-run: docker-fiber docker-postgres
+docker.run: docker-fiber docker-postgres
 
-docker-stop:
+docker.stop:
 	docker stop dev-fiber dev-postgres
 
-docker-fiber:
+docker.fiber:
 	docker run --rm -d \
 		--name dev-fiber \
 		--network dev-network \
 		-p 5000:5000 \
 		fiber-go-template
 
-docker-postgres:
+docker.postgres:
 	docker run --rm -d \
 		--name dev-postgres \
 		--network dev-network \
@@ -52,3 +52,6 @@ docker-postgres:
 		-v ${PWD}/build/pg/:/var/lib/postgresql/data \
 		-p 5432:5432 \
 		postgres
+
+swag.init:
+	swag init
