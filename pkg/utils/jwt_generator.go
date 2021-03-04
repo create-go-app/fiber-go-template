@@ -12,8 +12,8 @@ import (
 // GenerateNewJWTAccessToken func for generate a new JWT access (private) token
 // with user ID and permissions.
 func GenerateNewJWTAccessToken(credentials []string, id string) (string, error) {
-	// Catch secret JWT value from .env file.
-	secret := os.Getenv("JWT_SECRET_TOKEN")
+	// Catch JWT secret key from .env file.
+	secret := os.Getenv("JWT_SECRET_KEY")
 
 	// Create a new JWT access token and claims.
 	token := jwt.New(jwt.SigningMethodHS256)
@@ -44,10 +44,10 @@ func GenerateNewJWTRefreshToken() (string, error) {
 	sha256 := sha256.New()
 
 	// Create a new now date and time string with salt.
-	salt := os.Getenv("JWT_REFRESH_SALT") + time.Now().String()
+	refresh := os.Getenv("JWT_REFRESH_KEY") + time.Now().String()
 
 	// See: https://pkg.go.dev/io#Writer.Write
-	_, err := sha256.Write([]byte(salt))
+	_, err := sha256.Write([]byte(refresh))
 	if err != nil {
 		// Return error, it refresh token generation failed.
 		return "", err
