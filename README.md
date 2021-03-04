@@ -19,13 +19,13 @@ cgapp create
 2. Run Docker container with database (_by default, for PostgreSQL_):
 
 ```bash
-make docker-postgres
+make docker.postgres
 ```
 
 3. Apply migrations:
 
 ```bash
-make migration-up user=<db_user> pass=<db_pass> host=<db_host> table=<db_table>
+make migration.up user=<db_user> pass=<db_pass> host=<db_host> table=<db_table>
 ```
 
 4. Rename `.env.example` to `.env` and fill it with your environment values.
