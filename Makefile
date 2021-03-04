@@ -32,7 +32,7 @@ migrate.force:
 docker.build:
 	docker build -t fiber-go-template .
 
-docker.run: docker-fiber docker-postgres
+docker.run: docker.fiber docker.postgres
 
 docker.stop:
 	docker stop dev-fiber dev-postgres
@@ -49,7 +49,7 @@ docker.postgres:
 		--name dev-postgres \
 		--network dev-network \
 		-e POSTGRES_PASSWORD=password \
-		-v ${PWD}/build/pg/:/var/lib/postgresql/data \
+		-v ${HOME}/dev-postgres/data/:/var/lib/postgresql/data \
 		-p 5432:5432 \
 		postgres
 
