@@ -27,11 +27,8 @@ func StartServerWithGracefulShutdown(a *fiber.App) {
 		close(idleConnsClosed)
 	}()
 
-	// Define server address, like `host:port` (from config).
-	serverAddress := os.Getenv("SERVER_HOST") + ":" + os.Getenv("SERVER_PORT")
-
 	// Run server.
-	if err := a.Listen(serverAddress); err != nil {
+	if err := a.Listen(os.Getenv("SERVER_URL")); err != nil {
 		log.Printf("Oops... Server is not running! Reason: %v", err)
 	}
 
