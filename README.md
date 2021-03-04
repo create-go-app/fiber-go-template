@@ -16,7 +16,7 @@ cgapp create
 # > Fiber
 ```
 
-2. Run Docker container with database (by default, for PostgreSQL):
+2. Run Docker container with database (_by default, for PostgreSQL_):
 
 ```bash
 make docker-postgres
@@ -91,17 +91,13 @@ make run
 # .env
 
 # Server settings:
-SERVER_HOST="0.0.0.0"
-SERVER_PORT=5000
+SERVER_URL="0.0.0.0:5000"
 SERVER_EMAIL="no-reply@example.com"
 SERVER_EMAIL_PASSWORD="secret"
 
 # JWT settings:
 JWT_SECRET_TOKEN="secret"
 JWT_REFRESH_SALT="salt"
-
-# Database type:
-DB_TYPE="postgres"
 
 # Database settings:
 DB_SERVER_URL="host=localhost port=5432 user=postgres password=password dbname=postgres sslmode=disable"
