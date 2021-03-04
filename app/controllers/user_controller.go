@@ -105,6 +105,19 @@ func GetUser(c *fiber.Ctx) error {
 // @Success 200 {object} models.User
 // @Router /api/private/user [post]
 func CreateUser(c *fiber.Ctx) error {
+	// Get now time.
+	now := time.Now().Unix()
+
+	// Get data from JWT.
+	token := c.Locals("jwt").(*jwt.Token)
+	claims := token.Claims.(jwt.MapClaims)
+
+	// Set expiration time from JWT data of current user.
+	expires := claims["expires"].(int64)
+
+	// Set credential `user:create` from JWT data of current user.
+	credential := claims["user:create"].(bool)
+
 	// Create a new user struct.
 	user := &models.User{}
 
@@ -117,41 +130,51 @@ func CreateUser(c *fiber.Ctx) error {
 		})
 	}
 
-	// Set initialized default data for user:
-	user.ID = uuid.New()
-	user.CreatedAt = time.Now()
-	user.UpdatedAt = time.Time{}
-	user.UserStatus = 1 // 0 == blocked, 1 == active
-	user.UserAttrs = models.UserAttrs{}
+	// Only user with `user:create` credential can create a new user profile.
+	if credential && now < expires {
+		// Create a new validator for user model.
+		validate := validators.UserValidator()
 
-	// Create a new validator for user model.
-	validate := validators.UserValidator()
+		// Validate user fields.
+		if err := validate.Struct(user); err != nil {
+			// Return, if some fields are not valid.
+			return c.Status(500).JSON(fiber.Map{
+				"error": true,
+				"msg":   utils.ValidatorErrors(err),
+			})
+		}
 
-	// Validate user fields.
-	if err := validate.Struct(user); err != nil {
-		// Return, if some fields are not valid.
-		return c.Status(500).JSON(fiber.Map{
+		// Create database connection.
+		db, err := database.OpenDBConnection()
+		if err != nil {
+			// Return status 500 and database connection error.
+			return c.Status(500).JSON(fiber.Map{
+				"error": true,
+				"msg":   err.Error(),
+			})
+		}
+
+		// Set initialized default data for user:
+		user.ID = uuid.New()
+		user.CreatedAt = time.Now()
+		user.UpdatedAt = time.Time{}
+		user.UserStatus = 1 // 0 == blocked, 1 == active
+		user.UserAttrs = models.UserAttrs{}
+
+		// Create a new user with validated data.
+		if err := db.CreateUser(user); err != nil {
+			// Return status 500 and create user process error.
+			return c.Status(500).JSON(fiber.Map{
+				"error": true,
+				"msg":   err.Error(),
+			})
+		}
+	} else {
+		// Return status 403 and permission denied error.
+		return c.Status(403).JSON(fiber.Map{
 			"error": true,
-			"msg":   utils.ValidatorErrors(err),
-		})
-	}
-
-	// Create database connection.
-	db, err := database.OpenDBConnection()
-	if err != nil {
-		// Return status 500 and database connection error.
-		return c.Status(500).JSON(fiber.Map{
-			"error": true,
-			"msg":   err.Error(),
-		})
-	}
-
-	// Create a new user with validated data.
-	if err := db.CreateUser(user); err != nil {
-		// Return status 500 and create user process error.
-		return c.Status(500).JSON(fiber.Map{
-			"error": true,
-			"msg":   err.Error(),
+			"msg":   "permission denied, check credentials or expiration time of your token",
+			"user":  nil,
 		})
 	}
 
@@ -171,12 +194,18 @@ func CreateUser(c *fiber.Ctx) error {
 // @Success 200 {object} models.User
 // @Router /api/private/user [patch]
 func UpdateUser(c *fiber.Ctx) error {
+	// Get now time.
+	now := time.Now().Unix()
+
 	// Get data from JWT.
-	token := c.Locals("user").(*jwt.Token)
+	token := c.Locals("jwt").(*jwt.Token)
 	claims := token.Claims.(jwt.MapClaims)
 
-	// Set admin status from JWT data of current user.
-	isAdmin := claims["is_admin"].(bool)
+	// Set expiration time from JWT data of current user.
+	expires := claims["expires"].(int64)
+
+	// Set credential `user:update` from JWT data of current user.
+	credential := claims["user:update"].(bool)
 
 	// Create a new user struct.
 	user := &models.User{}
@@ -209,18 +238,8 @@ func UpdateUser(c *fiber.Ctx) error {
 		})
 	}
 
-	// Get ID from JWT of current user and convert it to UUID.
-	currentUserID, err := uuid.Parse(claims["id"].(string))
-	if err != nil {
-		// Return status 500 and UUID parcing error.
-		return c.Status(500).JSON(fiber.Map{
-			"error": true,
-			"msg":   err.Error(),
-		})
-	}
-
-	// Only user itself or admin can update user profile.
-	if currentUserID == user.ID || isAdmin {
+	// Only user with `user:update` credential can update user profile.
+	if credential && now < expires {
 		// Create a new validator for user model.
 		validate := validators.UserValidator()
 
@@ -248,7 +267,7 @@ func UpdateUser(c *fiber.Ctx) error {
 		// Return status 403 and permission denied error.
 		return c.Status(403).JSON(fiber.Map{
 			"error": true,
-			"msg":   "permission denied",
+			"msg":   "permission denied, check credentials or expiration time of your token",
 			"user":  nil,
 		})
 	}
@@ -269,12 +288,18 @@ func UpdateUser(c *fiber.Ctx) error {
 // @Success 200 {string} string "ok"
 // @Router /api/private/user [delete]
 func DeleteUser(c *fiber.Ctx) error {
-	// Catch data from JWT.
-	token := c.Locals("user").(*jwt.Token)
+	// Get now time.
+	now := time.Now().Unix()
+
+	// Get data from JWT.
+	token := c.Locals("jwt").(*jwt.Token)
 	claims := token.Claims.(jwt.MapClaims)
 
-	// Set admin status.
-	isAdmin := claims["is_admin"].(bool)
+	// Set expiration time from JWT data of current user.
+	expires := claims["expires"].(int64)
+
+	// Set credential `user:delete` from JWT data of current user.
+	credential := claims["user:delete"].(bool)
 
 	// Create new User struct
 	user := &models.User{}
@@ -307,8 +332,8 @@ func DeleteUser(c *fiber.Ctx) error {
 		})
 	}
 
-	// Check, if current user request from admin.
-	if isAdmin {
+	// Only user with `user:delete` credential can delete user profile.
+	if credential && now < expires {
 		// Delete user by given ID.
 		if err := db.DeleteUser(user.ID); err != nil {
 			// Return status 500 and delete user process error.
@@ -321,7 +346,7 @@ func DeleteUser(c *fiber.Ctx) error {
 		// Return status 403 and permission denied error.
 		return c.Status(403).JSON(fiber.Map{
 			"error": true,
-			"msg":   "permission denied",
+			"msg":   "permission denied, check credentials or expiration time of your token",
 		})
 
 	}

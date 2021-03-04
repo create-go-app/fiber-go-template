@@ -11,7 +11,7 @@ import (
 
 // GenerateNewJWTAccessToken func for generate a new JWT access (private) token
 // with user ID and permissions.
-func GenerateNewJWTAccessToken(permission, id string) (string, error) {
+func GenerateNewJWTAccessToken(credentials []string, id string) (string, error) {
 	// Catch secret JWT value from .env file.
 	secret := os.Getenv("JWT_SECRET_TOKEN")
 
@@ -21,12 +21,11 @@ func GenerateNewJWTAccessToken(permission, id string) (string, error) {
 
 	// Set public claims:
 	claims["id"] = id
-	claims["is_admin"] = false
+	claims["expires"] = time.Now().Add(time.Hour * 72).Unix()
 
-	// Set private claims:
-	switch permission {
-	case "admin":
-		claims["is_admin"] = true
+	// Set private token credentials:
+	for _, credential := range credentials {
+		claims[credential] = true
 	}
 
 	// Generate token.

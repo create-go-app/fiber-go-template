@@ -14,6 +14,7 @@ func JWTProtected() fiber.Handler {
 	// Create config for JWT authentication middleware.
 	config := jwtMiddleware.Config{
 		SigningKey: []byte(os.Getenv("JWT_SECRET_TOKEN")),
+		ContextKey: "jwt", // used in private routes
 		ErrorHandler: func(c *fiber.Ctx, err error) error {
 			// Return status 403 and failed authentication error.
 			return c.Status(403).JSON(fiber.Map{
