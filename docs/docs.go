@@ -44,6 +44,7 @@ var doc = `{
                 "tags": [
                     "Private"
                 ],
+                "summary": "create a new user",
                 "parameters": [
                     {
                         "description": "E-mail",
@@ -75,6 +76,7 @@ var doc = `{
                 "tags": [
                     "Private"
                 ],
+                "summary": "delete user by given ID",
                 "parameters": [
                     {
                         "description": "User ID",
@@ -106,6 +108,7 @@ var doc = `{
                 "tags": [
                     "Private"
                 ],
+                "summary": "update user",
                 "parameters": [
                     {
                         "description": "User ID",
@@ -139,6 +142,7 @@ var doc = `{
                 "tags": [
                     "Public"
                 ],
+                "summary": "get user by given ID",
                 "parameters": [
                     {
                         "type": "string",
@@ -170,6 +174,7 @@ var doc = `{
                 "tags": [
                     "Public"
                 ],
+                "summary": "get all exists users",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -254,8 +259,8 @@ var SwaggerInfo = swaggerInfo{
 	Host:        "",
 	BasePath:    "/",
 	Schemes:     []string{},
-	Title:       "Fiber Example API",
-	Description: "This is a sample swagger for Fiber",
+	Title:       "Fiber Template API",
+	Description: "This is an auto-generated API Docs for Fiber Template.",
 }
 
 type s struct{}

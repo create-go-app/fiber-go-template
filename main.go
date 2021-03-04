@@ -11,9 +11,9 @@ import (
 	_ "github.com/joho/godotenv/autoload"               // load .env file automatically
 )
 
-// @title Fiber Example API
+// @title Fiber Template API
 // @version 1.0
-// @description This is a sample swagger for Fiber
+// @description This is an auto-generated API Docs for Fiber Template.
 // @termsOfService http://swagger.io/terms/
 // @contact.name API Support
 // @contact.email your@mail.com

@@ -33,12 +33,12 @@ info:
   contact:
     email: your@mail.com
     name: API Support
-  description: This is a sample swagger for Fiber
+  description: This is an auto-generated API Docs for Fiber Template.
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: http://swagger.io/terms/
-  title: Fiber Example API
+  title: Fiber Template API
   version: "1.0"
 paths:
   /api/private/user:
@@ -60,6 +60,7 @@ paths:
           description: ok
           schema:
             type: string
+      summary: delete user by given ID
       tags:
       - Private
     patch:
@@ -80,6 +81,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/models.User'
+      summary: update user
       tags:
       - Private
     post:
@@ -100,6 +102,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/models.User'
+      summary: create a new user
       tags:
       - Private
   /api/public/user/{id}:
@@ -120,6 +123,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/models.User'
+      summary: get user by given ID
       tags:
       - Public
   /api/public/users:
@@ -136,6 +140,7 @@ paths:
             items:
               $ref: '#/definitions/models.User'
             type: array
+      summary: get all exists users
       tags:
       - Public
 securityDefinitions:

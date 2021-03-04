@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This is a sample swagger for Fiber",
-        "title": "Fiber Example API",
+        "description": "This is an auto-generated API Docs for Fiber Template.",
+        "title": "Fiber Template API",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
             "name": "API Support",
@@ -28,6 +28,7 @@
                 "tags": [
                     "Private"
                 ],
+                "summary": "create a new user",
                 "parameters": [
                     {
                         "description": "E-mail",
@@ -59,6 +60,7 @@
                 "tags": [
                     "Private"
                 ],
+                "summary": "delete user by given ID",
                 "parameters": [
                     {
                         "description": "User ID",
@@ -90,6 +92,7 @@
                 "tags": [
                     "Private"
                 ],
+                "summary": "update user",
                 "parameters": [
                     {
                         "description": "User ID",
@@ -123,6 +126,7 @@
                 "tags": [
                     "Public"
                 ],
+                "summary": "get user by given ID",
                 "parameters": [
                     {
                         "type": "string",
@@ -154,6 +158,7 @@
                 "tags": [
                     "Public"
                 ],
+                "summary": "get all exists users",
                 "responses": {
                     "200": {
                         "description": "OK",

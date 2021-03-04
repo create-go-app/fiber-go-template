@@ -14,6 +14,7 @@ import (
 
 // GetUsers func gets all exists users.
 // @Description Get all exists users.
+// @Summary get all exists users
 // @Tags Public
 // @Accept json
 // @Produce json
@@ -52,6 +53,7 @@ func GetUsers(c *fiber.Ctx) error {
 
 // GetUser func gets one user by given ID or 404 error.
 // @Description Get user by given ID.
+// @Summary get user by given ID
 // @Tags Public
 // @Accept json
 // @Produce json
@@ -98,6 +100,7 @@ func GetUser(c *fiber.Ctx) error {
 
 // CreateUser func for creates a new user.
 // @Description Create a new user.
+// @Summary create a new user
 // @Tags Private
 // @Accept json
 // @Produce json
@@ -187,6 +190,7 @@ func CreateUser(c *fiber.Ctx) error {
 
 // UpdateUser func for updates user by given ID.
 // @Description Update user.
+// @Summary update user
 // @Tags Private
 // @Accept json
 // @Produce json
@@ -281,6 +285,7 @@ func UpdateUser(c *fiber.Ctx) error {
 
 // DeleteUser func for deletes user by given ID.
 // @Description Delete user by given ID.
+// @Summary delete user by given ID
 // @Tags Private
 // @Accept json
 // @Produce json
