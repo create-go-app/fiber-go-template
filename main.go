@@ -1,45 +1,44 @@
 package main
 
 import (
-	"log"
-	"os"
-	"os/signal"
+	"github.com/create-go-app/fiber-go-template/pkg/configs"
+	"github.com/create-go-app/fiber-go-template/pkg/middleware"
+	"github.com/create-go-app/fiber-go-template/pkg/routes"
+	"github.com/create-go-app/fiber-go-template/pkg/utils"
+	"github.com/gofiber/fiber/v2"
 
-	"github.com/create-go-app/fiber-go-template/pkg/apiserver"
+	_ "github.com/create-go-app/fiber-go-template/docs" // load API Docs files (Swagger)
+	_ "github.com/joho/godotenv/autoload"               // load .env file automatically
 )
 
+// @title Fiber Template API
+// @version 1.0
+// @description This is an auto-generated API Docs for Fiber Template.
+// @termsOfService http://swagger.io/terms/
+// @contact.name API Support
+// @contact.email your@mail.com
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+// @BasePath /
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 func main() {
-	// Parse config path from environment variable.
-	configPath := apiserver.GetEnv("CONFIG_PATH", "configs/apiserver.yml")
+	// Define Fiber config.
+	config := configs.FiberConfig()
 
-	// Create new config.
-	config, err := apiserver.NewConfig(configPath)
-	apiserver.ErrChecker(err)
+	// Define a new Fiber app with config.
+	app := fiber.New(config)
 
-	// Create new server.
-	server := apiserver.NewServer(config).Start()
+	// Middlewares.
+	middleware.FiberMiddleware(app) // Register Fiber's middleware for app.
 
-	// Create channel for idle connections.
-	idleConnsClosed := make(chan struct{})
+	// Routes.
+	routes.SwaggerRoute(app)  // Register a route for API Docs (Swagger).
+	routes.PublicRoutes(app)  // Register a public routes for app.
+	routes.PrivateRoutes(app) // Register a private routes for app.
+	routes.NotFoundRoute(app) // Register route for 404 Error.
 
-	go func() {
-		sigint := make(chan os.Signal, 1)
-		signal.Notify(sigint, os.Interrupt) // catch OS signals
-		<-sigint
-
-		// We received an interrupt signal, shut down.
-		if err := server.Shutdown(); err != nil {
-			// Error from closing listeners, or context timeout:
-			log.Printf("API server Shutdown: %v", err)
-		}
-
-		close(idleConnsClosed)
-	}()
-
-	// Start API server.
-	apiserver.ErrChecker(
-		server.Listen(config.Server.Host + ":" + config.Server.Port),
-	)
-
-	<-idleConnsClosed
+	// Start server (with graceful shutdown).
+	utils.StartServerWithGracefulShutdown(app)
 }

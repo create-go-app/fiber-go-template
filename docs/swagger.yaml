@@ -1,0 +1,151 @@
+basePath: /
+definitions:
+  models.User:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      updated_at:
+        type: string
+      user_attrs:
+        $ref: '#/definitions/models.UserAttrs'
+      user_status:
+        type: integer
+    required:
+    - email
+    - id
+    type: object
+  models.UserAttrs:
+    properties:
+      about:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      picture:
+        type: string
+    type: object
+info:
+  contact:
+    email: your@mail.com
+    name: API Support
+  description: This is an auto-generated API Docs for Fiber Template.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Fiber Template API
+  version: "1.0"
+paths:
+  /api/private/user:
+    delete:
+      consumes:
+      - application/json
+      description: Delete user by given ID.
+      parameters:
+      - description: User ID
+        in: body
+        name: id
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: delete user by given ID
+      tags:
+      - Private
+    patch:
+      consumes:
+      - application/json
+      description: Update user.
+      parameters:
+      - description: User ID
+        in: body
+        name: id
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      summary: update user
+      tags:
+      - Private
+    post:
+      consumes:
+      - application/json
+      description: Create a new user.
+      parameters:
+      - description: E-mail
+        in: body
+        name: email
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      summary: create a new user
+      tags:
+      - Private
+  /api/public/user/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get user by given ID.
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      summary: get user by given ID
+      tags:
+      - Public
+  /api/public/users:
+    get:
+      consumes:
+      - application/json
+      description: Get all exists users.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
+      summary: get all exists users
+      tags:
+      - Public
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
