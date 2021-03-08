@@ -105,7 +105,7 @@ func GetUser(c *fiber.Ctx) error {
 // @Accept json
 // @Produce json
 // @Param email body string true "E-mail"
-// @Success 200 {object} models.User
+// @Success 201 {object} models.User
 // @Router /api/private/user [post]
 func CreateUser(c *fiber.Ctx) error {
 	// Get now time.
@@ -195,7 +195,7 @@ func CreateUser(c *fiber.Ctx) error {
 // @Accept json
 // @Produce json
 // @Param id body string true "User ID"
-// @Success 200 {object} models.User
+// @Success 202 {object} models.User
 // @Router /api/private/user [patch]
 func UpdateUser(c *fiber.Ctx) error {
 	// Get now time.
