@@ -17,7 +17,7 @@ func JWTProtected() fiber.Handler {
 		ContextKey: "jwt", // used in private routes
 		ErrorHandler: func(c *fiber.Ctx, err error) error {
 			// Return status 401 and failed authentication error.
-			return c.Status(401).JSON(fiber.Map{
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 				"error": true,
 				"msg":   err.Error(),
 			})

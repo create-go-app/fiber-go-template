@@ -25,7 +25,7 @@ func GetUsers(c *fiber.Ctx) error {
 	db, err := database.OpenDBConnection()
 	if err != nil {
 		// Return status 500 and database connection error.
-		return c.Status(500).JSON(fiber.Map{
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": true,
 			"msg":   err.Error(),
 		})
@@ -35,7 +35,7 @@ func GetUsers(c *fiber.Ctx) error {
 	users, err := db.GetUsers()
 	if err != nil {
 		// Return, if users not found.
-		return c.Status(404).JSON(fiber.Map{
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"error": true,
 			"msg":   "users were not found",
 			"count": 0,
@@ -64,7 +64,7 @@ func GetUser(c *fiber.Ctx) error {
 	// Catch user ID from URL.
 	id, err := uuid.Parse(c.Params("id"))
 	if err != nil {
-		return c.Status(500).JSON(fiber.Map{
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": true,
 			"msg":   err.Error(),
 		})
@@ -74,7 +74,7 @@ func GetUser(c *fiber.Ctx) error {
 	db, err := database.OpenDBConnection()
 	if err != nil {
 		// Return status 500 and database connection error.
-		return c.Status(500).JSON(fiber.Map{
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": true,
 			"msg":   err.Error(),
 		})
@@ -84,7 +84,7 @@ func GetUser(c *fiber.Ctx) error {
 	user, err := db.GetUser(id)
 	if err != nil {
 		// Return, if user not found.
-		return c.Status(404).JSON(fiber.Map{
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"error": true,
 			"msg":   "user with the given ID is not found",
 			"user":  nil,
@@ -127,7 +127,7 @@ func CreateUser(c *fiber.Ctx) error {
 	// Checking received data from JSON body.
 	if err := c.BodyParser(user); err != nil {
 		// Return, if JSON data is not correct.
-		return c.Status(500).JSON(fiber.Map{
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": true,
 			"msg":   err.Error(),
 		})
@@ -141,7 +141,7 @@ func CreateUser(c *fiber.Ctx) error {
 		// Validate user fields.
 		if err := validate.Struct(user); err != nil {
 			// Return, if some fields are not valid.
-			return c.Status(500).JSON(fiber.Map{
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 				"error": true,
 				"msg":   utils.ValidatorErrors(err),
 			})
@@ -151,7 +151,7 @@ func CreateUser(c *fiber.Ctx) error {
 		db, err := database.OpenDBConnection()
 		if err != nil {
 			// Return status 500 and database connection error.
-			return c.Status(500).JSON(fiber.Map{
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 				"error": true,
 				"msg":   err.Error(),
 			})
@@ -167,21 +167,21 @@ func CreateUser(c *fiber.Ctx) error {
 		// Create a new user with validated data.
 		if err := db.CreateUser(user); err != nil {
 			// Return status 500 and create user process error.
-			return c.Status(500).JSON(fiber.Map{
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 				"error": true,
 				"msg":   err.Error(),
 			})
 		}
 	} else {
 		// Return status 403 and permission denied error.
-		return c.Status(403).JSON(fiber.Map{
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{
 			"error": true,
 			"msg":   "permission denied, check credentials or expiration time of your token",
 			"user":  nil,
 		})
 	}
 
-	return c.Status(201).JSON(fiber.Map{
+	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
 		"error": false,
 		"msg":   nil,
 		"user":  user,
@@ -217,7 +217,7 @@ func UpdateUser(c *fiber.Ctx) error {
 	// Checking received data from JSON body.
 	if err := c.BodyParser(user); err != nil {
 		// Return, if JSON data is not correct.
-		return c.Status(500).JSON(fiber.Map{
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": true,
 			"msg":   err.Error(),
 		})
@@ -227,7 +227,7 @@ func UpdateUser(c *fiber.Ctx) error {
 	db, err := database.OpenDBConnection()
 	if err != nil {
 		// Return status 500 and database connection error.
-		return c.Status(500).JSON(fiber.Map{
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": true,
 			"msg":   err.Error(),
 		})
@@ -236,7 +236,7 @@ func UpdateUser(c *fiber.Ctx) error {
 	// Checking, if user with given ID is exists.
 	if _, err := db.GetUser(user.ID); err != nil {
 		// Return status 404 and user not found error.
-		return c.Status(404).JSON(fiber.Map{
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"error": true,
 			"msg":   "user not found",
 		})
@@ -250,7 +250,7 @@ func UpdateUser(c *fiber.Ctx) error {
 		// Validate user fields.
 		if err := validate.Struct(user); err != nil {
 			// Return, if some fields are not valid.
-			return c.Status(500).JSON(fiber.Map{
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 				"error": true,
 				"msg":   utils.ValidatorErrors(err),
 			})
@@ -262,21 +262,21 @@ func UpdateUser(c *fiber.Ctx) error {
 		// Update user.
 		if err := db.UpdateUser(user); err != nil {
 			// Return status 500 and user update error.
-			return c.Status(500).JSON(fiber.Map{
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 				"error": true,
 				"msg":   err.Error(),
 			})
 		}
 	} else {
 		// Return status 403 and permission denied error.
-		return c.Status(403).JSON(fiber.Map{
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{
 			"error": true,
 			"msg":   "permission denied, check credentials or expiration time of your token",
 			"user":  nil,
 		})
 	}
 
-	return c.Status(202).JSON(fiber.Map{
+	return c.Status(fiber.StatusAccepted).JSON(fiber.Map{
 		"error": false,
 		"msg":   nil,
 		"user":  user,
@@ -312,7 +312,7 @@ func DeleteUser(c *fiber.Ctx) error {
 	// Check, if received JSON data is valid.
 	if err := c.BodyParser(user); err != nil {
 		// Return status 500 and JSON parse error.
-		return c.Status(500).JSON(fiber.Map{
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": true,
 			"msg":   err.Error(),
 		})
@@ -322,7 +322,7 @@ func DeleteUser(c *fiber.Ctx) error {
 	db, err := database.OpenDBConnection()
 	if err != nil {
 		// Return status 500 and database connection error.
-		return c.Status(500).JSON(fiber.Map{
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": true,
 			"msg":   err.Error(),
 		})
@@ -331,7 +331,7 @@ func DeleteUser(c *fiber.Ctx) error {
 	// Checking, if user with given ID is exists.
 	if _, err := db.GetUser(user.ID); err != nil {
 		// Return status 404 and user not found error.
-		return c.Status(404).JSON(fiber.Map{
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"error": true,
 			"msg":   "user not found",
 		})
@@ -342,14 +342,14 @@ func DeleteUser(c *fiber.Ctx) error {
 		// Delete user by given ID.
 		if err := db.DeleteUser(user.ID); err != nil {
 			// Return status 500 and delete user process error.
-			return c.Status(500).JSON(fiber.Map{
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 				"error": true,
 				"msg":   err.Error(),
 			})
 		}
 	} else {
 		// Return status 403 and permission denied error.
-		return c.Status(403).JSON(fiber.Map{
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"error": true,
 			"msg":   "permission denied, check credentials or expiration time of your token",
 		})
