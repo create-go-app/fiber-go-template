@@ -16,22 +16,61 @@ cgapp create
 # > Fiber
 ```
 
-2. Run Docker container with database (_by default, for PostgreSQL_):
+2. Rename `.env.example` to `.env` and fill it with your environment values.
+
+```bash
+cp .env.example .env
+
+# update values
+
+# add to current env
+source .env
+```
+
+3. Run Docker container with database (_by default, for PostgreSQL_):
 
 ```bash
 make docker.postgres
 ```
 
-3. Apply migrations:
+4. Apply migrations:
+
+Install `migrate`:
+
+[github.com/golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage)
 
 ```bash
-make migration.up user=<db_user> pass=<db_pass> host=<db_host> table=<db_table>
+make migration.up
 ```
 
-4. Rename `.env.example` to `.env` and fill it with your environment values.
+5. Install deps
+
+Run the following command to install dependencies for the project
+
+```bash
+go mod vendor
+```
 
 5. Run project by this command:
 
+Install the following in order to `run`
+
+**swag**
+
+[github.com/arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)
+```bash
+go get -u github.com/swaggo/swag/cmd/swag
+
+# in order to run `swag` command you need to
+# make sure GOPATH bin directory is in the path
+```
+
+**gosec**
+
+[github.com/securego/gosec](https://github.com/securego/gosec)
+
+
+**run**
 ```bash
 make run
 ```
@@ -100,7 +139,12 @@ JWT_SECRET_KEY="secret"
 JWT_REFRESH_KEY="refresh"
 
 # Database settings:
-DB_SERVER_URL="host=localhost port=5432 user=postgres password=password dbname=postgres sslmode=disable"
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASS=password
+DB_NAME=postgres
+DB_SSL=disable
 DB_MAX_CONNECTIONS=100
 DB_MAX_IDLE_CONNECTIONS=10
 DB_MAX_LIFETIME_CONNECTIONS=2
