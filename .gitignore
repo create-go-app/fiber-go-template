@@ -11,3 +11,6 @@ tmp/
 
 # Environment variables
 .env
+
+# Go
+vendor/
