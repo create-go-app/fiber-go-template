@@ -5,7 +5,8 @@ APP_NAME = apiserver
 BUILD_DIR = $(PWD)/build
 MIGRATIONS_FOLDER = $(PWD)/platform/migrations
 DATABASE_URL = postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?sslmode=${DB_SSL}
-SERVER_PORT = `echo $(SERVER_URL) | cut -d ":" -f2` # extract port from server url defined in .env
+# extract port from server url defined in .env
+SERVER_PORT = `[[ $(SERVER_URL) =~ ":" ]] && echo $(SERVER_URL) | cut -d ":" -f2 || echo 5000`
 
 clean:
 	rm -rf ./build
