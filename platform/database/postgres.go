@@ -11,6 +11,18 @@ import (
 	_ "github.com/jackc/pgx/v4/stdlib" // load pgx driver for PostgreSQL
 )
 
+func buildDbConnectionUrl() string {
+	return fmt.Sprintf(
+		"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
+		os.Getenv("DB_HOST"),
+		os.Getenv("DB_PORT"),
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_PASS"),
+		os.Getenv("DB_NAME"),
+		os.Getenv("DB_SSL"),
+	)
+}
+
 // PostgreSQLConnection func for connection to PostgreSQL database.
 func PostgreSQLConnection() (*sqlx.DB, error) {
 	// Define database connection settings.
@@ -19,7 +31,7 @@ func PostgreSQLConnection() (*sqlx.DB, error) {
 	maxLifetimeConn, _ := strconv.Atoi(os.Getenv("DB_MAX_LIFETIME_CONNECTIONS"))
 
 	// Define database connection for PostgreSQL.
-	db, err := sqlx.Connect("pgx", os.Getenv("DB_SERVER_URL"))
+	db, err := sqlx.Connect("pgx", buildDbConnectionUrl())
 	if err != nil {
 		return nil, fmt.Errorf("error, not connected to PostgreSQL database, %w", err)
 	}
