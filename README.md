@@ -21,8 +21,6 @@ cgapp create
 ```bash
 cp .env.example .env
 
-# update values
-
 # add to current env
 source .env
 ```
@@ -33,57 +31,32 @@ source .env
 make docker.postgres
 ```
 
-4. Apply migrations:
-
-Install `migrate`:
-
-[github.com/golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage)
+4. Install [`migrate`](https://github.com/golang-migrate/migrate#cli-usage) tool and apply migrations:
 
 ```bash
-make migration.up
+make migrate.up
 ```
 
-5. Install deps
+5. Additionally, please install the following useful Go tools:
 
-Run the following command to install dependencies for the project
+- [github.com/swaggo/swag](https://github.com/swaggo/swag)
+- [github.com/securego/gosec](https://github.com/securego/gosec)
 
-```bash
-go mod vendor
-```
+6. Run project by this command:
 
-5. Run project by this command:
-
-Install the following in order to `run`
-
-**swag**
-
-[github.com/arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)
-```bash
-go get -u github.com/swaggo/swag/cmd/swag
-
-# in order to run `swag` command you need to
-# make sure GOPATH bin directory is in the path
-```
-
-**gosec**
-
-[github.com/securego/gosec](https://github.com/securego/gosec)
-
-
-**run**
 ```bash
 make run
 ```
 
-6. Go to API Docs page (Swagger): [localhost:5000/swagger/index.html](http://localhost:5000/swagger/index.html).
+7. Go to API Docs page (Swagger): [127.0.0.1:5000/swagger/index.html](http://127.0.0.1:5000/swagger/index.html).
 
 ## 📦 Used packages
 
 | Name                                                                  | Version   | Type       |
 | --------------------------------------------------------------------- | --------- | ---------- |
-| [gofiber/fiber](https://github.com/gofiber/fiber)                     | `v2.5.0`  | core       |
-| [gofiber/jwt](https://github.com/gofiber/jwt)                         | `v2.1.0`  | middleware |
-| [arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)         | `v2.3.0`  | middleware |
+| [gofiber/fiber](https://github.com/gofiber/fiber)                     | `v2.6.0`  | core       |
+| [gofiber/jwt](https://github.com/gofiber/jwt)                         | `v2.2.0`  | middleware |
+| [arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)         | `v2.6.0`  | middleware |
 | [stretchr/testify](https://github.com/stretchr/testify)               | `v1.7.0`  | tests      |
 | [dgrijalva/jwt-go](https://github.com/dgrijalva/jwt-go)               | `v3.2.0`  | auth       |
 | [joho/godotenv](https://github.com/joho/godotenv)                     | `v1.3.0`  | config     |
@@ -131,27 +104,22 @@ make run
 
 # Server settings:
 SERVER_URL="0.0.0.0:5000"
-SERVER_EMAIL="no-reply@example.com"
-SERVER_EMAIL_PASSWORD="secret"
+SERVER_READ_TIMEOUT=60
 
 # JWT settings:
 JWT_SECRET_KEY="secret"
 JWT_REFRESH_KEY="refresh"
 
 # Database settings:
-DB_HOST=localhost
+DB_HOST="localhost"
 DB_PORT=5432
-DB_USER=postgres
-DB_PASS=password
-DB_NAME=postgres
-DB_SSL=disable
+DB_USER="postgres"
+DB_PASSWORD="password"
+DB_NAME="postgres"
+DB_SSL_MODE="disable"
 DB_MAX_CONNECTIONS=100
 DB_MAX_IDLE_CONNECTIONS=10
 DB_MAX_LIFETIME_CONNECTIONS=2
-
-# SMTP severs settings:
-SMTP_SERVER="smtp.example.com"
-SMTP_PORT=25
 ```
 
 ## ⚠️ License
