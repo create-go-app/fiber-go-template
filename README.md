@@ -104,27 +104,22 @@ make run
 
 # Server settings:
 SERVER_URL="0.0.0.0:5000"
-SERVER_EMAIL="no-reply@example.com"
-SERVER_EMAIL_PASSWORD="secret"
+SERVER_READ_TIMEOUT=60
 
 # JWT settings:
 JWT_SECRET_KEY="secret"
 JWT_REFRESH_KEY="refresh"
 
 # Database settings:
-DB_HOST=localhost
+DB_HOST="localhost"
 DB_PORT=5432
-DB_USER=postgres
-DB_PASS=password
-DB_NAME=postgres
-DB_SSL=disable
+DB_USER="postgres"
+DB_PASSWORD="password"
+DB_NAME="postgres"
+DB_SSL_MODE="disable"
 DB_MAX_CONNECTIONS=100
 DB_MAX_IDLE_CONNECTIONS=10
 DB_MAX_LIFETIME_CONNECTIONS=2
-
-# SMTP severs settings:
-SMTP_SERVER="smtp.example.com"
-SMTP_PORT=25
 ```
 
 ## ⚠️ License
