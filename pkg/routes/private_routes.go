@@ -14,8 +14,8 @@ func PrivateRoutes(a *fiber.App) {
 	// Routes for POST method:
 	route.Post("/user", controllers.CreateUser) // create a new user
 
-	// Routes for PATCH method:
-	route.Patch("/user", controllers.UpdateUser) // update one user by ID
+	// Routes for PUT method:
+	route.Put("/user", controllers.UpdateUser) // update user by ID
 
 	// Routes for DELETE method:
 	route.Delete("/user", controllers.DeleteUser) // delete one user by ID

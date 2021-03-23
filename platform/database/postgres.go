@@ -19,7 +19,7 @@ func PostgreSQLConnection() (*sqlx.DB, error) {
 	maxLifetimeConn, _ := strconv.Atoi(os.Getenv("DB_MAX_LIFETIME_CONNECTIONS"))
 
 	// Define database connection for PostgreSQL.
-	db, err := sqlx.Connect("pgx", os.Getenv("DB_SERVER_URL"))
+	db, err := sqlx.Connect("pgx", buildDBConnectionURL())
 	if err != nil {
 		return nil, fmt.Errorf("error, not connected to PostgreSQL database, %w", err)
 	}
@@ -36,4 +36,17 @@ func PostgreSQLConnection() (*sqlx.DB, error) {
 	}
 
 	return db, nil
+}
+
+func buildDBConnectionURL() string {
+	// Return DB connection string.
+	return fmt.Sprintf(
+		"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
+		os.Getenv("DB_HOST"),
+		os.Getenv("DB_PORT"),
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_NAME"),
+		os.Getenv("DB_SSL_MODE"),
+	)
 }

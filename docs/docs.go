@@ -33,7 +33,49 @@ var doc = `{
     "basePath": "{{.BasePath}}",
     "paths": {
         "/api/private/user": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Update user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "update user",
+                "parameters": [
+                    {
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            },
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Create a new user.",
                 "consumes": [
                     "application/json"
@@ -42,7 +84,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Private"
+                    "User"
                 ],
                 "summary": "create a new user",
                 "parameters": [
@@ -57,8 +99,8 @@ var doc = `{
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "OK",
+                    "201": {
+                        "description": "Created",
                         "schema": {
                             "$ref": "#/definitions/models.User"
                         }
@@ -66,6 +108,11 @@ var doc = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Delete user by given ID.",
                 "consumes": [
                     "application/json"
@@ -74,7 +121,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Private"
+                    "User"
                 ],
                 "summary": "delete user by given ID",
                 "parameters": [
@@ -96,38 +143,6 @@ var doc = `{
                         }
                     }
                 }
-            },
-            "patch": {
-                "description": "Update user.",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Private"
-                ],
-                "summary": "update user",
-                "parameters": [
-                    {
-                        "description": "User ID",
-                        "name": "id",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.User"
-                        }
-                    }
-                }
             }
         },
         "/api/public/user/{id}": {
@@ -140,7 +155,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Public"
+                    "User"
                 ],
                 "summary": "get user by given ID",
                 "parameters": [
@@ -172,7 +187,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Public"
+                    "Users"
                 ],
                 "summary": "get all exists users",
                 "responses": {
