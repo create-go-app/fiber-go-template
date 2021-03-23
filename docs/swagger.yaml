@@ -60,30 +60,11 @@ paths:
           description: ok
           schema:
             type: string
+      security:
+      - ApiKeyAuth: []
       summary: delete user by given ID
       tags:
-      - Private
-    patch:
-      consumes:
-      - application/json
-      description: Update user.
-      parameters:
-      - description: User ID
-        in: body
-        name: id
-        required: true
-        schema:
-          type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/models.User'
-      summary: update user
-      tags:
-      - Private
+      - User
     post:
       consumes:
       - application/json
@@ -98,13 +79,38 @@ paths:
       produces:
       - application/json
       responses:
-        "200":
-          description: OK
+        "201":
+          description: Created
           schema:
             $ref: '#/definitions/models.User'
+      security:
+      - ApiKeyAuth: []
       summary: create a new user
       tags:
-      - Private
+      - User
+    put:
+      consumes:
+      - application/json
+      description: Update user.
+      parameters:
+      - description: User ID
+        in: body
+        name: id
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.User'
+      security:
+      - ApiKeyAuth: []
+      summary: update user
+      tags:
+      - User
   /api/public/user/{id}:
     get:
       consumes:
@@ -125,7 +131,7 @@ paths:
             $ref: '#/definitions/models.User'
       summary: get user by given ID
       tags:
-      - Public
+      - User
   /api/public/users:
     get:
       consumes:
@@ -142,7 +148,7 @@ paths:
             type: array
       summary: get all exists users
       tags:
-      - Public
+      - Users
 securityDefinitions:
   ApiKeyAuth:
     in: header

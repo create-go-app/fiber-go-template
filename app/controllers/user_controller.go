@@ -15,7 +15,7 @@ import (
 // GetUsers func gets all exists users.
 // @Description Get all exists users.
 // @Summary get all exists users
-// @Tags Public
+// @Tags Users
 // @Accept json
 // @Produce json
 // @Success 200 {array} models.User
@@ -54,7 +54,7 @@ func GetUsers(c *fiber.Ctx) error {
 // GetUser func gets one user by given ID or 404 error.
 // @Description Get user by given ID.
 // @Summary get user by given ID
-// @Tags Public
+// @Tags User
 // @Accept json
 // @Produce json
 // @Param id path string true "User ID"
@@ -101,12 +101,13 @@ func GetUser(c *fiber.Ctx) error {
 // CreateUser func for creates a new user.
 // @Description Create a new user.
 // @Summary create a new user
-// @Tags Private
+// @Tags User
 // @Accept json
 // @Produce json
 // @Param email body string true "E-mail"
 // @Success 201 {object} models.User
 // @Router /api/private/user [post]
+// @Security ApiKeyAuth
 func CreateUser(c *fiber.Ctx) error {
 	// Get now time.
 	now := time.Now().Unix()
@@ -191,12 +192,13 @@ func CreateUser(c *fiber.Ctx) error {
 // UpdateUser func for updates user by given ID.
 // @Description Update user.
 // @Summary update user
-// @Tags Private
+// @Tags User
 // @Accept json
 // @Produce json
 // @Param id body string true "User ID"
 // @Success 202 {object} models.User
-// @Router /api/private/user [patch]
+// @Router /api/private/user [put]
+// @Security ApiKeyAuth
 func UpdateUser(c *fiber.Ctx) error {
 	// Get now time.
 	now := time.Now().Unix()
@@ -286,12 +288,13 @@ func UpdateUser(c *fiber.Ctx) error {
 // DeleteUser func for deletes user by given ID.
 // @Description Delete user by given ID.
 // @Summary delete user by given ID
-// @Tags Private
+// @Tags User
 // @Accept json
 // @Produce json
 // @Param id body string true "User ID"
 // @Success 200 {string} string "ok"
 // @Router /api/private/user [delete]
+// @Security ApiKeyAuth
 func DeleteUser(c *fiber.Ctx) error {
 	// Get now time.
 	now := time.Now().Unix()
