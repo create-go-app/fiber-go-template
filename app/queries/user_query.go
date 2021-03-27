@@ -1,7 +1,7 @@
 package queries
 
 import (
-	"github.com/create-go-app/fiber-go-template/app/models"
+	"book-rapid-development-with-fiber/app/models"
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 )
@@ -11,72 +11,59 @@ type UserQueries struct {
 	*sqlx.DB
 }
 
-// GetUsers func for getting all users.
-func (q *UserQueries) GetUsers() ([]models.User, error) {
-	// Define users variable.
-	var users []models.User
+// GetUserByID query for getting one User by given ID.
+func (q *UserQueries) GetUserByID(id uuid.UUID) (models.User, error) {
+	// Define User variable.
+	user := models.User{}
+
+	// Define query string.
+	query := `SELECT * FROM users WHERE id = $1`
 
 	// Send query to database.
-	if err := q.Select(&users, `SELECT * FROM users`); err != nil {
-		return []models.User{}, err
+	err := q.Get(&user, query, id)
+	if err != nil {
+		// Return empty object and error.
+		return user, err
 	}
 
-	return users, nil
-}
-
-// GetUser func for getting one user by given ID.
-func (q *UserQueries) GetUser(id uuid.UUID) (models.User, error) {
-	// Define user variable.
-	var user models.User
-
-	// Send query to database.
-	if err := q.Get(&user, `SELECT * FROM users WHERE id = $1`, id); err != nil {
-		return models.User{}, err
-	}
-
+	// Return query result.
 	return user, nil
 }
 
-// CreateUser func for creating user by given User object.
+// GetUserByEmail query for getting one User by given Email.
+func (q *UserQueries) GetUserByEmail(email string) (models.User, error) {
+	// Define User variable.
+	user := models.User{}
+
+	// Define query string.
+	query := `SELECT * FROM users WHERE email = $1`
+
+	// Send query to database.
+	err := q.Get(&user, query, email)
+	if err != nil {
+		// Return empty object and error.
+		return user, err
+	}
+
+	// Return query result.
+	return user, nil
+}
+
+// CreateUser query for creating a new user by given email and password hash.
 func (q *UserQueries) CreateUser(u *models.User) error {
+	// Define query string.
+	query := `INSERT INTO users VALUES ($1, $2, $3, $4, $5, $6, $7)`
+
 	// Send query to database.
-	if _, err := q.Exec(
-		`INSERT INTO users VALUES ($1, $2, $3, $4, $5, $6)`,
-		u.ID,
-		u.CreatedAt,
-		u.UpdatedAt,
-		u.Email,
-		u.UserStatus,
-		u.UserAttrs,
-	); err != nil {
+	_, err := q.Exec(
+		query,
+		u.ID, u.CreatedAt, u.UpdatedAt, u.Email, u.PasswordHash, u.UserStatus, u.UserRole,
+	)
+	if err != nil {
+		// Return only error.
 		return err
 	}
 
-	return nil
-}
-
-// UpdateUser func for updating user by given User object.
-func (q *UserQueries) UpdateUser(u *models.User) error {
-	// Send query to database.
-	if _, err := q.Exec(
-		`UPDATE users SET updated_at = $2, email = $3, user_attrs = $4 WHERE id = $1`,
-		u.ID,
-		u.UpdatedAt,
-		u.Email,
-		u.UserAttrs,
-	); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// DeleteUser func for delete user by given ID.
-func (q *UserQueries) DeleteUser(id uuid.UUID) error {
-	// Send query to database.
-	if _, err := q.Exec(`DELETE FROM users WHERE id = $1`, id); err != nil {
-		return err
-	}
-
+	// This query returns nothing.
 	return nil
 }

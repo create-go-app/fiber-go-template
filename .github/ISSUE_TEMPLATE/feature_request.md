@@ -9,8 +9,8 @@ assignees: "koddr"
 **Required check list:**
 
 - [x] I'm gonna mark the checkboxes like this.
-- [ ] I didn't find in the Create Go App CLI repository's issues section similar feature request.
-- [ ] I understand, that the Create Go App CLI is Open Source and not-for-profit product.
+- [ ] I didn't find in the repository's issues section similar bug.
+- [ ] I understand, this is Open Source and not-for-profit product.
 - [ ] This is not about third-party project, framework, package or technology.
 
 **Is your feature request related to a problem? Please describe.**

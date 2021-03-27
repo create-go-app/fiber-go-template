@@ -1,28 +1,31 @@
 package main
 
 import (
-	"github.com/create-go-app/fiber-go-template/pkg/configs"
-	"github.com/create-go-app/fiber-go-template/pkg/middleware"
-	"github.com/create-go-app/fiber-go-template/pkg/routes"
-	"github.com/create-go-app/fiber-go-template/pkg/utils"
+	"book-rapid-development-with-fiber/pkg/configs"
+	"book-rapid-development-with-fiber/pkg/middleware"
+	"book-rapid-development-with-fiber/pkg/routes"
+	"book-rapid-development-with-fiber/pkg/utils"
+	"os"
+
 	"github.com/gofiber/fiber/v2"
 
-	_ "github.com/create-go-app/fiber-go-template/docs" // load API Docs files (Swagger)
-	_ "github.com/joho/godotenv/autoload"               // load .env file automatically
+	_ "book-rapid-development-with-fiber/docs" // load API Docs files (Swagger)
+
+	_ "github.com/joho/godotenv/autoload" // load .env file automatically
 )
 
-// @title Fiber Template API
+// @title API
 // @version 1.0
-// @description This is an auto-generated API Docs for Fiber Template.
+// @description This is an auto-generated API Docs.
 // @termsOfService http://swagger.io/terms/
 // @contact.name API Support
 // @contact.email your@mail.com
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
-// @BasePath /
 // @securityDefinitions.apikey ApiKeyAuth
 // @in header
 // @name Authorization
+// @BasePath /api
 func main() {
 	// Define Fiber config.
 	config := configs.FiberConfig()
@@ -39,6 +42,10 @@ func main() {
 	routes.PrivateRoutes(app) // Register a private routes for app.
 	routes.NotFoundRoute(app) // Register route for 404 Error.
 
-	// Start server (with graceful shutdown).
-	utils.StartServerWithGracefulShutdown(app)
+	// Start server (with or without graceful shutdown).
+	if os.Getenv("STAGE_STATUS") == "dev" {
+		utils.StartServer(app)
+	} else {
+		utils.StartServerWithGracefulShutdown(app)
+	}
 }

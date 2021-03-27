@@ -32,14 +32,14 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/api/private/user": {
+        "/v1/book": {
             "put": {
                 "security": [
                     {
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "Update user.",
+                "description": "Update book.",
                 "consumes": [
                     "application/json"
                 ],
@@ -47,25 +47,70 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "Book"
                 ],
-                "summary": "update user",
+                "summary": "update book",
                 "parameters": [
                     {
-                        "description": "User ID",
+                        "description": "Book ID",
                         "name": "id",
                         "in": "body",
                         "required": true,
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Title",
+                        "name": "title",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Author",
+                        "name": "author",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "User ID",
+                        "name": "user_id",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Book status",
+                        "name": "book_status",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Book attributes",
+                        "name": "book_attrs",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.BookAttrs"
+                        }
                     }
                 ],
                 "responses": {
                     "202": {
-                        "description": "Accepted",
+                        "description": "ok",
                         "schema": {
-                            "$ref": "#/definitions/models.User"
+                            "type": "string"
                         }
                     }
                 }
@@ -76,7 +121,7 @@ var doc = `{
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "Create a new user.",
+                "description": "Create a new book.",
                 "consumes": [
                     "application/json"
                 ],
@@ -84,25 +129,52 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "Book"
                 ],
-                "summary": "create a new user",
+                "summary": "create a new book",
                 "parameters": [
                     {
-                        "description": "E-mail",
-                        "name": "email",
+                        "description": "Title",
+                        "name": "title",
                         "in": "body",
                         "required": true,
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Author",
+                        "name": "author",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "User ID",
+                        "name": "user_id",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Book attributes",
+                        "name": "book_attrs",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.BookAttrs"
+                        }
                     }
                 ],
                 "responses": {
-                    "201": {
-                        "description": "Created",
+                    "200": {
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.User"
+                            "$ref": "#/definitions/models.Book"
                         }
                     }
                 }
@@ -113,7 +185,7 @@ var doc = `{
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "Delete user by given ID.",
+                "description": "Delete book by given ID.",
                 "consumes": [
                     "application/json"
                 ],
@@ -121,13 +193,110 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "Book"
                 ],
-                "summary": "delete user by given ID",
+                "summary": "delete book by given ID",
                 "parameters": [
                     {
-                        "description": "User ID",
+                        "description": "Book ID",
                         "name": "id",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/book/{id}": {
+            "get": {
+                "description": "Get book by given ID.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Book"
+                ],
+                "summary": "get book by given ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Book ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Book"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/books": {
+            "get": {
+                "description": "Get all exists books.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Book"
+                ],
+                "summary": "get all exists books",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Book"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/token/renew": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Renew access and refresh tokens.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Token"
+                ],
+                "summary": "renew access and refresh tokens",
+                "parameters": [
+                    {
+                        "description": "Refresh token",
+                        "name": "refresh_token",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -145,9 +314,9 @@ var doc = `{
                 }
             }
         },
-        "/api/public/user/{id}": {
-            "get": {
-                "description": "Get user by given ID.",
+        "/v1/user/sign/in": {
+            "post": {
+                "description": "Auth user and return access and refresh token.",
                 "consumes": [
                     "application/json"
                 ],
@@ -157,14 +326,105 @@ var doc = `{
                 "tags": [
                     "User"
                 ],
-                "summary": "get user by given ID",
+                "summary": "auth user and return access and refresh token",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "User ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
+                        "description": "User Email",
+                        "name": "email",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "User Password",
+                        "name": "password",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/user/sign/out": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "De-authorize user and delete refresh token from Redis.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "de-authorize user and delete refresh token from Redis",
+                "responses": {
+                    "204": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/user/sign/up": {
+            "post": {
+                "description": "Create a new user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "create a new user",
+                "parameters": [
+                    {
+                        "description": "Email",
+                        "name": "email",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Password",
+                        "name": "password",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "User role",
+                        "name": "user_role",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -176,40 +436,68 @@ var doc = `{
                     }
                 }
             }
-        },
-        "/api/public/users": {
-            "get": {
-                "description": "Get all exists users.",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Users"
-                ],
-                "summary": "get all exists users",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/models.User"
-                            }
-                        }
-                    }
-                }
-            }
         }
     },
     "definitions": {
+        "models.Book": {
+            "type": "object",
+            "required": [
+                "author",
+                "book_attrs",
+                "book_status",
+                "id",
+                "title",
+                "user_id"
+            ],
+            "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "book_attrs": {
+                    "$ref": "#/definitions/models.BookAttrs"
+                },
+                "book_status": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.BookAttrs": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "picture": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "integer"
+                }
+            }
+        },
         "models.User": {
             "type": "object",
             "required": [
                 "email",
-                "id"
+                "id",
+                "password_hash",
+                "user_role",
+                "user_status"
             ],
             "properties": {
                 "created_at": {
@@ -221,31 +509,17 @@ var doc = `{
                 "id": {
                     "type": "string"
                 },
+                "password_hash": {
+                    "type": "string"
+                },
                 "updated_at": {
                     "type": "string"
                 },
-                "user_attrs": {
-                    "$ref": "#/definitions/models.UserAttrs"
+                "user_role": {
+                    "type": "string"
                 },
                 "user_status": {
                     "type": "integer"
-                }
-            }
-        },
-        "models.UserAttrs": {
-            "type": "object",
-            "properties": {
-                "about": {
-                    "type": "string"
-                },
-                "first_name": {
-                    "type": "string"
-                },
-                "last_name": {
-                    "type": "string"
-                },
-                "picture": {
-                    "type": "string"
                 }
             }
         }
@@ -272,10 +546,10 @@ type swaggerInfo struct {
 var SwaggerInfo = swaggerInfo{
 	Version:     "1.0",
 	Host:        "",
-	BasePath:    "/",
+	BasePath:    "/api",
 	Schemes:     []string{},
-	Title:       "Fiber Template API",
-	Description: "This is an auto-generated API Docs for Fiber Template.",
+	Title:       "API",
+	Description: "This is an auto-generated API Docs.",
 }
 
 type s struct{}

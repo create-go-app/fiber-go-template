@@ -2,12 +2,13 @@
 .dockerignore
 .editorconfig
 .gitignore
-.env.example
+.env.*
 Dockerfile
 Makefile
 LICENSE
 **/*.md
 **/*_test.go
+*.out
 
 # Folders
 .git/

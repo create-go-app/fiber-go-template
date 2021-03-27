@@ -1,6 +1,6 @@
 # Fiber backend template for [Create Go App CLI](https://github.com/create-go-app/cli)
 
-<img src="https://img.shields.io/badge/Go-1.16+-00ADD8?style=for-the-badge&logo=go" alt="go version" />&nbsp;<a href="https://gocover.io/github.com/create-go-app/fiber-go-template/pkg/apiserver" target="_blank"><img src="https://img.shields.io/badge/Go_Cover-87%25-success?style=for-the-badge&logo=none" alt="go cover" /></a>&nbsp;<a href="https://goreportcard.com/report/github.com/create-go-app/fiber-go-template" target="_blank"><img src="https://img.shields.io/badge/Go_report-A+-success?style=for-the-badge&logo=none" alt="go report" /></a>&nbsp;<img src="https://img.shields.io/badge/license-mit-red?style=for-the-badge&logo=none" alt="license" />
+<img src="https://img.shields.io/badge/Go-1.16+-00ADD8?style=for-the-badge&logo=go" alt="go version" />&nbsp;<a href="https://gocover.io/github.com/create-go-app/fiber-go-template/pkg/apiserver" target="_blank"><img src="https://img.shields.io/badge/Go_Cover-73%25-success?style=for-the-badge&logo=none" alt="go cover" /></a>&nbsp;<a href="https://goreportcard.com/report/github.com/create-go-app/fiber-go-template" target="_blank"><img src="https://img.shields.io/badge/Go_report-A+-success?style=for-the-badge&logo=none" alt="go report" /></a>&nbsp;<img src="https://img.shields.io/badge/license-mit-red?style=for-the-badge&logo=none" alt="license" />
 
 [Fiber](https://gofiber.io/) is an Express.js inspired web framework build on top of Fasthttp, the fastest HTTP engine for Go. Designed to ease things up for **fast** development with **zero memory allocation** and **performance** in mind.
 
@@ -20,35 +20,23 @@ cgapp create
 
 ```bash
 cp .env.example .env
-
-# add to current env
-source .env
 ```
 
-3. Run Docker container with database (_by default, for PostgreSQL_):
+3. Install [Docker](https://www.docker.com/get-started) to your system and the following useful Go tools:
+
+- [golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage) for apply migrations
+- [github.com/swaggo/swag](https://github.com/swaggo/swag) for auto-generating Swagger API docs
+- [github.com/securego/gosec](https://github.com/securego/gosec) for checking Go security issues
+
+4. Run project by this command:
 
 ```bash
-make docker.postgres
+make docker.run
 ```
 
-4. Install [`migrate`](https://github.com/golang-migrate/migrate#cli-usage) tool and apply migrations:
+5. Go to API Docs page (Swagger): [127.0.0.1:5000/swagger/index.html](http://127.0.0.1:5000/swagger/index.html):
 
-```bash
-make migrate.up
-```
-
-5. Additionally, please install the following useful Go tools:
-
-- [github.com/swaggo/swag](https://github.com/swaggo/swag)
-- [github.com/securego/gosec](https://github.com/securego/gosec)
-
-6. Run project by this command:
-
-```bash
-make run
-```
-
-7. Go to API Docs page (Swagger): [127.0.0.1:5000/swagger/index.html](http://127.0.0.1:5000/swagger/index.html).
+![Screenshot](https://user-images.githubusercontent.com/11155743/112714744-e7f5be00-8eec-11eb-9fbf-e183e01c68b1.png)
 
 ## 📦 Used packages
 
@@ -61,7 +49,8 @@ make run
 | [dgrijalva/jwt-go](https://github.com/dgrijalva/jwt-go)               | `v3.2.0`  | auth       |
 | [joho/godotenv](https://github.com/joho/godotenv)                     | `v1.3.0`  | config     |
 | [jmoiron/sqlx](https://github.com/jmoiron/sqlx)                       | `v1.3.1`  | database   |
-| [jackc/pgx](https://github.com/jackc/pgx)                             | `v4.10.1` | database   |
+| [jackc/pgx](https://github.com/jackc/pgx)                             | `v4.11.0` | database   |
+| [go-redis/redis](https://github.com/go-redis/redis)                   | `v8.8.0`  | cache      |
 | [swaggo/swag](https://github.com/swaggo/swag)                         | `v1.7.0`  | utils      |
 | [google/uuid](https://github.com/google/uuid)                         | `v1.2.0`  | utils      |
 | [go-playground/validator](https://github.com/go-playground/validator) | `v10.4.1` | utils      |
@@ -75,7 +64,6 @@ make run
 - `./app/controllers` folder for functional controllers (used in routes)
 - `./app/models` folder for describe business models and methods of your project
 - `./app/queries` folder for describe queries for models of your project
-- `./app/validators` folder for describe validators for models fields
 
 ### ./docs
 
@@ -87,6 +75,7 @@ make run
 
 - `./pkg/configs` folder for configuration functions
 - `./pkg/middleware` folder for add middleware (Fiber built-in and yours)
+- `./pkg/repository` folder for describe `const` of your project
 - `./pkg/routes` folder for describe routes of your project
 - `./pkg/utils` folder with utility functions (server starter, error checker, etc)
 
@@ -94,6 +83,7 @@ make run
 
 **Folder with platform-level logic**. This directory contains all the platform-level logic that will build up the actual project, like _setting up the database_ or _cache server instance_ and _storing migrations_.
 
+- `./platform/cache` folder with in-memory cache setup functions (by default, Redis)
 - `./platform/database` folder with database setup functions (by default, PostgreSQL)
 - `./platform/migrations` folder with migration files (used with [golang-migrate/migrate](https://github.com/golang-migrate/migrate) tool)
 
@@ -102,13 +92,21 @@ make run
 ```ini
 # .env
 
+# Stage status to start server:
+#   - "dev", for start server without graceful shutdown
+#   - "prod", for start server with graceful shutdown
+STAGE_STATUS="dev"
+
 # Server settings:
-SERVER_URL="0.0.0.0:5000"
+SERVER_HOST="0.0.0.0"
+SERVER_PORT=5000
 SERVER_READ_TIMEOUT=60
 
 # JWT settings:
 JWT_SECRET_KEY="secret"
+JWT_SECRET_KEY_EXPIRE_MINUTES_COUNT=15
 JWT_REFRESH_KEY="refresh"
+JWT_REFRESH_KEY_EXPIRE_HOURS_COUNT=720
 
 # Database settings:
 DB_HOST="localhost"
@@ -120,6 +118,12 @@ DB_SSL_MODE="disable"
 DB_MAX_CONNECTIONS=100
 DB_MAX_IDLE_CONNECTIONS=10
 DB_MAX_LIFETIME_CONNECTIONS=2
+
+# Redis settings:
+REDIS_HOST="localhost"
+REDIS_PORT=6379
+REDIS_PASSWORD=""
+REDIS_DB_NUMBER=0
 ```
 
 ## ⚠️ License
