@@ -19,9 +19,9 @@ cgapp create
 2. Rename `.env.example` to `.env` and fill it with your environment values.
 3. Install [Docker](https://www.docker.com/get-started) and the following useful Go tools to your system:
 
-- [golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage) for apply migrations
-- [github.com/swaggo/swag](https://github.com/swaggo/swag) for auto-generating Swagger API docs
-- [github.com/securego/gosec](https://github.com/securego/gosec) for checking Go security issues
+   - [golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage) for apply migrations
+   - [github.com/swaggo/swag](https://github.com/swaggo/swag) for auto-generating Swagger API docs
+   - [github.com/securego/gosec](https://github.com/securego/gosec) for checking Go security issues
 
 4. Run project by this command:
 
