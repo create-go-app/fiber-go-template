@@ -22,7 +22,7 @@ cgapp create
 cp .env.example .env
 ```
 
-3. Install [Docker](https://www.docker.com/get-started) to your system and the following useful Go tools:
+3. Install [Docker](https://www.docker.com/get-started) and the following useful Go tools to your system:
 
 - [golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage) for apply migrations
 - [github.com/swaggo/swag](https://github.com/swaggo/swag) for auto-generating Swagger API docs
