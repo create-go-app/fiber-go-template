@@ -123,4 +123,4 @@ REDIS_DB_NUMBER=0
 
 ## ⚠️ License
 
-Apache 2.0 &copy; [Vic Shóstak](https://github.com/koddr) & [True web artisans](https://1wa.co/).
+Apache 2.0 &copy; [Vic Shóstak](https://shostak.dev/) & [True web artisans](https://1wa.co/).
