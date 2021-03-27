@@ -3,7 +3,7 @@ package utils
 import (
 	"fmt"
 
-	"book-rapid-development-with-fiber/pkg/repository"
+	"github.com/create-go-app/fiber-go-template/pkg/repository"
 )
 
 // GetCredentialsByRole func for getting credentials from a role name.

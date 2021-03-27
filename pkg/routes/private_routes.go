@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"book-rapid-development-with-fiber/app/controllers"
-	"book-rapid-development-with-fiber/pkg/middleware"
+	"github.com/create-go-app/fiber-go-template/app/controllers"
+	"github.com/create-go-app/fiber-go-template/pkg/middleware"
 	"github.com/gofiber/fiber/v2"
 )
 

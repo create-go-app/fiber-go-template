@@ -1,6 +1,6 @@
 package database
 
-import "book-rapid-development-with-fiber/app/queries"
+import "github.com/create-go-app/fiber-go-template/app/queries"
 
 // Queries struct for collect all app queries.
 type Queries struct {

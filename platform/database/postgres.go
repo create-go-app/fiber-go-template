@@ -1,11 +1,12 @@
 package database
 
 import (
-	"book-rapid-development-with-fiber/pkg/utils"
 	"fmt"
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/create-go-app/fiber-go-template/pkg/utils"
 
 	"github.com/jmoiron/sqlx"
 
