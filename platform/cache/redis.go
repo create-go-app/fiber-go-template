@@ -1,9 +1,10 @@
 package cache
 
 import (
-	"book-rapid-development-with-fiber/pkg/utils"
 	"os"
 	"strconv"
+
+	"github.com/create-go-app/fiber-go-template/pkg/utils"
 
 	"github.com/go-redis/redis/v8"
 )

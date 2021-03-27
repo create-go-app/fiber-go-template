@@ -1,15 +1,16 @@
 package main
 
 import (
-	"book-rapid-development-with-fiber/pkg/configs"
-	"book-rapid-development-with-fiber/pkg/middleware"
-	"book-rapid-development-with-fiber/pkg/routes"
-	"book-rapid-development-with-fiber/pkg/utils"
 	"os"
+
+	"github.com/create-go-app/fiber-go-template/pkg/configs"
+	"github.com/create-go-app/fiber-go-template/pkg/middleware"
+	"github.com/create-go-app/fiber-go-template/pkg/routes"
+	"github.com/create-go-app/fiber-go-template/pkg/utils"
 
 	"github.com/gofiber/fiber/v2"
 
-	_ "book-rapid-development-with-fiber/docs" // load API Docs files (Swagger)
+	_ "github.com/create-go-app/fiber-go-template/docs" // load API Docs files (Swagger)
 
 	_ "github.com/joho/godotenv/autoload" // load .env file automatically
 )

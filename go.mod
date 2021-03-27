@@ -1,4 +1,4 @@
-module book-rapid-development-with-fiber
+module github.com/create-go-app/fiber-go-template
 
 go 1.16
 

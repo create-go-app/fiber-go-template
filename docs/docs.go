@@ -259,7 +259,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Book"
+                    "Books"
                 ],
                 "summary": "get all exists books",
                 "responses": {

@@ -17,12 +17,7 @@ cgapp create
 ```
 
 2. Rename `.env.example` to `.env` and fill it with your environment values.
-
-```bash
-cp .env.example .env
-```
-
-3. Install [Docker](https://www.docker.com/get-started) to your system and the following useful Go tools:
+3. Install [Docker](https://www.docker.com/get-started) and the following useful Go tools to your system:
 
 - [golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage) for apply migrations
 - [github.com/swaggo/swag](https://github.com/swaggo/swag) for auto-generating Swagger API docs
@@ -36,7 +31,7 @@ make docker.run
 
 5. Go to API Docs page (Swagger): [127.0.0.1:5000/swagger/index.html](http://127.0.0.1:5000/swagger/index.html)
 
-![Screenshot](https://user-images.githubusercontent.com/11155743/112714744-e7f5be00-8eec-11eb-9fbf-e183e01c68b1.png)
+![Screenshot](https://user-images.githubusercontent.com/11155743/112715187-07dab100-8ef0-11eb-97ea-68d34f2178f6.png)
 
 ## 📦 Used packages
 
@@ -128,4 +123,4 @@ REDIS_DB_NUMBER=0
 
 ## ⚠️ License
 
-Apache 2.0 &copy; [Vic Shóstak](https://github.com/koddr) & [True web artisans](https://1wa.co/).
+Apache 2.0 &copy; [Vic Shóstak](https://shostak.dev/) & [True web artisans](https://1wa.co/).

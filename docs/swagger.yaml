@@ -225,7 +225,7 @@ paths:
             type: array
       summary: get all exists books
       tags:
-      - Book
+      - Books
   /v1/token/renew:
     post:
       consumes:
