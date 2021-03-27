@@ -17,11 +17,6 @@ cgapp create
 ```
 
 2. Rename `.env.example` to `.env` and fill it with your environment values.
-
-```bash
-cp .env.example .env
-```
-
 3. Install [Docker](https://www.docker.com/get-started) and the following useful Go tools to your system:
 
 - [golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage) for apply migrations
