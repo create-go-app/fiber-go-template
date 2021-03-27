@@ -34,7 +34,7 @@ cp .env.example .env
 make docker.run
 ```
 
-5. Go to API Docs page (Swagger): [127.0.0.1:5000/swagger/index.html](http://127.0.0.1:5000/swagger/index.html):
+5. Go to API Docs page (Swagger): [127.0.0.1:5000/swagger/index.html](http://127.0.0.1:5000/swagger/index.html)
 
 ![Screenshot](https://user-images.githubusercontent.com/11155743/112714744-e7f5be00-8eec-11eb-9fbf-e183e01c68b1.png)
 
