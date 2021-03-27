@@ -1,6 +1,6 @@
 # Fiber backend template for [Create Go App CLI](https://github.com/create-go-app/cli)
 
-<img src="https://img.shields.io/badge/Go-1.16+-00ADD8?style=for-the-badge&logo=go" alt="go version" />&nbsp;<a href="https://gocover.io/github.com/create-go-app/fiber-go-template/pkg/apiserver" target="_blank"><img src="https://img.shields.io/badge/Go_Cover-73%25-success?style=for-the-badge&logo=none" alt="go cover" /></a>&nbsp;<a href="https://goreportcard.com/report/github.com/create-go-app/fiber-go-template" target="_blank"><img src="https://img.shields.io/badge/Go_report-A+-success?style=for-the-badge&logo=none" alt="go report" /></a>&nbsp;<img src="https://img.shields.io/badge/license-mit-red?style=for-the-badge&logo=none" alt="license" />
+<img src="https://img.shields.io/badge/Go-1.16+-00ADD8?style=for-the-badge&logo=go" alt="go version" />&nbsp;<a href="https://goreportcard.com/report/github.com/create-go-app/fiber-go-template" target="_blank"><img src="https://img.shields.io/badge/Go_report-A+-success?style=for-the-badge&logo=none" alt="go report" /></a>&nbsp;<img src="https://img.shields.io/badge/license-mit-red?style=for-the-badge&logo=none" alt="license" />
 
 [Fiber](https://gofiber.io/) is an Express.js inspired web framework build on top of Fasthttp, the fastest HTTP engine for Go. Designed to ease things up for **fast** development with **zero memory allocation** and **performance** in mind.
 
@@ -19,9 +19,9 @@ cgapp create
 2. Rename `.env.example` to `.env` and fill it with your environment values.
 3. Install [Docker](https://www.docker.com/get-started) and the following useful Go tools to your system:
 
-- [golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage) for apply migrations
-- [github.com/swaggo/swag](https://github.com/swaggo/swag) for auto-generating Swagger API docs
-- [github.com/securego/gosec](https://github.com/securego/gosec) for checking Go security issues
+   - [golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage) for apply migrations
+   - [github.com/swaggo/swag](https://github.com/swaggo/swag) for auto-generating Swagger API docs
+   - [github.com/securego/gosec](https://github.com/securego/gosec) for checking Go security issues
 
 4. Run project by this command:
 
