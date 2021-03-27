@@ -23,5 +23,4 @@ COPY --from=builder ["/build/apiserver", "/build/.env", "/"]
 EXPOSE 5000
 
 # Command to run when starting the container.
-ENV CONFIG_PATH=/.env
 ENTRYPOINT ["/apiserver"]

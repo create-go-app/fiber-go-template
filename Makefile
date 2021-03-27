@@ -1,12 +1,9 @@
-include .env
 .PHONY: clean test security build run
 
 APP_NAME = apiserver
 BUILD_DIR = $(PWD)/build
 MIGRATIONS_FOLDER = $(PWD)/platform/migrations
-DATABASE_URL = postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?sslmode=${DB_SSL}
-# extract port from server url defined in .env
-SERVER_PORT = `[[ $(SERVER_URL) =~ ":" ]] && echo $(SERVER_URL) | cut -d ":" -f2 || echo 5000`
+DATABASE_URL = postgres://postgres:password@localhost/postgres?sslmode=disable
 
 clean:
 	rm -rf ./build
@@ -15,7 +12,8 @@ security:
 	gosec -quiet ./...
 
 test: security
-	go test -cover ./...
+	go test -v -timeout 30s -coverprofile=cover.out -cover ./...
+	go tool cover -func=cover.out
 
 build: clean test
 	CGO_ENABLED=0 go build -ldflags="-w -s" -o $(BUILD_DIR)/$(APP_NAME) main.go
@@ -32,45 +30,50 @@ migrate.down:
 migrate.force:
 	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" force $(version)
 
-migrate.create:
-	migrate create -ext sql -dir $(MIGRATIONS_FOLDER) $(name)
-
-migrate.version:
-	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" version
-
-migrate.goto:
-	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" goto $(version)
-
-docker.build:
-	docker build -t fiber-go-template .
-
-docker.run: docker.fiber docker.postgres
-
-docker.stop:
-	docker stop dev-fiber dev-postgres
+docker.run: docker.network docker.postgres swag.init docker.fiber docker.redis migrate.up
 
 docker.network:
 	docker network inspect dev-network >/dev/null 2>&1 || \
 	docker network create -d bridge dev-network
 
-docker.fiber: docker.network
+docker.fiber.build:
+	docker build -t fiber .
+
+docker.fiber: docker.fiber.build
 	docker run --rm -d \
 		--name dev-fiber \
 		--network dev-network \
-		-p $(SERVER_PORT):$(SERVER_PORT) \
-		fiber-go-template
+		-p 5000:5000 \
+		fiber
 
-docker.postgres: docker.network
+docker.postgres:
 	docker run --rm -d \
 		--name dev-postgres \
 		--network dev-network \
-		-e POSTGRES_USER=${DB_USER} \
-		-e POSTGRES_PASSWORD=${DB_PASS} \
-		-e POSTGRES_DB=${DB_NAME} \
-		-e POSTGRES_PORT=${DB_PORT} \
+		-e POSTGRES_USER=postgres \
+		-e POSTGRES_PASSWORD=password \
+		-e POSTGRES_DB=postgres \
 		-v ${HOME}/dev-postgres/data/:/var/lib/postgresql/data \
-		-p ${DB_PORT}:${DB_PORT} \
+		-p 5432:5432 \
 		postgres
+
+docker.redis:
+	docker run --rm -d \
+		--name dev-redis \
+		--network dev-network \
+		-p 6379:6379 \
+		redis
+
+docker.stop: docker.stop.fiber docker.stop.postgres docker.stop.redis
+
+docker.stop.fiber:
+	docker stop dev-fiber
+
+docker.stop.postgres:
+	docker stop dev-postgres
+
+docker.stop.redis:
+	docker stop dev-redis
 
 swag.init:
 	swag init
