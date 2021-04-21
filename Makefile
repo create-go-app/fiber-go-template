@@ -11,6 +11,9 @@ clean:
 security:
 	gosec -quiet ./...
 
+linter:
+	golangci-lint run
+
 test: security
 	go test -v -timeout 30s -coverprofile=cover.out -cover ./...
 	go tool cover -func=cover.out
