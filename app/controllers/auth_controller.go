@@ -255,7 +255,7 @@ func UserSignOut(c *fiber.Ctx) error {
 		// Return status 500 and Redis connection error.
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": true,
-			"msg":   err.Error(),
+			"msg":   errDelFromRedis.Error(),
 		})
 	}
 
