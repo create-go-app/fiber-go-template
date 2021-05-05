@@ -104,7 +104,7 @@ JWT_REFRESH_KEY="refresh"
 JWT_REFRESH_KEY_EXPIRE_HOURS_COUNT=720
 
 # Database settings:
-DB_HOST="localhost"
+DB_HOST="cgapp-postgres"
 DB_PORT=5432
 DB_USER="postgres"
 DB_PASSWORD="password"
@@ -115,7 +115,7 @@ DB_MAX_IDLE_CONNECTIONS=10
 DB_MAX_LIFETIME_CONNECTIONS=2
 
 # Redis settings:
-REDIS_HOST="localhost"
+REDIS_HOST="cgapp-redis"
 REDIS_PORT=6379
 REDIS_PASSWORD=""
 REDIS_DB_NUMBER=0
