@@ -1,5 +1,7 @@
 FROM golang:1.16-alpine AS builder
 
+LABEL maintainer="Vic Shóstak <vic@shostak.dev> (https://shostak.dev/)"
+
 # Move to working directory (/build).
 WORKDIR /build
 
@@ -18,9 +20,6 @@ FROM scratch
 
 # Copy binary and config files from /build to root folder of scratch container.
 COPY --from=builder ["/build/apiserver", "/build/.env", "/"]
-
-# Export necessary port.
-EXPOSE 5000
 
 # Command to run when starting the container.
 ENTRYPOINT ["/apiserver"]
