@@ -252,10 +252,10 @@ func UserSignOut(c *fiber.Ctx) error {
 	// Save refresh token to Redis.
 	errDelFromRedis := connRedis.Del(context.Background(), userID).Err()
 	if errDelFromRedis != nil {
-		// Return status 500 and Redis connection error.
+		// Return status 500 and Redis deletion error.
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": true,
-			"msg":   err.Error(),
+			"msg":   errDelFromRedis.Error(),
 		})
 	}
 
