@@ -9,7 +9,7 @@ require (
 	github.com/go-playground/validator/v10 v10.6.1
 	github.com/go-redis/redis/v8 v8.8.3
 	github.com/gofiber/fiber/v2 v2.10.0
-	github.com/gofiber/jwt/v2 v2.2.1
+	github.com/gofiber/jwt/v2 v2.2.2
 	github.com/google/uuid v1.2.0
 	github.com/jackc/pgx/v4 v4.11.0
 	github.com/jmoiron/sqlx v1.3.4
