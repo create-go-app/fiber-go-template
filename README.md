@@ -37,15 +37,15 @@ make docker.run
 
 | Name                                                                  | Version   | Type       |
 | --------------------------------------------------------------------- | --------- | ---------- |
-| [gofiber/fiber](https://github.com/gofiber/fiber)                     | `v2.10.0` | core       |
-| [gofiber/jwt](https://github.com/gofiber/jwt)                         | `v2.2.0`  | middleware |
-| [arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)         | `v2.6.0`  | middleware |
+| [gofiber/fiber](https://github.com/gofiber/fiber)                     | `v2.11.0` | core       |
+| [gofiber/jwt](https://github.com/gofiber/jwt)                         | `v2.2.2`  | middleware |
+| [arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)         | `v2.11.0` | middleware |
 | [stretchr/testify](https://github.com/stretchr/testify)               | `v1.7.0`  | tests      |
 | [dgrijalva/jwt-go](https://github.com/dgrijalva/jwt-go)               | `v3.2.0`  | auth       |
 | [joho/godotenv](https://github.com/joho/godotenv)                     | `v1.3.0`  | config     |
 | [jmoiron/sqlx](https://github.com/jmoiron/sqlx)                       | `v1.3.4`  | database   |
 | [jackc/pgx](https://github.com/jackc/pgx)                             | `v4.11.0` | database   |
-| [go-redis/redis](https://github.com/go-redis/redis)                   | `v8.8.3`  | cache      |
+| [go-redis/redis](https://github.com/go-redis/redis)                   | `v8.9.0`  | cache      |
 | [swaggo/swag](https://github.com/swaggo/swag)                         | `v1.7.0`  | utils      |
 | [google/uuid](https://github.com/google/uuid)                         | `v1.2.0`  | utils      |
 | [go-playground/validator](https://github.com/go-playground/validator) | `v10.6.1` | utils      |
