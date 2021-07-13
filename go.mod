@@ -10,7 +10,7 @@ require (
 	github.com/go-redis/redis/v8 v8.11.0
 	github.com/gofiber/fiber/v2 v2.14.0
 	github.com/gofiber/jwt/v2 v2.2.4
-	github.com/google/uuid v1.2.0
+	github.com/google/uuid v1.3.0
 	github.com/jackc/pgx/v4 v4.12.0
 	github.com/jmoiron/sqlx v1.3.4
 	github.com/joho/godotenv v1.3.0
