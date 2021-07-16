@@ -8,7 +8,7 @@ require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/go-playground/validator/v10 v10.7.0
 	github.com/go-redis/redis/v8 v8.11.0
-	github.com/gofiber/fiber/v2 v2.14.0
+	github.com/gofiber/fiber/v2 v2.15.0
 	github.com/gofiber/jwt/v2 v2.2.4
 	github.com/google/uuid v1.3.0
 	github.com/jackc/pgx/v4 v4.12.0
