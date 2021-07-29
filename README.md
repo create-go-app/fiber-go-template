@@ -45,7 +45,7 @@ make docker.run
 | [joho/godotenv](https://github.com/joho/godotenv)                     | `v1.3.0`  | config     |
 | [jmoiron/sqlx](https://github.com/jmoiron/sqlx)                       | `v1.3.4`  | database   |
 | [jackc/pgx](https://github.com/jackc/pgx)                             | `v4.13.0` | database   |
-| [go-redis/redis](https://github.com/go-redis/redis)                   | `v8.11.0` | cache      |
+| [go-redis/redis](https://github.com/go-redis/redis)                   | `v8.11.1` | cache      |
 | [swaggo/swag](https://github.com/swaggo/swag)                         | `v1.7.0`  | utils      |
 | [google/uuid](https://github.com/google/uuid)                         | `v1.3.0`  | utils      |
 | [go-playground/validator](https://github.com/go-playground/validator) | `v10.8.0` | utils      |
