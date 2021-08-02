@@ -38,7 +38,7 @@ make docker.run
 | Name                                                                  | Version   | Type       |
 | --------------------------------------------------------------------- | --------- | ---------- |
 | [gofiber/fiber](https://github.com/gofiber/fiber)                     | `v2.16.0` | core       |
-| [gofiber/jwt](https://github.com/gofiber/jwt)                         | `v2.2.4`  | middleware |
+| [gofiber/jwt](https://github.com/gofiber/jwt)                         | `v2.2.5`  | middleware |
 | [arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)         | `v2.15.0` | middleware |
 | [stretchr/testify](https://github.com/stretchr/testify)               | `v1.7.0`  | tests      |
 | [golang-jwt/jwt](https://github.com/golang-jwt/jwt)                   | `v3.2.2`  | auth       |
