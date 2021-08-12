@@ -37,7 +37,7 @@ make docker.run
 
 | Name                                                                  | Version   | Type       |
 | --------------------------------------------------------------------- | --------- | ---------- |
-| [gofiber/fiber](https://github.com/gofiber/fiber)                     | `v2.16.0` | core       |
+| [gofiber/fiber](https://github.com/gofiber/fiber)                     | `v2.17.0` | core       |
 | [gofiber/jwt](https://github.com/gofiber/jwt)                         | `v2.2.5`  | middleware |
 | [arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)         | `v2.15.0` | middleware |
 | [stretchr/testify](https://github.com/stretchr/testify)               | `v1.7.0`  | tests      |
@@ -45,8 +45,8 @@ make docker.run
 | [joho/godotenv](https://github.com/joho/godotenv)                     | `v1.3.0`  | config     |
 | [jmoiron/sqlx](https://github.com/jmoiron/sqlx)                       | `v1.3.4`  | database   |
 | [jackc/pgx](https://github.com/jackc/pgx)                             | `v4.13.0` | database   |
-| [go-redis/redis](https://github.com/go-redis/redis)                   | `v8.11.2` | cache      |
-| [swaggo/swag](https://github.com/swaggo/swag)                         | `v1.7.0`  | utils      |
+| [go-redis/redis](https://github.com/go-redis/redis)                   | `v8.11.3` | cache      |
+| [swaggo/swag](https://github.com/swaggo/swag)                         | `v1.7.1`  | utils      |
 | [google/uuid](https://github.com/google/uuid)                         | `v1.3.0`  | utils      |
 | [go-playground/validator](https://github.com/go-playground/validator) | `v10.9.0` | utils      |
 
