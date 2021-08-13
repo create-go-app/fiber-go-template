@@ -61,11 +61,10 @@ github.com/go-sql-driver/mysql v1.5.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LB
 github.com/go-stack/stack v1.8.0/go.mod h1:v0f6uXyyMGvRgIKkXu+yp6POWl0qKG85gN/melR3HDY=
 github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0/go.mod h1:fyg7847qk6SyHyPtNmDHnmrv/HOrqktSC+C9fM+CJOE=
 github.com/gofiber/fiber/v2 v2.15.0/go.mod h1:iftruuHGkRYGEXVISmdD7HTYWyfS2Bh+Dkfq4n/1Owg=
-github.com/gofiber/fiber/v2 v2.16.0/go.mod h1:iftruuHGkRYGEXVISmdD7HTYWyfS2Bh+Dkfq4n/1Owg=
 github.com/gofiber/fiber/v2 v2.17.0 h1:qP3PkGUbBB0i9iQh5E057XI1yO5CZigUxZhyUFYAFoM=
 github.com/gofiber/fiber/v2 v2.17.0/go.mod h1:iftruuHGkRYGEXVISmdD7HTYWyfS2Bh+Dkfq4n/1Owg=
-github.com/gofiber/jwt/v2 v2.2.5 h1:yF7GQSWD6NCG1c/s2Db/trITTehG5dyYQW7ItDi7MO4=
-github.com/gofiber/jwt/v2 v2.2.5/go.mod h1:KHgcUv1J0Dc14ZCgRzFWO8GKakRT6uPcPcxbIEKmo4g=
+github.com/gofiber/jwt/v2 v2.2.6 h1:O3cxxMJiDzMPhnL60I2o5F+On5NFtBGshABYT9vD99U=
+github.com/gofiber/jwt/v2 v2.2.6/go.mod h1:802NBnjj8uSUIjKywHT0OloL9Enn1lgmNhK4oKd/6MI=
 github.com/gofrs/uuid v4.0.0+incompatible h1:1SD/1F5pU8p29ybwgQSwpQk+mwdRrXCYuPhW6m+TnJw=
 github.com/gofrs/uuid v4.0.0+incompatible/go.mod h1:b2aQJv3Z4Fp6yNu3cdSllBxTCLRxnplIgP/c0N/04lM=
 github.com/golang-jwt/jwt v3.2.1+incompatible h1:73Z+4BJcrTC+KczS6WvTPvRGOp1WmfEP4Q1lOd9Z/+c=
