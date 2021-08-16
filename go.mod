@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
-	github.com/arsmn/fiber-swagger/v2 v2.15.0
+	github.com/arsmn/fiber-swagger/v2 v2.17.0
 	github.com/go-playground/validator/v10 v10.9.0
 	github.com/go-redis/redis/v8 v8.11.3
 	github.com/gofiber/fiber/v2 v2.17.0
@@ -16,5 +16,5 @@ require (
 	github.com/joho/godotenv v1.3.0
 	github.com/stretchr/testify v1.7.0
 	github.com/swaggo/swag v1.7.1
-	golang.org/x/crypto v0.0.0-20210812204632-0ba0e8f03122
+	golang.org/x/crypto v0.0.0-20210813211128-0a44fdfbc16e
 )
