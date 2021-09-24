@@ -46,7 +46,7 @@ make docker.run
 | [jmoiron/sqlx](https://github.com/jmoiron/sqlx)                       | `v1.3.4`  | database   |
 | [jackc/pgx](https://github.com/jackc/pgx)                             | `v4.13.0` | database   |
 | [go-redis/redis](https://github.com/go-redis/redis)                   | `v8.11.3` | cache      |
-| [swaggo/swag](https://github.com/swaggo/swag)                         | `v1.7.1`  | utils      |
+| [swaggo/swag](https://github.com/swaggo/swag)                         | `v1.7.2`  | utils      |
 | [google/uuid](https://github.com/google/uuid)                         | `v1.3.0`  | utils      |
 | [go-playground/validator](https://github.com/go-playground/validator) | `v10.9.0` | utils      |
 

@@ -15,8 +15,8 @@ require (
 	github.com/jmoiron/sqlx v1.3.4
 	github.com/joho/godotenv v1.3.0
 	github.com/stretchr/testify v1.7.0
-	github.com/swaggo/swag v1.7.1
-	golang.org/x/crypto v0.0.0-20210920023735-84f357641f63
+	github.com/swaggo/swag v1.7.2
+	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519
 )
 
 require (
@@ -49,8 +49,8 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.30.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
-	golang.org/x/net v0.0.0-20210917221730-978cfadd31cf // indirect
-	golang.org/x/sys v0.0.0-20210921065528-437939a70204 // indirect
+	golang.org/x/net v0.0.0-20210924054057-cf34111cab4d // indirect
+	golang.org/x/sys v0.0.0-20210923061019-b8560ed6a9b7 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/tools v0.1.6 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
