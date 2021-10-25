@@ -77,13 +77,13 @@ func generateNewAccessToken(id string, credentials []string) (string, error) {
 
 func generateNewRefreshToken() (string, error) {
 	// Create a new SHA256 hash.
-	sha256 := sha256.New()
+	hash := sha256.New()
 
 	// Create a new now date and time string with salt.
 	refresh := os.Getenv("JWT_REFRESH_KEY") + time.Now().String()
 
 	// See: https://pkg.go.dev/io#Writer.Write
-	_, err := sha256.Write([]byte(refresh))
+	_, err := hash.Write([]byte(refresh))
 	if err != nil {
 		// Return error, it refresh token generation failed.
 		return "", err
@@ -96,7 +96,7 @@ func generateNewRefreshToken() (string, error) {
 	expireTime := fmt.Sprint(time.Now().Add(time.Hour * time.Duration(hoursCount)).Unix())
 
 	// Create a new refresh token (sha256 string with salt + expire time).
-	t := hex.EncodeToString(sha256.Sum(nil)) + "." + expireTime
+	t := hex.EncodeToString(hash.Sum(nil)) + "." + expireTime
 
 	return t, nil
 }

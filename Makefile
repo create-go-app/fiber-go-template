@@ -1,4 +1,4 @@
-.PHONY: clean test security build run
+.PHONY: clean critic security lint test build run
 
 APP_NAME = apiserver
 BUILD_DIR = $(PWD)/build
@@ -8,13 +8,16 @@ DATABASE_URL = postgres://postgres:password@cgapp-postgres/postgres?sslmode=disa
 clean:
 	rm -rf ./build
 
+critic:
+	gocritic check -enableAll ./...
+
 security:
-	gosec -quiet ./...
+	gosec ./...
 
-linter:
-	golangci-lint run
+lint:
+	golangci-lint run ./...
 
-test: security
+test: critic security lint
 	go test -v -timeout 30s -coverprofile=cover.out -cover ./...
 	go tool cover -func=cover.out
 

@@ -33,9 +33,12 @@ func PostgreSQLConnection() (*sqlx.DB, error) {
 	}
 
 	// Set database connection settings:
-	db.SetMaxOpenConns(maxConn)                           // the default is 0 (unlimited)
-	db.SetMaxIdleConns(maxIdleConn)                       // defaultMaxIdleConns = 2
-	db.SetConnMaxLifetime(time.Duration(maxLifetimeConn)) // 0, connections are reused forever
+	// 	- SetMaxOpenConns: the default is 0 (unlimited)
+	// 	- SetMaxIdleConns: defaultMaxIdleConns = 2
+	// 	- SetConnMaxLifetime: 0, connections are reused forever
+	db.SetMaxOpenConns(maxConn)
+	db.SetMaxIdleConns(maxIdleConn)
+	db.SetConnMaxLifetime(time.Duration(maxLifetimeConn))
 
 	// Try to ping database.
 	if err := db.Ping(); err != nil {

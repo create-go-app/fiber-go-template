@@ -26,7 +26,7 @@ func GeneratePassword(p string) string {
 }
 
 // ComparePasswords func for a comparing password.
-func ComparePasswords(hashedPwd string, inputPwd string) bool {
+func ComparePasswords(hashedPwd, inputPwd string) bool {
 	// Since we'll be getting the hashed password from the DB it will be a string,
 	// so we'll need to convert it to a byte slice.
 	byteHash := NormalizePassword(hashedPwd)
