@@ -22,6 +22,8 @@ cgapp create
    - [golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage) for apply migrations
    - [github.com/swaggo/swag](https://github.com/swaggo/swag) for auto-generating Swagger API docs
    - [github.com/securego/gosec](https://github.com/securego/gosec) for checking Go security issues
+   - [github.com/go-critic/go-critic](https://github.com/go-critic/go-critic) for checking Go the best practice issues
+   - [github.com/golangci/golangci-lint](https://github.com/golangci/golangci-lint) for checking Go linter issues
 
 4. Run project by this command:
 
@@ -39,14 +41,14 @@ make docker.run
 | --------------------------------------------------------------------- | --------- | ---------- |
 | [gofiber/fiber](https://github.com/gofiber/fiber)                     | `v2.20.2` | core       |
 | [gofiber/jwt](https://github.com/gofiber/jwt)                         | `v2.2.7`  | middleware |
-| [arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)         | `v2.17.0` | middleware |
+| [arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)         | `v2.20.0` | middleware |
 | [stretchr/testify](https://github.com/stretchr/testify)               | `v1.7.0`  | tests      |
 | [golang-jwt/jwt](https://github.com/golang-jwt/jwt)                   | `v4.1.0`  | auth       |
 | [joho/godotenv](https://github.com/joho/godotenv)                     | `v1.4.0`  | config     |
 | [jmoiron/sqlx](https://github.com/jmoiron/sqlx)                       | `v1.3.4`  | database   |
 | [jackc/pgx](https://github.com/jackc/pgx)                             | `v4.13.0` | database   |
 | [go-redis/redis](https://github.com/go-redis/redis)                   | `v8.11.4` | cache      |
-| [swaggo/swag](https://github.com/swaggo/swag)                         | `v1.7.3`  | utils      |
+| [swaggo/swag](https://github.com/swaggo/swag)                         | `v1.7.4`  | utils      |
 | [google/uuid](https://github.com/google/uuid)                         | `v1.3.0`  | utils      |
 | [go-playground/validator](https://github.com/go-playground/validator) | `v10.9.0` | utils      |
 
