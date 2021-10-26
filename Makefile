@@ -24,7 +24,7 @@ test: critic security lint
 build: clean test
 	CGO_ENABLED=0 go build -ldflags="-w -s" -o $(BUILD_DIR)/$(APP_NAME) main.go
 
-run: swag.init build
+run: swag build
 	$(BUILD_DIR)/$(APP_NAME)
 
 migrate.up:
@@ -81,5 +81,5 @@ docker.stop.postgres:
 docker.stop.redis:
 	docker stop cgapp-redis
 
-swag.init:
+swag:
 	swag init
