@@ -36,7 +36,7 @@ migrate.down:
 migrate.force:
 	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" force $(version)
 
-docker.run: docker.network docker.postgres swag.init docker.fiber docker.redis migrate.up
+docker.run: docker.network docker.postgres swag docker.fiber docker.redis migrate.up
 
 docker.network:
 	docker network inspect dev-network >/dev/null 2>&1 || \
