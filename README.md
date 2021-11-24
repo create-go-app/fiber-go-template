@@ -46,7 +46,7 @@ make docker.run
 | [golang-jwt/jwt](https://github.com/golang-jwt/jwt)                   | `v4.1.0`  | auth       |
 | [joho/godotenv](https://github.com/joho/godotenv)                     | `v1.4.0`  | config     |
 | [jmoiron/sqlx](https://github.com/jmoiron/sqlx)                       | `v1.3.4`  | database   |
-| [jackc/pgx](https://github.com/jackc/pgx)                             | `v4.13.0` | database   |
+| [jackc/pgx](https://github.com/jackc/pgx)                             | `v4.14.0` | database   |
 | [go-redis/redis](https://github.com/go-redis/redis)                   | `v8.11.4` | cache      |
 | [swaggo/swag](https://github.com/swaggo/swag)                         | `v1.7.4`  | utils      |
 | [google/uuid](https://github.com/google/uuid)                         | `v1.3.0`  | utils      |
