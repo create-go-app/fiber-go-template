@@ -14,7 +14,7 @@ require (
 	github.com/jmoiron/sqlx v1.3.4
 	github.com/joho/godotenv v1.4.0
 	github.com/stretchr/testify v1.7.0
-	github.com/swaggo/swag v1.7.8
+	github.com/swaggo/swag v1.7.9
 	golang.org/x/crypto v0.0.0-20211215153901-e495a2d5b3d3
 )
 
