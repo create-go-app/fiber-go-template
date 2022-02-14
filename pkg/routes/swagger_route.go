@@ -12,5 +12,5 @@ func SwaggerRoute(a *fiber.App) {
 	route := a.Group("/swagger")
 
 	// Routes for GET method:
-	route.Get("*", swagger.Handler) // get one user by ID
+	route.Get("*", swagger.HandlerDefault) // get one user by ID
 }
