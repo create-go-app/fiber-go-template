@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/arsmn/fiber-swagger/v2 v2.24.0
 	github.com/go-playground/validator/v10 v10.10.1
-	github.com/go-redis/redis/v8 v8.11.4
+	github.com/go-redis/redis/v8 v8.11.5
 	github.com/gofiber/fiber/v2 v2.29.0
 	github.com/gofiber/jwt/v2 v2.2.7
 	github.com/golang-jwt/jwt/v4 v4.4.0
