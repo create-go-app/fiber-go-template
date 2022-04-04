@@ -12,8 +12,8 @@ github.com/agiledragon/gomonkey/v2 v2.3.1/go.mod h1:ap1AmDzcVOAz1YpeJ3TCzIgstoaW
 github.com/andybalholm/brotli v1.0.2/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
 github.com/andybalholm/brotli v1.0.4 h1:V7DdXeJtZscaqfNuAdSRuRFzuiKlHSC/Zh3zl9qY3JY=
 github.com/andybalholm/brotli v1.0.4/go.mod h1:fO7iG3H7G2nSZ7m0zPUDn85XEX2GTukHGRSepvi9Eig=
-github.com/arsmn/fiber-swagger/v2 v2.31.0 h1:IkCayccI4ZfBwZcKCQo6yu+XQhYeNRRzzmo8Vm2lC1s=
-github.com/arsmn/fiber-swagger/v2 v2.31.0/go.mod h1:ZHhMprtB3M6jd2mleG03lPGhHH0lk9u3PtfWS1cBhMA=
+github.com/arsmn/fiber-swagger/v2 v2.31.1 h1:VmX+flXiGGNqLX3loMEEzL3BMOZFSPwBEWR04GA6Mco=
+github.com/arsmn/fiber-swagger/v2 v2.31.1/go.mod h1:ZHhMprtB3M6jd2mleG03lPGhHH0lk9u3PtfWS1cBhMA=
 github.com/cespare/xxhash/v2 v2.1.2 h1:YRXhKfTDauu4ajMg1TPgFO5jnlC2HCbmLXMcTG5cbYE=
 github.com/cespare/xxhash/v2 v2.1.2/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
 github.com/chzyer/logex v1.1.10/go.mod h1:+Ywpsq7O8HXn0nuIou7OrIPyXbp3wmkHB+jjWRnGsAI=
