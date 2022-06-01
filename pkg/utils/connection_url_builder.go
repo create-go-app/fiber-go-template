@@ -25,7 +25,6 @@ func ConnectionURLBuilder(n string) (string, error) {
 		)
 	case "mysql":
 		// URL for Mysql connection.
-		//root:password@tcp(127.0.0.1:3306)/ecommerce
 		url = fmt.Sprintf(
 			"%s:%s@tcp(%s:%s)/%s",
 			os.Getenv("DB_USER"),

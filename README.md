@@ -40,16 +40,17 @@ make docker.run
 
 | Name                                                                  | Version    | Type       |
 | --------------------------------------------------------------------- | ---------- | ---------- |
-| [gofiber/fiber](https://github.com/gofiber/fiber)                     | `v2.25.0`  | core       |
+| [gofiber/fiber](https://github.com/gofiber/fiber)                     | `v2.34.0`  | core       |
 | [gofiber/jwt](https://github.com/gofiber/jwt)                         | `v2.2.7`   | middleware |
-| [arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)         | `v2.24.0`  | middleware |
-| [stretchr/testify](https://github.com/stretchr/testify)               | `v1.7.0`   | tests      |
-| [golang-jwt/jwt](https://github.com/golang-jwt/jwt)                   | `v4.2.0`   | auth       |
+| [arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)         | `v2.31.1`  | middleware |
+| [stretchr/testify](https://github.com/stretchr/testify)               | `v1.7.1`   | tests      |
+| [golang-jwt/jwt](https://github.com/golang-jwt/jwt)                   | `v4.4.1`   | auth       |
 | [joho/godotenv](https://github.com/joho/godotenv)                     | `v1.4.0`   | config     |
-| [jmoiron/sqlx](https://github.com/jmoiron/sqlx)                       | `v1.3.4`   | database   |
-| [jackc/pgx](https://github.com/jackc/pgx)                             | `v4.14.1`  | database   |
-| [go-redis/redis](https://github.com/go-redis/redis)                   | `v8.11.4`  | cache      |
-| [swaggo/swag](https://github.com/swaggo/swag)                         | `v1.7.8`   | utils      |
+| [jmoiron/sqlx](https://github.com/jmoiron/sqlx)                       | `v1.3.5`   | database   |
+| [jackc/pgx](https://github.com/jackc/pgx)                             | `v4.16.1`  | database   |
+| [go-sql-driver/mysql](https://github.com/go-sql-driver/mysql)         | `v1.6.0`   | database   |
+| [go-redis/redis](https://github.com/go-redis/redis)                   | `v8.11.5`  | cache      |
+| [swaggo/swag](https://github.com/swaggo/swag)                         | `v1.8.2`   | utils      |
 | [google/uuid](https://github.com/google/uuid)                         | `v1.3.0`   | utils      |
 | [go-playground/validator](https://github.com/go-playground/validator) | `v10.10.0` | utils      |
 
@@ -107,6 +108,7 @@ JWT_REFRESH_KEY="refresh"
 JWT_REFRESH_KEY_EXPIRE_HOURS_COUNT=720
 
 # Database settings:
+DB_TYPE="pgx"   # pgx or mysql
 DB_HOST="cgapp-postgres"
 DB_PORT=5432
 DB_USER="postgres"

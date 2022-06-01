@@ -15,16 +15,20 @@ type Queries struct {
 
 // OpenDBConnection func for opening database connection.
 func OpenDBConnection() (*Queries, error) {
-	// Define a new Database connection.
-	connect := os.Getenv("DB_TYPE")
+	// Define Database connection variables.
+	var (
+		db  *sqlx.DB
+		err error
+	)
 
-	var db *sqlx.DB
-	var err error
-	if connect == "pgx" {
+	// Get DB_TYPE value from .env file.
+	dbType := os.Getenv("DB_TYPE")
+
+	// Define a new Database connection with right DB type.
+	switch dbType {
+	case "pgx":
 		db, err = PostgreSQLConnection()
-	}
-
-	if connect == "mysql" {
+	case "mysql":
 		db, err = MysqlConnection()
 	}
 
