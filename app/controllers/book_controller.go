@@ -190,7 +190,7 @@ func CreateBook(c *fiber.Ctx) error {
 		})
 	}
 
-	// Delete book by given ID.
+	// Create book by given model.
 	if err := db.CreateBook(book); err != nil {
 		// Return status 500 and error message.
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
