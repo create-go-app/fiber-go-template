@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/arsmn/fiber-swagger/v2 v2.31.1
-	github.com/go-playground/validator/v10 v10.11.0
+	github.com/go-playground/validator/v10 v10.11.1
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/gofiber/fiber/v2 v2.37.1
