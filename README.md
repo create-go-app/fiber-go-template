@@ -40,7 +40,7 @@ make docker.run
 
 | Name                                                                  | Version    | Type       |
 | --------------------------------------------------------------------- | ---------- | ---------- |
-| [gofiber/fiber](https://github.com/gofiber/fiber)                     | `v2.34.0`  | core       |
+| [gofiber/fiber](https://github.com/gofiber/fiber)                     | `v2.41.0`  | core       |
 | [gofiber/jwt](https://github.com/gofiber/jwt)                         | `v2.2.7`   | middleware |
 | [arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)         | `v2.31.1`  | middleware |
 | [stretchr/testify](https://github.com/stretchr/testify)               | `v1.7.1`   | tests      |
