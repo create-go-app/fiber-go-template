@@ -14,7 +14,7 @@ require (
 	github.com/jackc/pgx/v4 v4.18.0
 	github.com/jmoiron/sqlx v1.3.5
 	github.com/joho/godotenv v1.5.1
-	github.com/stretchr/testify v1.8.1
+	github.com/stretchr/testify v1.8.2
 	github.com/swaggo/swag v1.8.10
 	golang.org/x/crypto v0.6.0
 )
