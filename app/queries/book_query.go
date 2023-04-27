@@ -20,7 +20,7 @@ func (q *BookQueries) GetBooks() ([]models.Book, error) {
 	query := `SELECT * FROM books`
 
 	// Send query to database.
-	err := q.Get(&books, query)
+	err := q.Select(&books, query)
 	if err != nil {
 		// Return empty object and error.
 		return books, err
