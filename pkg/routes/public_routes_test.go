@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"net/http"
 	"net/http/httptest"
 	"testing"
 
@@ -46,7 +47,7 @@ func TestPublicRoutes(t *testing.T) {
 	// Iterate through test single test cases
 	for _, test := range tests {
 		// Create a new http request with the route from the test case.
-		req := httptest.NewRequest("GET", test.route, nil)
+		req := httptest.NewRequest("GET", test.route, http.NoBody)
 		req.Header.Set("Content-Type", "application/json")
 
 		// Perform the request plain with the app.

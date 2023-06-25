@@ -1,6 +1,6 @@
 # Fiber backend template for [Create Go App CLI](https://github.com/create-go-app/cli)
 
-<img src="https://img.shields.io/badge/Go-1.17+-00ADD8?style=for-the-badge&logo=go" alt="go version" />&nbsp;<a href="https://goreportcard.com/report/github.com/create-go-app/fiber-go-template" target="_blank"><img src="https://img.shields.io/badge/Go_report-A+-success?style=for-the-badge&logo=none" alt="go report" /></a>&nbsp;<img src="https://img.shields.io/badge/license-Apache_2.0-red?style=for-the-badge&logo=none" alt="license" />
+<img src="https://img.shields.io/badge/Go-1.19+-00ADD8?style=for-the-badge&logo=go" alt="go version" />&nbsp;<a href="https://goreportcard.com/report/github.com/create-go-app/fiber-go-template" target="_blank"><img src="https://img.shields.io/badge/Go_report-A+-success?style=for-the-badge&logo=none" alt="go report" /></a>&nbsp;<img src="https://img.shields.io/badge/license-Apache_2.0-red?style=for-the-badge&logo=none" alt="license" />
 
 [Fiber](https://gofiber.io/) is an Express.js inspired web framework build on top of Fasthttp, the fastest HTTP engine for Go. Designed to ease things up for **fast** development with **zero memory allocation** and **performance** in mind.
 
@@ -35,24 +35,6 @@ make docker.run
 5. Go to API Docs page (Swagger): [127.0.0.1:5000/swagger/index.html](http://127.0.0.1:5000/swagger/index.html)
 
 ![Screenshot](https://user-images.githubusercontent.com/11155743/112715187-07dab100-8ef0-11eb-97ea-68d34f2178f6.png)
-
-## 📦 Used packages
-
-| Name                                                                  | Version    | Type       |
-| --------------------------------------------------------------------- | ---------- | ---------- |
-| [gofiber/fiber](https://github.com/gofiber/fiber)                     | `v2.41.0`  | core       |
-| [gofiber/jwt](https://github.com/gofiber/jwt)                         | `v2.2.7`   | middleware |
-| [arsmn/fiber-swagger](https://github.com/arsmn/fiber-swagger)         | `v2.31.1`  | middleware |
-| [stretchr/testify](https://github.com/stretchr/testify)               | `v1.7.1`   | tests      |
-| [golang-jwt/jwt](https://github.com/golang-jwt/jwt)                   | `v4.4.1`   | auth       |
-| [joho/godotenv](https://github.com/joho/godotenv)                     | `v1.4.0`   | config     |
-| [jmoiron/sqlx](https://github.com/jmoiron/sqlx)                       | `v1.3.5`   | database   |
-| [jackc/pgx](https://github.com/jackc/pgx)                             | `v4.16.1`  | database   |
-| [go-sql-driver/mysql](https://github.com/go-sql-driver/mysql)         | `v1.6.0`   | database   |
-| [go-redis/redis](https://github.com/go-redis/redis)                   | `v8.11.5`  | cache      |
-| [swaggo/swag](https://github.com/swaggo/swag)                         | `v1.8.2`   | utils      |
-| [google/uuid](https://github.com/google/uuid)                         | `v1.3.0`   | utils      |
-| [go-playground/validator](https://github.com/go-playground/validator) | `v10.10.0` | utils      |
 
 ## 🗄 Template structure
 
