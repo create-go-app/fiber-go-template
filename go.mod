@@ -3,7 +3,7 @@ module github.com/create-go-app/fiber-go-template
 go 1.19
 
 require (
-	github.com/go-playground/validator/v10 v10.18.0
+	github.com/go-playground/validator/v10 v10.19.0
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/gofiber/contrib/jwt v1.0.8
 	github.com/gofiber/fiber/v2 v2.52.1
