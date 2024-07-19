@@ -13,7 +13,7 @@ require (
 	github.com/jackc/pgx/v4 v4.18.3
 	github.com/jmoiron/sqlx v1.4.0
 	github.com/joho/godotenv v1.5.1
-	github.com/redis/go-redis/v9 v9.5.4
+	github.com/redis/go-redis/v9 v9.6.0
 	github.com/stretchr/testify v1.9.0
 	github.com/swaggo/swag v1.16.3
 	golang.org/x/crypto v0.25.0
