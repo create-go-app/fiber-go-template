@@ -52,7 +52,7 @@ func generateNewAccessToken(id string, credentials []string) (string, error) {
 
 	// Set public claims:
 	claims["id"] = id
-	claims["expires"] = time.Now().Add(time.Minute * time.Duration(minutesCount)).Unix()
+	claims["exp"] = time.Now().Add(time.Minute * time.Duration(minutesCount)).Unix()
 	claims["book:create"] = false
 	claims["book:update"] = false
 	claims["book:delete"] = false
