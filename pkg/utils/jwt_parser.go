@@ -33,7 +33,7 @@ func ExtractTokenMetadata(c *fiber.Ctx) (*TokenMetadata, error) {
 		}
 
 		// Expires time.
-		expires := int64(claims["expires"].(float64))
+		expires := int64(claims["exp"].(float64))
 
 		// User credentials.
 		credentials := map[string]bool{
