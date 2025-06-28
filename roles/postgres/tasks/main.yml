@@ -1,0 +1,56 @@
+# Ansible role for deploy the PostgreSQL for the Create Go App project.
+# Author: Vic Shóstak <koddr.me@gmail.com> (https://github.com/koddr)
+# For more information, please visit https://github.com/create-go-app/cli
+
+---
+#
+# Create folder for PostgreSQL database.
+#
+- name: Ensures PostgreSQL dir exists
+  file:
+    state: directory
+    path: "{{ server_dir }}/database"
+    owner: "{{ server_user }}"
+    group: "{{ server_group }}"
+
+#
+# Run official PostgreSQL Docker container with specified version.
+#
+- name: Run PostgreSQL container
+  community.docker.docker_container:
+    name: "{{ postgres_container_name }}"
+    image: "postgres:{{ postgres_version }}"
+    restart_policy: unless-stopped
+    recreate: true
+    networks:
+      - name: "{{ docker_network }}"
+    ports:
+      - "{{ postgres_port }}:{{ postgres_port }}"
+    env:
+      POSTGRES_USER: "{{ postgres_user }}"
+      POSTGRES_PASSWORD: "{{ postgres_password }}"
+      POSTGRES_DB: "{{ postgres_db }}"
+    volumes:
+      - "{{ server_dir }}/database/data/:/var/lib/postgresql/data"
+
+#
+# Make DB migration.
+#
+- name: Make DB migration
+  community.docker.docker_container:
+    name: cgapp-db-migration
+    image: "migrate/migrate"
+    recreate: true
+    networks:
+      - name: "{{ docker_network }}"
+    command:
+      [
+        "-path",
+        "/migrations",
+        "-database",
+        "postgres://{{ postgres_user }}:{{ postgres_password }}@{{ postgres_container_name }}:{{ postgres_port }}/{{ postgres_db }}?sslmode={{ postgres_ssl_mode }}",
+        "up",
+        "{{ migrate_number }}",
+      ]
+    volumes:
+      - "{{ server_dir }}/backend/platform/migrations/:/migrations"

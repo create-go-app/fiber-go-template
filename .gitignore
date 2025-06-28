@@ -1,12 +1,20 @@
-# macOS
-**/.DS_Store
+# A default .gitignore for Create Go App project.
+# Author: Vic Shóstak <koddr.me@gmail.com> (https://github.com/koddr)
+# For more information, please visit https://github.com/create-go-app/cli
 
-# Dev build
-build/
+# macOS
+**/.DS_store
+
+# Go builds
+**/app/
+**/build/
+
+# Temporary files
 tmp/
 
-# Test
-*.out
+# Node.js dependencies
+**/node_modules/
 
-# Environment variables
-.env
+# Files
+hosts.ini
+*.out

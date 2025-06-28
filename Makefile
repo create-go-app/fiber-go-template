@@ -1,85 +1,20 @@
-.PHONY: clean critic security lint test build run
+# A default Makefile for Create Go App project.
+# Author: Vic Shóstak <koddr.me@gmail.com> (https://github.com/koddr)
+# For more information, please visit https://github.com/create-go-app/cli
 
-APP_NAME = apiserver
-BUILD_DIR = $(PWD)/build
-MIGRATIONS_FOLDER = $(PWD)/platform/migrations
-DATABASE_URL = postgres://postgres:password@cgapp-postgres/postgres?sslmode=disable
+.PHONY: test run build
 
-clean:
-	rm -rf ./build
+FRONTEND_PATH = $(PWD)/frontend
+BACKEND_PATH = $(PWD)/backend
 
-critic:
-	gocritic check -enableAll ./...
+test:
+	@if [ -d "$(FRONTEND_PATH)" ]; then cd $(FRONTEND_PATH) && npm run test; fi
+	@if [ -d "$(BACKEND_PATH)" ]; then cd $(BACKEND_PATH) && go test ./...; fi
 
-security:
-	gosec ./...
-
-lint:
-	golangci-lint run ./...
-
-test: clean critic security lint
-	go test -v -timeout 30s -coverprofile=cover.out -cover ./...
-	go tool cover -func=cover.out
+run: test
+	@if [ -d "$(FRONTEND_PATH)" ]; then cd $(FRONTEND_PATH) && npm run dev; fi
+	@if [ -d "$(BACKEND_PATH)" ]; then cd $(BACKEND_PATH) && $(MAKE) run; fi
 
 build: test
-	CGO_ENABLED=0 go build -ldflags="-w -s" -o $(BUILD_DIR)/$(APP_NAME) main.go
-
-run: swag build
-	$(BUILD_DIR)/$(APP_NAME)
-
-migrate.up:
-	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" up
-
-migrate.down:
-	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" down
-
-migrate.force:
-	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" force $(version)
-
-docker.run: docker.network docker.postgres swag docker.fiber docker.redis migrate.up
-
-docker.network:
-	docker network inspect dev-network >/dev/null 2>&1 || \
-	docker network create -d bridge dev-network
-
-docker.fiber.build:
-	docker build -t fiber .
-
-docker.fiber: docker.fiber.build
-	docker run --rm -d \
-		--name cgapp-fiber \
-		--network dev-network \
-		-p 5000:5000 \
-		fiber
-
-docker.postgres:
-	docker run --rm -d \
-		--name cgapp-postgres \
-		--network dev-network \
-		-e POSTGRES_USER=postgres \
-		-e POSTGRES_PASSWORD=password \
-		-e POSTGRES_DB=postgres \
-		-v ${HOME}/dev-postgres/data/:/var/lib/postgresql/data \
-		-p 5432:5432 \
-		postgres
-
-docker.redis:
-	docker run --rm -d \
-		--name cgapp-redis \
-		--network dev-network \
-		-p 6379:6379 \
-		redis
-
-docker.stop: docker.stop.fiber docker.stop.postgres docker.stop.redis
-
-docker.stop.fiber:
-	docker stop cgapp-fiber
-
-docker.stop.postgres:
-	docker stop cgapp-postgres
-
-docker.stop.redis:
-	docker stop cgapp-redis
-
-swag:
-	swag init
+	@if [ -d "$(FRONTEND_PATH)" ]; then cd $(FRONTEND_PATH) && npm run build; fi
+	@if [ -d "$(BACKEND_PATH)" ]; then cd $(BACKEND_PATH) && $(MAKE) build; fi

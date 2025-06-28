@@ -1,0 +1,20 @@
+# Ansible playbook for deploy the Create Go App project.
+# Author: Vic Shóstak <koddr.me@gmail.com> (https://github.com/koddr)
+# For more information, please visit https://github.com/create-go-app/cli
+
+---
+#
+# Playbook for deploy.
+#
+- name: Deploy the Create Go App project
+  hosts: cgapp_project
+
+  #
+  # List of all roles.
+  #
+  roles:
+    - { role: docker, tags: [docker] }
+    - { role: backend, tags: [backend] }
+    - { role: redis, tags: [redis] }
+    - { role: postgres, tags: [postgres] }
+    - { role: traefik, tags: [traefik] }
