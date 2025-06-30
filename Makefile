@@ -4,6 +4,8 @@ APP_NAME = apiserver
 BUILD_DIR = $(PWD)/build
 MIGRATIONS_FOLDER = $(PWD)/platform/migrations
 DATABASE_URL = postgres://postgres:password@cgapp-postgres/postgres?sslmode=disable
+HOST_DATABASE_URL = postgres://postgres:password@localhost:5432/postgres?sslmode=disable
+
 
 clean:
 	rm -rf ./build
@@ -35,6 +37,15 @@ migrate.down:
 
 migrate.force:
 	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" force $(version)
+
+migrate.up.by.host:
+	migrate -path $(MIGRATIONS_FOLDER) -database "$(HOST_DATABASE_URL)" up
+
+migrate.down.by.host:
+	migrate -path $(MIGRATIONS_FOLDER) -database "$(HOST_DATABASE_URL)" down
+
+migrate.force.by.host:
+	migrate -path $(MIGRATIONS_FOLDER) -database "$(HOST_DATABASE_URL)" force $(version)
 
 docker.run: docker.network docker.postgres swag docker.fiber docker.redis migrate.up
 
