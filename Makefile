@@ -47,7 +47,7 @@ migrate.down.by.host:
 migrate.force.by.host:
 	migrate -path $(MIGRATIONS_FOLDER) -database "$(HOST_DATABASE_URL)" force $(version)
 
-docker.run: docker.network docker.postgres swag docker.fiber docker.redis migrate.up
+docker.run: docker.network docker.postgres swag docker.fiber docker.redis migrate.up.by.host
 
 docker.network:
 	docker network inspect dev-network >/dev/null 2>&1 || \
