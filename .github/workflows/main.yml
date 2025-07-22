@@ -8,7 +8,7 @@ on:
   
 jobs:  
   test:  
-    runs-on: self-hosted  
+    runs-on: [self-hosted, Linux]  
       
     services:  
       postgres:  
@@ -62,7 +62,7 @@ jobs:
           REDIS_HOST: localhost  
   
   build:  
-    runs-on: self-hosted  
+    runs-on: [self-hosted, Linux]  
     needs: [test]  
       
     steps:  
