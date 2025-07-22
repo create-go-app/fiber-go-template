@@ -1,83 +1,29 @@
-name: CI  
-  
-on:  
-  push:  
-    branches: [ master, develop ]  
-  pull_request:  
-    branches: [ master, develop ]  
-  
-jobs:  
-  test:  
-    runs-on: [self-hosted, Linux]  
-      
-    services:  
-      postgres:  
-        image: postgres:17.5  
-        env:  
-          POSTGRES_USER: postgres  
-          POSTGRES_PASSWORD: password  
-          POSTGRES_DB: postgres  
-        options: >-  
-          --health-cmd pg_isready  
-          --health-interval 10s  
-          --health-timeout 5s  
-          --health-retries 5  
-        ports:  
-          - 5432:5432  
-        
-      redis:  
-        image: redis:8.0.3  
-        options: >-  
-          --health-cmd "redis-cli ping"  
-          --health-interval 10s  
-          --health-timeout 5s  
-          --health-retries 5  
-        ports:  
-          - 6379:6379  
-      
-    steps:  
-      - uses: actions/checkout@v4  
-        
-      - name: Set up Go  
-        uses: actions/setup-go@v4  
-        with:  
-          go-version: '1.24'  
-        
-      - name: Install dependencies  
-        run: |  
-          go mod download  
-          go install github.com/swaggo/swag/cmd/swag@latest  
-          go install github.com/securego/gosec/v2/cmd/gosec@latest  
-          go install github.com/go-critic/go-critic/cmd/gocritic@latest  
-          brew install golangci-lint || echo "golangci-lint already installed"  
-        
-      - name: Setup test environment  
-        run: cp .env.example .env  
-        
-      - name: Unit test  
-        run: make test  
-        continue-on-error: false  
-        env:  
-          DB_HOST: localhost  
-          REDIS_HOST: localhost  
-  
-  build:  
-    runs-on: [self-hosted, Linux]  
-    needs: [test]  
-      
-    steps:  
-      - uses: actions/checkout@v4  
-        
-      - name: Login docker registry  
-        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin  
-        env:  
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}  
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
-        
-      - name: Change script permission  
-        run: chmod +x build_image.sh  
-        
-      - name: Build and push to DockerHub  
-        run: ./build_image.sh  
-        env:  
+name: CI
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+jobs:
+  test:
+    runs-on: [self-hosted, Linux]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependency
+        run: go mod download
+      - name: Unit test
+        run: make test
+        continue-on-error: false
+  build:
+    runs-on: [self-hosted, Linux]
+    needs: [test]
+    steps:
+      - name: Login docker registry
+        run: sudo docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+        env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Change script permission
+        run: chmod +x build_image.sh
+      - name: Build
+        run: sudo ./build_image.sh
