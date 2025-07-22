@@ -6,7 +6,7 @@ on:
     branches: [ master, develop ]
 jobs:
   test:
-    runs-on: [self-hosted, Linux]
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
       - name: Install dependency
@@ -15,7 +15,7 @@ jobs:
         run: make test
         continue-on-error: false
   build:
-    runs-on: [self-hosted, Linux]
+    runs-on: self-hosted
     needs: [test]
     steps:
       - name: Login docker registry
