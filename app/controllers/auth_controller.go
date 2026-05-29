@@ -19,9 +19,7 @@ import (
 // @Tags User
 // @Accept json
 // @Produce json
-// @Param email body string true "Email"
-// @Param password body string true "Password"
-// @Param user_role body string true "User role"
+// @Param user body models.SignUp true "User details"
 // @Success 200 {object} models.User
 // @Router /v1/user/sign/up [post]
 func UserSignUp(c *fiber.Ctx) error {
@@ -115,8 +113,7 @@ func UserSignUp(c *fiber.Ctx) error {
 // @Tags User
 // @Accept json
 // @Produce json
-// @Param email body string true "User Email"
-// @Param password body string true "User Password"
+// @Param credentials body models.SignIn true "Login credentials"
 // @Success 200 {string} status "ok"
 // @Router /v1/user/sign/in [post]
 func UserSignIn(c *fiber.Ctx) error {
